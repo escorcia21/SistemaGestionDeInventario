@@ -30,22 +30,25 @@ class BDD(metaclass=Singleton):
 
     #Methods of the Object DB
     def show_tables(self):
-        mycursor  = self.__connector.cursor()
-        show_db_query = "SHOW TABLES"
-        mycursor.execute(show_db_query)
-        for x in mycursor:
-            print(x)
+        try:
+            with self.__connector.cursor() as cur:
+                query = "SHOW TABLES"
+                cur.execute(query)
+                result = cur.fetchall()
+                return result
+        except Error as e:
+            print(e)
 
     def get_products(self):
         try:
             with self.__connector.cursor() as cur:
-                show_db_query = '''
+                query = '''
                 SELECT Producto.ID AS idd, Producto.Nombre AS Producto, Tipo.Nombre AS categoria, Producto.Precio, Producto.Stock FROM Producto 
                 INNER JOIN Tipo ON Producto.Tipo=Tipo.ID 
                 '''
                 # INNER JOIN Proveedor_Producto ON Producto.ID=Proveedor_Producto.Producto 
                 # INNER JOIN Proveedor ON Proveedor_Producto.Proveedor=Proveedor.ID;
-                cur.execute(show_db_query)
+                cur.execute(query)
                 result = cur.fetchall()
                 #print(result)
                 return result
@@ -54,22 +57,28 @@ class BDD(metaclass=Singleton):
             
 
     def get_types(self):
-        mycursor  = self.__connector.cursor()
-        show_db_query = '''
-        SELECT ID,Nombre From Tipo;
-        '''
-        mycursor.execute(show_db_query)
-        result = mycursor.fetchall()
-        return result
+        try:
+            with self.__connector.cursor() as cur:
+                query = '''
+                SELECT ID,Nombre From Tipo;
+                '''
+                cur.execute(query)
+                result = cur.fetchall()
+                return result
+        except Error as e:
+            print(e)
 
     def get_supp(self):
-        mycursor  = self.__connector.cursor()
-        show_db_query = '''
-        SELECT ID,Nombre From Proveedor;
-        '''
-        mycursor.execute(show_db_query)
-        result = mycursor.fetchall()
-        return result
+        try:
+            with self.__connector.cursor() as cur:
+                query = '''
+                SELECT ID,Nombre From Proveedor;
+                '''
+                cur.execute(query)
+                result = cur.fetchall()
+                return result
+        except Error as e:
+            print(e)
 
     def add_Products(self,Nombre,Tipo,Precio):
         
@@ -79,26 +88,32 @@ class BDD(metaclass=Singleton):
                 INSERT INTO Producto (Nombre,Stock,Precio,Tipo) VALUES (%s,%s,%s,%s);
                 ''')  
                 product_info = (Nombre,0,Precio,Tipo)
-                cur.execute(add_product, product_info)
+                cur.execute(add_product,product_info)
                 self.__connector.commit()
                 print(cur.rowcount, "record inserted.")
         except Error as e:
             print(e)
 
     def get_supp__proc(self):
-        mycursor  = self.__connector.cursor()
-        show_db_query = '''
-        SELECT * FROM Proveedor_Producto;
-        '''
-        mycursor.execute(show_db_query)
-        result = mycursor.fetchall()
-        return result
+        try:
+            with self.__connector.cursor() as cur:
+                query = '''
+                SELECT * FROM Proveedor_Producto;
+                '''
+                cur.execute(query)
+                result = cur.fetchall()
+                return result
+        except Error as e:
+            print(e)
 
 
     #connection and close functions
     def connect(self,User,Password,Host,Database):
-        connection = connect(host=Host,user=User,password=Password,database=Database)
-        return connection
+        try:
+            connection = connect(host=Host,user=User,password=Password,database=Database)
+            return connection
+        except Error as e:
+            print(e)
 
     def close(self):
         self.__connector.close()
@@ -109,7 +124,10 @@ class BDD(metaclass=Singleton):
 if __name__ == '__main__':
 
     bdd = BDD()
+    print(bdd.show_tables())
+    print(bdd.get_products())
     print(bdd.get_supp__proc())
-    bddd = BDD()
+    print(bdd.get_types())
+    print(bdd.get_supp())
 
     
