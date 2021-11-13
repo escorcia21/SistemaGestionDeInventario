@@ -27,18 +27,18 @@ Rectangle{
     GridView {
         id: root
         anchors.fill: parent
-        anchors.rightMargin: 15
+        anchors.rightMargin: 0
 
         //Keys.onUpPressed: scrollBar.decrease()
         //Keys.onDownPressed: scrollBar.increase()
         //crollbar
         ScrollBar.vertical: ScrollBar {
             id: scrollBar
-            width: 15
+            width: 12
             anchors.top: root.top
             anchors.right: root.right
             anchors.bottom: root.bottom
-            anchors.rightMargin: -15
+            anchors.rightMargin: 0
             contentItem: Rectangle {
                 id:contentItem_rect2
                 color: "#30475e"
@@ -47,7 +47,6 @@ Rectangle{
                 height: 10 // This will be overridden based on the size of the scrollbar
             }
         }
-
 
         // The standard size
         property var idealCellHeight: 250
@@ -64,16 +63,15 @@ Rectangle{
 
         model: ListModel {
             id: products
-            //ListElement {pname: "acetaminifennnnnnnnnnnnnnnnnn"; price: "34000"; pstock: 0; pseller: "bayern";ptype: "Tubo"; idd: 1; pimg: ""; totalp:0; hmany:0}
             ListElement {pname: "acetaminifen"; price: "34000"; pstock: 12;ptype: "Tubo"; idd: 2; pimg: ""; totalp:0; hmany:0}
-            //ListElement {pname: "acetaminifen"; price: 34000; pstock: 12; pseller: "bayern";ptype: "A"; idd: 3; pimg: ""; totalp:0; hmany:0}
-            //ListElement {pname: "acetaminifen"; price: 34000; pstock: 12; pseller: "bayern";ptype: "C"; idd: 4; pimg: ""; totalp:0; hmany:0}
-            //ListElement {pname: "acetaminifen"; price: 34000; pstock: 12; pseller: "bayern";ptype: "C"; idd: 5; pimg: ""; totalp:0; hmany:0}
-            //ListElement {pname: "acetaminifen"; price: 34000; pstock: 12; pseller: "bayern";ptype: "B"; idd: 6; pimg: ""; totalp:0; hmany:0}
-            //ListElement {pname: "acetaminifen"; price: 34000; pstock: 12; pseller: "bayern";ptype: "B"; idd: 7; pimg: ""; totalp:0; hmany:0}
-            //ListElement {pname: "acetaminifen"; price: 34000; pstock: 12; pseller: "bayern";ptype: "A"; idd: 8; pimg: ""; totalp:0; hmany:0}
-            //ListElement {pname: "acetaminifen"; price: 34000; pstock: 12; pseller: "bayern";ptype: "A"; idd: 9; pimg: ""; totalp:0; hmany:0}
-            //ListElement {pname: "acetaminifen"; price: 34000; pstock: 12; pseller: "bayern";ptype: "A"; idd: 10; pimg: ""; totalp:0; hmany:0}
+            ListElement {pname: "acetaminifen"; price: "34000"; pstock: 12;ptype: "Tubo"; idd: 2; pimg: ""; totalp:0; hmany:0}
+            ListElement {pname: "acetaminifen"; price: "34000"; pstock: 12;ptype: "Tubo"; idd: 2; pimg: ""; totalp:0; hmany:0}
+            ListElement {pname: "acetaminifen"; price: "34000"; pstock: 12;ptype: "Tubo"; idd: 2; pimg: ""; totalp:0; hmany:0}
+            ListElement {pname: "acetaminifen"; price: "34000"; pstock: 12;ptype: "Tubo"; idd: 2; pimg: ""; totalp:0; hmany:0}
+            ListElement {pname: "acetaminifen"; price: "34000"; pstock: 12;ptype: "Tubo"; idd: 2; pimg: ""; totalp:0; hmany:0}
+            ListElement {pname: "acetaminifen"; price: "34000"; pstock: 12;ptype: "Tubo"; idd: 2; pimg: ""; totalp:0; hmany:0}
+            ListElement {pname: "acetaminifen"; price: "34000"; pstock: 12;ptype: "Tubo"; idd: 2; pimg: ""; totalp:0; hmany:0}
+            ListElement {pname: "acetaminifen"; price: "34000"; pstock: 12;ptype: "Tubo"; idd: 2; pimg: ""; totalp:0; hmany:0}
 
 
             function filter(PName,target) {
@@ -199,7 +197,7 @@ Rectangle{
         }
 
         function onInitialize(object){
-            products.clear()
+            //products.clear()
             var txt = JSON.parse(object);
             //console.log(JSON.stringify(txt,null,2))
              for (var index = 0; index < Object.keys(txt).length; index++) {

@@ -49,7 +49,7 @@ class Adapter(Target):
         return json.dumps(mydict)
 
     def obtenerProveedoresJSON(self) -> str:
-        result = self.__adaptee.get_supp()
+        result = self.__adaptee.get_supp()[0]
         mydict = {}
         for i,row in enumerate(result):
             mydict[f'Supp{i}']=({"idd":row[0],"Nombre":row[1]})
@@ -64,7 +64,11 @@ class Adapter(Target):
 
     def obtenerEmpleadosJSON(self) -> str:pass
 
+    def close(self):
+        self.__adaptee.close()
+
 
 if __name__ == "__main__":
     a = Adapter()
-    print(a.obtenerTiposJSON(),type(a.obtenerTiposJSON()))
+    print(a.obtenerProveedoresJSON())
+    a.close()

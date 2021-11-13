@@ -86,6 +86,9 @@ Window {
                 productsView.visible = false
                 cartView.visible = false
 
+                btnProv.isActive= false
+                suppliersView.visible = false
+
                 btnHome.isActive = true
                 homeView.visible = true
             }
@@ -101,8 +104,29 @@ Window {
                 productsView.visible = false
                 cartView.visible = false
 
+                bbtnProv.isActive= false
+                suppliersView.visible = false
+
                 btnSettings.isActive = true
                 settingsView.visible = true
+            }
+        }
+
+        function suppliers() {
+            if (btnProv.isActive != true){
+                btnHome.isActive = false
+                btnCart.isActive = false
+                btnProducts.isActive = false
+
+                homeView.visible = false
+                productsView.visible = false
+                cartView.visible = false
+
+                btnSettings.isActive = false
+                settingsView.visible = false
+
+                btnProv.isActive= true
+                suppliersView.visible = true
             }
         }
 
@@ -115,6 +139,9 @@ Window {
                 settingsView.visible = false
                 homeView.visible = false
                 cartView.visible = false
+
+                btnProv.isActive= false
+                suppliersView.visible = false
 
                 btnProducts.isActive = true
                 productsView.visible = true
@@ -130,6 +157,9 @@ Window {
                 settingsView.visible = false
                 homeView.visible = false
                 productsView.visible = false
+
+                btnProv.isActive= false
+                suppliersView.visible = false
 
                 btnCart.isActive = true
                 cartView.visible = true
@@ -400,6 +430,9 @@ Window {
                             isActive: false
                             font.pointSize: 12
                             btnIconSource: "../img/svg_img/065-delivery-truck-1.svg"
+                            onClicked: {
+                                internal.suppliers()
+                            }
                         }
                         LeftMenuSHCart {
                             id: btnCart
@@ -470,6 +503,14 @@ Window {
                         id: cartView
                         anchors.fill: parent
                         source: Qt.resolvedUrl("pages/CartPage.qml")
+                        visible: false
+
+                    }
+
+                    Loader {
+                        id: suppliersView
+                        anchors.fill: parent
+                        source: Qt.resolvedUrl("pages/Suppliers.qml")
                         visible: false
 
                     }

@@ -8,7 +8,7 @@ from DBConnection import BDD
 from PySide2.QtGui import QGuiApplication
 from PySide2.QtQml import QQmlApplicationEngine
 from PySide2.QtCore import QObject, Slot, Signal
-
+from models import TableSupplier
 
 
 class MainWindow(QObject):
@@ -34,7 +34,6 @@ class MainWindow(QObject):
     @Slot()
     def close(self):
         self.dbc.close()
-        print("db closed")
 
     @Slot(str,int,str)
     def agregarProducto(self,Nombre,Tipo,Precio):
@@ -106,14 +105,12 @@ class MainWindow(QObject):
         self.clearList.emit()
 
 if __name__ == "__main__":
+    #Enviroment variables
     environ["QT_DEVICE_PIXEL_RATIO"] = "0"
     environ["QT_AUTO_SCREEN_SCALE_FACTOR"] = "1"
     environ["QT_SCREEN_SCALE_FACTORS"] = "1"
     environ["QT_SCALE_FACTOR"] = "1"
     environ["QT_FONT_DPI"] = "96"
-    #mydb = db()
-    #mydb.show_table("articulo")
-
     app = QGuiApplication(sys.argv)
     engine = QQmlApplicationEngine()
 
@@ -122,9 +119,8 @@ if __name__ == "__main__":
     adapter = Adapter()
     main = MainWindow(bdd,adapter)
 
-    engine.rootContext().setContextProperty("backend",main)
-
     #QML file
+    engine.rootContext().setContextProperty("backend",main)
     engine.load(path.join(path.dirname(__file__), "qml/main.qml"))
     main.setBD()
     main.setTypes()

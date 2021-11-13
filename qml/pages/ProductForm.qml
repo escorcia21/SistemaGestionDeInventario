@@ -134,17 +134,6 @@ Item {
              }
              //fungus1.listm = list1;
         }
-
-        function onListSupp(object){
-            var txt = JSON.parse(object);
-            //console.log(JSON.stringify(list1,null,2))
-             for (var index = 0; index < Object.keys(txt).length; index++) {
-                //txt[`'Product{index}`]
-                 var a = txt[`Supp${index}`];
-                 fungus2.listm.append({'idd': a.idd, 'tname': a.Nombre});
-             }
-             //fungus2.listm = list1;
-       }
     }
 
 }

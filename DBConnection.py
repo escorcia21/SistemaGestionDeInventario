@@ -50,7 +50,6 @@ class BDD(metaclass=Singleton):
                 # INNER JOIN Proveedor ON Proveedor_Producto.Proveedor=Proveedor.ID;
                 cur.execute(query)
                 result = cur.fetchall()
-                #print(result)
                 return result
         except Error as e:
             print(e)
@@ -76,7 +75,9 @@ class BDD(metaclass=Singleton):
                 '''
                 cur.execute(query)
                 result = cur.fetchall()
-                return result
+                columns = len(cur.description)
+                columnsNames = [i[0] for i in cur.description]
+                return result,columnsNames
         except Error as e:
             print(e)
 
@@ -117,17 +118,18 @@ class BDD(metaclass=Singleton):
 
     def close(self):
         self.__connector.close()
+        print("Closing the connection..")
 
 
 
 
 if __name__ == '__main__':
-
     bdd = BDD()
-    print(bdd.show_tables())
-    print(bdd.get_products())
-    print(bdd.get_supp__proc())
-    print(bdd.get_types())
+    #print(bdd.show_tables())
+    #print(bdd.get_products())
+    #print(bdd.get_supp__proc())
+    #print(bdd.get_types())
     print(bdd.get_supp())
+    bdd.close()
 
     
