@@ -71,13 +71,11 @@ class BDD(metaclass=Singleton):
         try:
             with self.__connector.cursor() as cur:
                 query = '''
-                SELECT ID,Nombre From Proveedor;
+                SELECT * From Proveedor;
                 '''
                 cur.execute(query)
                 result = cur.fetchall()
-                columns = len(cur.description)
-                columnsNames = [i[0] for i in cur.description]
-                return result,columnsNames
+                return result
         except Error as e:
             print(e)
 

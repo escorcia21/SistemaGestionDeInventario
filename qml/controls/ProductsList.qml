@@ -27,24 +27,29 @@ Rectangle{
     GridView {
         id: root
         anchors.fill: parent
-        anchors.rightMargin: 0
-
+        snapMode: GridView.SnapToRow
+        anchors.rightMargin: 1
+        boundsMovement: Flickable.StopAtBounds
+        //Layout.alignment: Qt.AlignLeft | Qt.AlignTop
+        //rowSpacing: 20
+        //columnSpacing: 20
+        //flow:  width > height ? GridView.LeftToRight : GridView.TopToBottom
         //Keys.onUpPressed: scrollBar.decrease()
         //Keys.onDownPressed: scrollBar.increase()
         //crollbar
         ScrollBar.vertical: ScrollBar {
             id: scrollBar
             width: 12
-            anchors.top: root.top
-            anchors.right: root.right
-            anchors.bottom: root.bottom
-            anchors.rightMargin: 0
+            // anchors.top: root.top
+            // anchors.right: root.right
+            // anchors.bottom: root.bottom
+            // anchors.rightMargin: 0
             contentItem: Rectangle {
                 id:contentItem_rect2
                 color: "#30475e"
-                anchors.horizontalCenter: parent.horizontalCenter
-                width: 10 // This will be overridden by the width of the scrollbar
-                height: 10 // This will be overridden based on the size of the scrollbar
+                //anchors.horizontalCenter: parent.horizontalCenter
+                //width: 10 // This will be overridden by the width of the scrollbar
+                //height: 10 // This will be overridden based on the size of the scrollbar
             }
         }
 
@@ -58,6 +63,7 @@ Rectangle{
         // is calculated from the current width of the view and how many cells fit
         cellHeight: idealCellHeight
         cellWidth: width / Math.floor(width / idealCellWidth)
+        //cellWidth: idealCellWidth
 
 
 
@@ -100,6 +106,7 @@ Rectangle{
         delegate: Item {
             // The delegate size is equal to the cell size...
             height: GridView.view.cellHeight
+            //anchors.horizontalCenter: parent.horizontalCenter
             width: GridView.view.cellWidth
 
             ProductCard {
@@ -210,6 +217,6 @@ Rectangle{
 }
 /*##^##
 Designer {
-    D{i:0;autoSize:true;height:480;width:640}
+    D{i:0;autoSize:true;formeditorZoom:0.75;height:480;width:640}
 }
 ##^##*/

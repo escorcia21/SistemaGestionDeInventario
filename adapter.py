@@ -49,10 +49,13 @@ class Adapter(Target):
         return json.dumps(mydict)
 
     def obtenerProveedoresJSON(self) -> str:
-        result = self.__adaptee.get_supp()[0]
+        result = self.__adaptee.get_supp()
+        
+        # 1, 'SOLDISEE S.A.S.', '900436084-5', 'Almacen@Soldisee.com.co', 'Cl. 49 #67-105', 123456789
+        #'ID', 'Nombre', 'NIT', 'Correo', 'Direccion', 'Telefono'
         mydict = {}
         for i,row in enumerate(result):
-            mydict[f'Supp{i}']=({"idd":row[0],"Nombre":row[1]})
+            mydict[f'Supp{i}']=({"ID":row[0],"Nombre":row[1],"NIT":row[2],"Correo":row[3],"Direccion":row[4],"Telefono":row[5]})
 
         return json.dumps(mydict)
 

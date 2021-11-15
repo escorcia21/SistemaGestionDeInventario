@@ -112,7 +112,6 @@ Item {
         anchors.topMargin: 4
         font.pointSize: 12
 
-
         model: ListModel {
             id:list
             ListElement {tname:""}
@@ -162,7 +161,6 @@ Item {
                  width: comboBox.width
                  height:contentItem.implicitHeigh
                  padding: 1
-
 
                  contentItem: ListView {
                      id:listView
