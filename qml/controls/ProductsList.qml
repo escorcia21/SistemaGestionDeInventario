@@ -69,15 +69,15 @@ Rectangle{
 
         model: ListModel {
             id: products
-            ListElement {pname: "acetaminifen"; price: "34000"; pstock: 12;ptype: "Tubo"; idd: 2; pimg: ""; totalp:0; hmany:0}
-            ListElement {pname: "acetaminifen"; price: "34000"; pstock: 12;ptype: "Tubo"; idd: 2; pimg: ""; totalp:0; hmany:0}
-            ListElement {pname: "acetaminifen"; price: "34000"; pstock: 12;ptype: "Tubo"; idd: 2; pimg: ""; totalp:0; hmany:0}
-            ListElement {pname: "acetaminifen"; price: "34000"; pstock: 12;ptype: "Tubo"; idd: 2; pimg: ""; totalp:0; hmany:0}
-            ListElement {pname: "acetaminifen"; price: "34000"; pstock: 12;ptype: "Tubo"; idd: 2; pimg: ""; totalp:0; hmany:0}
-            ListElement {pname: "acetaminifen"; price: "34000"; pstock: 12;ptype: "Tubo"; idd: 2; pimg: ""; totalp:0; hmany:0}
-            ListElement {pname: "acetaminifen"; price: "34000"; pstock: 12;ptype: "Tubo"; idd: 2; pimg: ""; totalp:0; hmany:0}
-            ListElement {pname: "acetaminifen"; price: "34000"; pstock: 12;ptype: "Tubo"; idd: 2; pimg: ""; totalp:0; hmany:0}
-            ListElement {pname: "acetaminifen"; price: "34000"; pstock: 12;ptype: "Tubo"; idd: 2; pimg: ""; totalp:0; hmany:0}
+            // ListElement {pname: "acetaminifen"; price: "34000"; pstock: 12;ptype: "Tubo"; idd: 2; pimg: ""; totalp:0; hmany:0}
+            // ListElement {pname: "acetaminifen"; price: "34000"; pstock: 12;ptype: "Tubo"; idd: 2; pimg: ""; totalp:0; hmany:0}
+            // ListElement {pname: "acetaminifen"; price: "34000"; pstock: 12;ptype: "Tubo"; idd: 2; pimg: ""; totalp:0; hmany:0}
+            // ListElement {pname: "acetaminifen"; price: "34000"; pstock: 12;ptype: "Tubo"; idd: 2; pimg: ""; totalp:0; hmany:0}
+            // ListElement {pname: "acetaminifen"; price: "34000"; pstock: 12;ptype: "Tubo"; idd: 2; pimg: ""; totalp:0; hmany:0}
+            // ListElement {pname: "acetaminifen"; price: "34000"; pstock: 12;ptype: "Tubo"; idd: 2; pimg: ""; totalp:0; hmany:0}
+            // ListElement {pname: "acetaminifen"; price: "34000"; pstock: 12;ptype: "Tubo"; idd: 2; pimg: ""; totalp:0; hmany:0}
+            // ListElement {pname: "acetaminifen"; price: "34000"; pstock: 12;ptype: "Tubo"; idd: 2; pimg: ""; totalp:0; hmany:0}
+            // ListElement {pname: "acetaminifen"; price: "34000"; pstock: 12;ptype: "Tubo"; idd: 2; pimg: ""; totalp:0; hmany:0}
 
 
             function filter(PName,target) {
@@ -204,7 +204,7 @@ Rectangle{
         }
 
         function onInitialize(object){
-            //products.clear()
+            products.clear()
             var txt = JSON.parse(object);
             //console.log(JSON.stringify(txt,null,2))
              for (var index = 0; index < Object.keys(txt).length; index++) {

@@ -4,7 +4,7 @@ import "../controls"
 
 Item {
     id: formProduct
-    anchors.fill: parent
+    //anchors.fill: parent
     property alias formTitle: title.text
     property alias name: ff1.value
     property alias type: fungus1.comboValue

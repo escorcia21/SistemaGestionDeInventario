@@ -22,6 +22,8 @@ class Target(ABC):
     def obtenerInformesJSON(self) -> str:pass
     @abstractmethod
     def obtenerEmpleadosJSON(self) -> str:pass
+    @abstractmethod
+    def obtenerProveedoresProductosJSON(self) -> str:pass
 
 
 class Adapter(Target):
@@ -67,11 +69,21 @@ class Adapter(Target):
 
     def obtenerEmpleadosJSON(self) -> str:pass
 
+    def obtenerProveedoresProductosJSON(self) -> str:
+        data,fields = self.__adaptee.get_supp__proc()
+
+        mydict = {}
+        for i,row in enumerate(data):
+            mydict[f'Supp_Prod{i}']=({'ID':row[0], 'Producto':row[1], 'Proveedor':row[2],'Cantidad':row[3], 'Precio':row[4], 'Fecha':row[5].strftime("%d/%b/%Y ")})
+
+        return json.dumps(mydict),fields
+        
+
     def close(self):
         self.__adaptee.close()
 
 
 if __name__ == "__main__":
     a = Adapter()
-    print(a.obtenerProveedoresJSON())
+    print(a.obtenerProveedoresProductosJSON())
     a.close()

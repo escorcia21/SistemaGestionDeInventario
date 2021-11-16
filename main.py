@@ -29,6 +29,11 @@ class MainWindow(QObject):
         a = self.adapter.obtenerProveedoresJSON()
         self.pageSupplier.emit(a)
 
+    pageSupplierProd = Signal(str,list)
+    def setPageSuppPord(self):
+        a,b = self.adapter.obtenerProveedoresProductosJSON()
+        self.pageSupplierProd.emit(a,b)
+
     types =Signal(str)
     def setTypes(self):
         a = self.adapter.obtenerTiposJSON()
@@ -39,11 +44,16 @@ class MainWindow(QObject):
     def close(self):
         self.dbc.close()
 
+    @Slot(int,str,int,str)
+    def actualizarProducto(self,id,Nombre,Tipo,Precio):
+
+        self.dbc.edit_product(id,Nombre,Tipo,int(Precio))
+        self.setBD()
+
     @Slot(str,int,str)
     def agregarProducto(self,Nombre,Tipo,Precio):
         self.dbc.add_Products(Nombre,Tipo,int(Precio))
         self.setBD()
-
 
     listTypes = Signal(str)
     @Slot()
@@ -131,6 +141,7 @@ if __name__ == "__main__":
     main.setBD()
     main.setPageSupp()
     main.setTypes()
+    main.setPageSuppPord()
     if not engine.rootObjects():
         sys.exit(-1)
     sys.exit(app.exec_())

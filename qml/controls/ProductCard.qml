@@ -201,11 +201,12 @@ Item {
                         anchors.fill: parent
                         cursorShape: Qt.PointingHandCursor
                         onClicked: {
-                           //var popup = Qt.createComponent("EditPopup.qml")
-                           //var popup2 = popup.createObject(rectangleProducts);
-                           //popup2.open()
-                           //backend.setListTypes();
-                           //backend.setSupp();
+                           var popup = Qt.createComponent("EditPopup.qml")
+                           var popup2 = popup.createObject(rectangleProducts,{ename:name,eprice:cost.substring(1),idd:identification});
+                           popup2.open()
+
+                           backend.setListTypes();
+                            //backend.setSupp();
                        }
                     }
                 }

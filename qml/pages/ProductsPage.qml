@@ -55,7 +55,7 @@ Item {
                            var popup2 = popup.createObject(rectangleProducts);
                            popup2.open()
                            backend.setListTypes();
-                           backend.setSupp();
+                           //backend.setSupp();
                         }
                     }
 

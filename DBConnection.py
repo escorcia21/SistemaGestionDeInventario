@@ -79,6 +79,20 @@ class BDD(metaclass=Singleton):
         except Error as e:
             print(e)
 
+    def edit_product(self,id,Nombre,Tipo,Precio):
+        try:
+            with self.__connector.cursor() as cur:
+                update_product = ('''
+                UPDATE Producto SET Nombre=%s,Precio=%s,Tipo=%s WHERE ID=%s;
+                ''')  
+                product_info = (Nombre,Precio,Tipo,id)
+                cur.execute(update_product,product_info)
+                self.__connector.commit()
+                print(cur.rowcount, "record inserted.")
+        except Error as e:
+            print(e)
+
+
     def add_Products(self,Nombre,Tipo,Precio):
         
         try:
@@ -101,7 +115,8 @@ class BDD(metaclass=Singleton):
                 '''
                 cur.execute(query)
                 result = cur.fetchall()
-                return result
+                field_names = [i[0] for i in cur.description]
+                return result,field_names
         except Error as e:
             print(e)
 
@@ -127,7 +142,7 @@ if __name__ == '__main__':
     #print(bdd.get_products())
     #print(bdd.get_supp__proc())
     #print(bdd.get_types())
-    print(bdd.get_supp())
+    print(bdd.get_types())
     bdd.close()
 
     
