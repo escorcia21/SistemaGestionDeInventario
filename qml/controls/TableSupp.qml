@@ -137,9 +137,10 @@ Item {
                     }
 
                     headerDelegate: Rectangle {
+                        property string headColors: styleData.column > -1 ? ["#30475e", "#203040"][styleData.column % 2] : "transparent"
                         height: 30
                         //color: red"
-                        color: ["#30475e", "#203040"][styleData.column % 2]
+                        color: headColors
                         Text {
                             text: styleData.value
                             color: "#FFF"

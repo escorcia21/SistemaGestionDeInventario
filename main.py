@@ -68,7 +68,7 @@ class MainWindow(QObject):
     setAddTypes = Signal(str)
     @Slot()
     def setAddPopUPTypes(self):
-        print("12")
+        #print("12")
         a = self.adapter.obtenerTiposJSON()
         self.listTypes.emit(a)
         self.setAddTypes.emit(a)
