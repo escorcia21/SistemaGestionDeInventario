@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # This Python file uses the following encoding: utf-8
 import sys
-from os import environ,path
+from os import environ, name,path
 import cv2
 from adapter import Adapter
 from DBConnection import BDD
@@ -34,6 +34,10 @@ class MainWindow(QObject):
         a,b = self.adapter.obtenerProveedoresProductosJSON()
         self.pageSupplierProd.emit(a,b)
 
+    @Slot(str,str)
+    def addType(self,Name,unit):
+        self.dbc.add_Type(Name,unit)
+
     types =Signal(str)
     def setTypes(self):
         a = self.adapter.obtenerTiposJSON()
@@ -61,11 +65,22 @@ class MainWindow(QObject):
         a = self.adapter.obtenerTiposJSON()
         self.listTypes.emit(a)
 
+    setAddTypes = Signal(str)
+    @Slot()
+    def setAddPopUPTypes(self):
+        print("12")
+        a = self.adapter.obtenerTiposJSON()
+        self.listTypes.emit(a)
+        self.setAddTypes.emit(a)
+        self.types.emit(a)
+        
+
     listSupp = Signal(str)
     @Slot()
     def setSupp(self):
         a = self.adapter.obtenerProveedoresJSON()
         self.listSupp.emit(a)
+        #self.setAddPopUPTypes()
 
     change = Signal(str,int)
     @Slot(str,int)
@@ -142,6 +157,7 @@ if __name__ == "__main__":
     main.setPageSupp()
     main.setTypes()
     main.setPageSuppPord()
+    #main.setAddPopUPTypes()
     if not engine.rootObjects():
         sys.exit(-1)
     sys.exit(app.exec_())

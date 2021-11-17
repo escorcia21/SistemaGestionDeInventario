@@ -51,10 +51,11 @@ Item {
                         anchors.fill: parent
                         cursorShape: Qt.PointingHandCursor
                         onClicked: {
-                           var popup = Qt.createComponent("../controls/AddPopup.qml")
+                           var popup = Qt.createComponent("../controls/AddPopup.qml");
                            var popup2 = popup.createObject(rectangleProducts);
-                           popup2.open()
+                           popup2.open();
                            backend.setListTypes();
+                           backend.setAddPopUPTypes();
                            //backend.setSupp();
                         }
                     }
@@ -80,7 +81,6 @@ Item {
 
             model: ListModel {
                 id:lista
-                ListElement {tname: "ALL"}
 
             }
 
@@ -91,7 +91,7 @@ Item {
 
                       contentItem: Text {
                           id:textItem
-                          text: tname
+                          text: Nombre
                           color: "#000"
                           font: comboBox.font
                           elide: Text.ElideRight
@@ -156,7 +156,7 @@ Item {
 
                      }
                 }
-            onActivated:  productList.applyFilter(lista.get(index).tname,2)
+            onActivated:  productList.applyFilter(lista.get(index).Nombre,2)
 
             }
 
@@ -165,13 +165,15 @@ Item {
     Connections {
         target: backend
         function onTypes(object){
+            lista.clear()
+            lista.append({Nombre: "ALL"})
             let txt = JSON.parse(object);
             //console.log(JSON.stringify(txt,null,2))
              for (let index = 0; index < Object.keys(txt).length; index++) {
                 //txt[`'Product{index}`]
                  let a = txt[`Type${index}`];
                  //console.log(a);
-                 lista.append({"idd":a.idd,'tname': a.Nombre});
+                 lista.append({'ID': a.ID, 'Nombre': a.Nombre,'Unidad': a.Unidad});
              }
         }
     }

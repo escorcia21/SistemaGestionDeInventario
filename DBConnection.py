@@ -59,7 +59,7 @@ class BDD(metaclass=Singleton):
         try:
             with self.__connector.cursor() as cur:
                 query = '''
-                SELECT ID,Nombre From Tipo;
+                SELECT ID,Nombre,Unidad From Tipo;
                 '''
                 cur.execute(query)
                 result = cur.fetchall()
@@ -101,6 +101,20 @@ class BDD(metaclass=Singleton):
                 INSERT INTO Producto (Nombre,Stock,Precio,Tipo) VALUES (%s,%s,%s,%s);
                 ''')  
                 product_info = (Nombre,0,Precio,Tipo)
+                cur.execute(add_product,product_info)
+                self.__connector.commit()
+                print(cur.rowcount, "record inserted.")
+        except Error as e:
+            print(e)
+
+    def add_Type(self,Nombre,unit):
+        unidad = 1 if unit =="Mts" else  0
+        try:
+            with self.__connector.cursor() as cur:
+                add_product = ('''
+                INSERT INTO Tipo (Nombre,Unidad) VALUES (%s,%s);
+                ''')  
+                product_info = (Nombre,unidad)
                 cur.execute(add_product,product_info)
                 self.__connector.commit()
                 print(cur.rowcount, "record inserted.")

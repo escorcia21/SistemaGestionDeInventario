@@ -125,12 +125,14 @@ Item {
     Connections {
         target: backend
         function onListTypes(object){
+            fungus1.listm.clear();
+            fungus1.listm.append({"ID":0,'Nombre': ""});
             var txt = JSON.parse(object);
             //console.log(JSON.stringify(txt,null,2))
              for (var index = 0; index < Object.keys(txt).length; index++) {
                 //txt[`'Product{index}`]
                  var a = txt[`Type${index}`];
-                 fungus1.listm.append({'idd': a.idd, 'tname': a.Nombre});
+                 fungus1.listm.append({'ID': a.ID, 'Nombre': a.Nombre});
              }
              //fungus1.listm = list1;
         }

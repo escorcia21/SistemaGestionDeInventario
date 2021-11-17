@@ -35,11 +35,11 @@ Item {
 
         // priv functions
         function _compareName(a, b) {
-            if (a.tname < b.tname) {
+            if (a.Nombre < b.Nombre) {
                 return -1;
             }
 
-            if (a.tname > b.tname) {
+            if (a.Nombre > b.Nombre) {
                 return 1;
             }
 
@@ -52,8 +52,8 @@ Item {
 
             for (let index = 0; index < count; index++) {
                 types.push({
-                               "idd": list.get(index).idd,
-                                "tname": list.get(index).tname
+                               "ID": list.get(index).ID,
+                                "Nombre": list.get(index).Nombre
                             });
             }
             return types;
@@ -65,7 +65,7 @@ Item {
                 for (let f = 0; f < list.count; f++){
                     let i= list.get(f);
                     let item;
-                    item = i.tname.toLowerCase().indexOf(PName.toLowerCase()) >= 0;
+                    item = i.Nombre.toLowerCase().indexOf(PName.toLowerCase()) >= 0;
 
                     if (item === false){
                         delTypes.append(i);
@@ -114,7 +114,7 @@ Item {
 
         model: ListModel {
             id:list
-            ListElement {tname:""}
+            ListElement {Nombre:""}
         }
 
         delegate: ItemDelegate {
@@ -124,7 +124,7 @@ Item {
 
                   contentItem: Text {
                       id:textItem
-                      text: tname
+                      text: Nombre
                       color: "#000"
                       font: comboBox.font
                       elide: Text.ElideRight
@@ -207,7 +207,7 @@ Item {
 
             }
         onActivated:{
-            functions.get_id(list.get(index).idd);
+            functions.get_id(list.get(index).ID);
             //console.log(comboValue)
         }
     }

@@ -107,10 +107,34 @@ Popup {
                         cursorShape: Qt.PointingHandCursor
                         onClicked: {
                             if(edit.name != "" && edit.type>0 && edit.price > 1){
-                                //console.log(typeof(edit.name),typeof(edit.supplier),typeof(edit.type),typeof(edit.price));
+                                //console.log(edit.name,edit.type,edit.price);
                                 backend.agregarProducto(edit.name,edit.type,edit.price);
+                                popup.close();
                             }
                         }
+                    }
+                }
+            }
+        }
+
+        TableSupp {
+            id:listTypes
+            headers: ["ID","Nombre","Unidad"]
+            colums: 3
+
+            RoundBtn {
+                id:secondTabRound
+                anchors.right: parent.right
+                anchors.bottom: parent.bottom
+                anchors.bottomMargin: 30
+                anchors.rightMargin: 20
+                MouseArea {
+                    anchors.fill: parent
+                    cursorShape: Qt.PointingHandCursor
+                    onClicked: {
+                        var popup = Qt.createComponent("AddTypePopup.qml");
+                        var popup2 = popup.createObject(rectangleProducts);
+                        popup2.open();
                     }
                 }
             }
@@ -119,11 +143,20 @@ Popup {
 
     Connections {
         target: backend
+        function onSetAddTypes(object){
+            //console.log("aa");
+            listTypes.add.clear();
+            var txt = JSON.parse(object);
+             for (var index = 0; index < Object.keys(txt).length; index++) {
+                 var a = txt[`Type${index}`];
+                 listTypes.add.append({'ID': a.ID, 'Nombre': a.Nombre,'Unidad': a.Unidad});
+             }
+        }
     }
 
 }
 /*##^##
 Designer {
-    D{i:0;formeditorZoom:0.5}D{i:9}
+    D{i:0;formeditorZoom:0.66}
 }
 ##^##*/

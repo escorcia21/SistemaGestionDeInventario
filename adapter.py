@@ -46,7 +46,8 @@ class Adapter(Target):
         result = self.__adaptee.get_types()
         mydict = {}
         for i,row in enumerate(result):
-            mydict[f'Type{i}']=({"idd":row[0],"Nombre":row[1]})
+            unidad = "Mts" if row[2] == 1 else "Unidad"
+            mydict[f'Type{i}']=({"ID":row[0],"Nombre":row[1],"Unidad":unidad})
 
         return json.dumps(mydict)
 
