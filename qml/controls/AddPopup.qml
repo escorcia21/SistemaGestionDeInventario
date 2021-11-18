@@ -101,12 +101,32 @@ PopupBase {
             //Layout.fillHeight: true
             //columss: 3
 
+            RoundBtnEdit {
+                anchors.left: parent.left
+                anchors.bottom: parent.bottom
+                btnIconSource: "../../img/svg_img/edit.svg"
+                anchors.leftMargin: 20
+                anchors.bottomMargin: 30
+                MouseArea {
+                    anchors.fill: parent
+                    cursorShape: Qt.PointingHandCursor
+                    onClicked: {
+                        if (listTypes.selectedRow > -1){
+                            var popup = Qt.createComponent("EditTypePopup.qml");
+                            var popup2 = popup.createObject(rectangleProducts,{name:listTypes.add.get(listTypes.selectedRow).Nombre, identification:listTypes.add.get(listTypes.selectedRow).ID});
+                            popup2.open();
+                        }
+                    }
+                }
+
+            }
+
             RoundBtn {
                 id:secondTabRound
                 anchors.right: parent.right
                 anchors.bottom: parent.bottom
                 anchors.bottomMargin: 30
-                anchors.rightMargin: 20
+                anchors.rightMargin: 30
                 MouseArea {
                     anchors.fill: parent
                     cursorShape: Qt.PointingHandCursor

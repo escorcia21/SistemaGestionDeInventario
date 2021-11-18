@@ -32,9 +32,12 @@ class MainWindow(QObject):
 
     pageSupplierProd = Signal(str,list)
     def setPageSuppPord(self):
-        a,b = self.adapter.obtenerProveedoresProductosJSON()
-        self.pageSupplierProd.emit(a,b)
-
+        try:
+            a,b = self.adapter.obtenerProveedoresProductosJSON()
+            self.pageSupplierProd.emit(a,b)
+        except Exception as e:
+            print(e)
+        
     @Slot(str,str)
     def addType(self,Name,unit):
         self.dbc.add_Type(Name,unit)
@@ -48,6 +51,10 @@ class MainWindow(QObject):
     @Slot()
     def close(self):
         self.dbc.close()
+
+    @Slot(str,str,int)
+    def editType(self,name,unit,id):
+        self.dbc.edit_type(name,unit,id)
 
     @Slot(int,str,int,str)
     def actualizarProducto(self,id,Nombre,Tipo,Precio):

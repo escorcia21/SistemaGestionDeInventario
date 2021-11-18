@@ -25,7 +25,7 @@ class BDD(metaclass=Singleton):
     def __init__(self,User="upwtmxvvdgk7cceh",Password="RVzMgKsE7ZMrFWHr7KZC",Host="bp1hnbrwyl47lbil4s65-mysql.services.clever-cloud.com", Database="bp1hnbrwyl47lbil4s65"):
         try:
             self.__connector = self.connect(User,Password,Host,Database)
-        except Error as e:
+        except (Exception,Error) as e:
             print(e)
 
     #Methods of the Object DB
@@ -36,7 +36,7 @@ class BDD(metaclass=Singleton):
                 cur.execute(query)
                 result = cur.fetchall()
                 return result
-        except Error as e:
+        except (Exception,Error) as e:
             print(e)
 
     def get_products(self):
@@ -51,8 +51,9 @@ class BDD(metaclass=Singleton):
                 cur.execute(query)
                 result = cur.fetchall()
                 return result
-        except Error as e:
+        except  (Exception,Error) as e:
             print(e)
+        
             
 
     def get_types(self):
@@ -64,7 +65,7 @@ class BDD(metaclass=Singleton):
                 cur.execute(query)
                 result = cur.fetchall()
                 return result
-        except Error as e:
+        except (Exception,Error) as e:
             print(e)
 
     def get_supp(self):
@@ -76,7 +77,7 @@ class BDD(metaclass=Singleton):
                 cur.execute(query)
                 result = cur.fetchall()
                 return result
-        except Error as e:
+        except (Exception,Error) as e:
             print(e)
 
     def edit_product(self,id,Nombre,Tipo,Precio):
@@ -89,7 +90,7 @@ class BDD(metaclass=Singleton):
                 cur.execute(update_product,product_info)
                 self.__connector.commit()
                 print(cur.rowcount, "record updated.")
-        except Error as e:
+        except (Exception,Error) as e:
             print(e)
 
 
@@ -104,7 +105,7 @@ class BDD(metaclass=Singleton):
                 cur.execute(add_product,product_info)
                 self.__connector.commit()
                 print(cur.rowcount, "record inserted.")
-        except Error as e:
+        except (Exception,Error) as e:
             print(e)
 
     def add_Type(self,Nombre,unit):
@@ -118,7 +119,7 @@ class BDD(metaclass=Singleton):
                 cur.execute(add_product,product_info)
                 self.__connector.commit()
                 print(cur.rowcount, "record inserted.")
-        except Error as e:
+        except (Exception,Error) as e:
             print(e)
 
     def addSupplier_Product(self,product,supplier,Amount,Price,Date):
@@ -133,7 +134,7 @@ class BDD(metaclass=Singleton):
 
                 print(cur.rowcount, "record inserted.")
                 self.updateStock(Amount,product,1)
-        except Error as e:
+        except (Exception,Error) as e:
             print(e)
 
     def updateStock(self,Amount,product,suma):
@@ -154,7 +155,7 @@ class BDD(metaclass=Singleton):
 
                 self.__connector.commit()
                 print(cur.rowcount, "record updated.")
-        except Error as e:
+        except (Exception,Error) as e:
             print(e)
 
     def add_Supplier(self,Nombre,Nit,Email,Telefono,Direccion):
@@ -167,7 +168,7 @@ class BDD(metaclass=Singleton):
                 cur.execute(add_product,product_info)
                 self.__connector.commit()
                 print(cur.rowcount, "record inserted.")
-        except Error as e:
+        except (Exception,Error) as e:
             print(e)
 
     def edit_Supplier(self,Nombre,Nit,Email,Telefono,Direccion,Id):
@@ -180,9 +181,22 @@ class BDD(metaclass=Singleton):
                 cur.execute(add_product,product_info)
                 self.__connector.commit()
                 print(cur.rowcount, "record updated.")
-        except Error as e:
+        except (Exception,Error) as e:
             print(e)
 
+    def edit_type(self,Nombre,unit,id):
+        unidad = 1 if unit =="Mts" else  0
+        try:
+            with self.__connector.cursor() as cur:
+                edittype = ('''
+                UPDATE Tipo SET Nombre=%s,Unidad=%s WHERE ID=%s;
+                ''')  
+                info = (Nombre,unidad,id)
+                cur.execute(edittype,info)
+                self.__connector.commit()
+                print(cur.rowcount, "record Updated.")
+        except (Exception,Error) as e:
+            print(e)
 
     def get_supp__proc(self):
         try:
@@ -194,7 +208,7 @@ class BDD(metaclass=Singleton):
                 result = cur.fetchall()
                 field_names = [i[0] for i in cur.description]
                 return result,field_names
-        except Error as e:
+        except (Exception,Error) as e:
             print(e)
 
     #connection and close functions
@@ -202,12 +216,15 @@ class BDD(metaclass=Singleton):
         try:
             connection = connect(host=Host,user=User,password=Password,database=Database)
             return connection
-        except Error as e:
+        except (Exception,Error) as e:
             print(e)
 
     def close(self):
-        self.__connector.close()
-        print("Closing the connection..")
+        try:
+            self.__connector.close()
+            print("Closing the connection..")
+        except (Exception,Error) as e:
+            print(e)
 
 
 
