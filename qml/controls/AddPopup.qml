@@ -1,41 +1,18 @@
 import QtQuick 2.15
 import QtQuick.Controls 2.15
-import QtGraphicalEffects 1.15
 import QtQuick.Layouts 1.15
 import QtQuick.Controls.Styles 1.4
 import "../pages"
 
 
-Popup {
-    id: popup
-    //parent: Overlay.overlay
-    anchors.centerIn: Overlay.overlay
+PopupBase {
+    id:popup
     width: 640
     height: 480
-    modal: true
-    focus: true
-    closePolicy: Popup.NoAutoClose
-
-    background: Rectangle{
-        layer.enabled: enabled
-        layer.effect: DropShadow {
-            color: "#5c242826"
-            horizontalOffset: 1
-            verticalOffset: 1
-            radius: 4
-            samples: 9
-        }
-    }
-
-
-    Overlay.modal: Rectangle {
-        color: "#00000000"
-        border.width: 0
-    }
-
     TabBar {
         id:tab
         width: parent.width
+
         TabButton {
             text: qsTr("PRODUCT")
             font.bold: true
@@ -57,8 +34,8 @@ Popup {
         currentIndex: tab.currentIndex
         ProductForm {
             id:edit
-            Layout.fillWidth: true
-            Layout.fillHeight: true
+            //Layout.fillWidth: true
+            //Layout.fillHeight: true
 
             Rectangle {
                 id: buttons
@@ -120,7 +97,9 @@ Popup {
         TableSupp {
             id:listTypes
             headers: ["ID","Nombre","Unidad"]
-            colums: 3
+            //Layout.fillWidth: true
+            //Layout.fillHeight: true
+            //columss: 3
 
             RoundBtn {
                 id:secondTabRound
@@ -157,6 +136,6 @@ Popup {
 }
 /*##^##
 Designer {
-    D{i:0;formeditorZoom:0.66}
+    D{i:0;formeditorZoom:0.9}
 }
 ##^##*/

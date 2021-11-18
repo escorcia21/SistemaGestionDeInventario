@@ -88,7 +88,7 @@ class BDD(metaclass=Singleton):
                 product_info = (Nombre,Precio,Tipo,id)
                 cur.execute(update_product,product_info)
                 self.__connector.commit()
-                print(cur.rowcount, "record inserted.")
+                print(cur.rowcount, "record updated.")
         except Error as e:
             print(e)
 
@@ -121,6 +121,33 @@ class BDD(metaclass=Singleton):
         except Error as e:
             print(e)
 
+    def add_Supplier(self,Nombre,Nit,Email,Telefono,Direccion):
+        try:
+            with self.__connector.cursor() as cur:
+                add_product = ('''
+                INSERT INTO Proveedor (Nombre,Nit,Correo,Telefono,Direccion) VALUES (%s,%s,%s,%s,%s);
+                ''')  
+                product_info = (Nombre,Nit,Email,Telefono,Direccion)
+                cur.execute(add_product,product_info)
+                self.__connector.commit()
+                print(cur.rowcount, "record inserted.")
+        except Error as e:
+            print(e)
+
+    def edit_Supplier(self,Nombre,Nit,Email,Telefono,Direccion,Id):
+        try:
+            with self.__connector.cursor() as cur:
+                add_product = ('''
+                UPDATE Proveedor SET Nombre=%s,Nit=%s,Correo=%s,Telefono=%s,Direccion=%s
+                WHERE ID=%s;''')  
+                product_info = (Nombre,Nit,Email,Telefono,Direccion,Id)
+                cur.execute(add_product,product_info)
+                self.__connector.commit()
+                print(cur.rowcount, "record updated.")
+        except Error as e:
+            print(e)
+
+
     def get_supp__proc(self):
         try:
             with self.__connector.cursor() as cur:
@@ -133,7 +160,6 @@ class BDD(metaclass=Singleton):
                 return result,field_names
         except Error as e:
             print(e)
-
 
     #connection and close functions
     def connect(self,User,Password,Host,Database):

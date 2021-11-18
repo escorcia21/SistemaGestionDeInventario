@@ -13,6 +13,7 @@ TextField {
     placeholderText: qsTr(textField.value)
 
     font.pixelSize: 14
+    horizontalAlignment: Text.AlignHCenter
     leftPadding: 1
     background: Rectangle {
         anchors.fill: parent
@@ -20,8 +21,8 @@ TextField {
         anchors.leftMargin: -2
         anchors.topMargin: -2
         color: "#fff"
-           border.width: 2
-           border.color: borderColor
+        border.width: 2
+        border.color: borderColor
     }
 }
 

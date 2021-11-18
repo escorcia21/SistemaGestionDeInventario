@@ -59,6 +59,29 @@ class MainWindow(QObject):
         self.dbc.add_Products(Nombre,Tipo,int(Precio))
         self.setBD()
 
+    @Slot(str,str,str,str,str)
+    def agregarProveedor(self,Nombre,Nit,Email,Telefono,Direccion):
+        self.dbc.add_Supplier(Nombre,Nit,Email,int(Telefono),Direccion)
+        self.setPageSupp()
+
+    @Slot(str,str,str,str,str,int)
+    def actualizarProveedor(self,Nombre,Nit,Email,Telefono,Direccion,Id):
+        self.dbc.edit_Supplier(Nombre,Nit,Email,int(Telefono),Direccion,Id)
+        self.setPageSupp()
+
+    
+    setSProdCombo = Signal(str)
+    @Slot()
+    def setSuppCombo(self):
+        a = self.adapter.obtenerProveedoresJSON()
+        self.setSProdCombo.emit(a)
+
+    setProdCombo = Signal(str)
+    @Slot()
+    def setProdComboBox(self):
+        a = self.adapter.obtenerProductosJSON()
+        self.setProdCombo.emit(a)
+
     listTypes = Signal(str)
     @Slot()
     def setListTypes(self):

@@ -13,35 +13,27 @@ Item {
     property color header_font_color: "#fff"
     property alias add: tabla.model
     property var headers: ['ID','Nombre', 'NIT', 'Correo', 'Direccion', 'Telefono']
-    property int colums: 6
-    property double headersW: tabla.width/colums
-    property int selectedRow: -1
+    //property int columss: 6
+    property double headersW: tabla.width/headers.length
+    property var selectedRow: tabla.currentRow > -1 ? tabla.currentRow :-1
 
     Rectangle {
         id:suppBack
         color: "#00000000"
         anchors.fill: parent
-        Rectangle {
-            id:navBar
-            height: 70
-            color: "#00000000"
-            width: 1200
-            anchors.top: parent.top
-            anchors.leftMargin: 0
-            anchors.rightMargin: 0
-            anchors.topMargin: 0
-        }
 
         Component
         {
             id: columnComponent
-            TableViewColumn{width: headersW }
+            TableViewColumn{width: headersW}
         }
 
         TableView {
             id:tabla
             anchors.fill: parent
+            //width: styleData.horizontal
             anchors.margins: 10
+            //onClicked: {console.log(selectedRow)}
             resources:
                 {
                     var roleList = headers
@@ -71,6 +63,7 @@ Item {
                         border.width: 0
                         anchors.top: !styleData.horizontal ? parent.top : undefined
                         anchors.margins: transientScrollBars ? 2 : 0
+                        //anchors.rightMargin: -4
                         anchors.bottom: parent.bottom
                         anchors.right: parent.right
                         anchors.left: styleData.horizontal ? parent.left : undefined
@@ -141,6 +134,7 @@ Item {
                         height: 30
                         //color: red"
                         color: headColors
+                        border.width: 0
                         Text {
                             text: styleData.value
                             color: "#FFF"

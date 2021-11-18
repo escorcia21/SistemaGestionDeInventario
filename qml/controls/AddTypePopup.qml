@@ -6,32 +6,10 @@ import QtQuick.Controls.Styles 1.4
 import "../pages"
 
 
-Popup {
+PopupBase {
     id: popup
-    //parent: Overlay.overlay
-    anchors.centerIn: Overlay.overlay
     width: 300
     height: 320
-    modal: true
-    focus: true
-    //closePolicy: Popup.NoAutoClose
-
-    background: Rectangle{
-        layer.enabled: enabled
-        layer.effect: DropShadow {
-            color: "#5c242826"
-            horizontalOffset: 1
-            verticalOffset: 1
-            radius: 4
-            samples: 9
-        }
-    }
-
-
-    Overlay.modal: Rectangle {
-        color: "#00000000"
-        border.width: 0
-    }
 
     contentItem: Rectangle {
         id:bg

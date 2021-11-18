@@ -6,28 +6,23 @@ import "../pages"
 
 PopupBase {
       id: popup
-      property var ename: ""
-      property var eprice: 0
-      property var idd: -1
 
       contentItem: Rectangle {
           id: rectangle
           anchors.fill: parent
-          ProductForm {
+          SupplierForm {
               id: edit
               anchors.left: parent.left
               anchors.right: parent.right
               anchors.top: parent.top
+              anchors.bottom: buttons.top
               anchors.rightMargin: 0
-              anchors.bottomMargin: 100
-              formTitle: "EDIT PRODUCT"
-              name: ename
-              price: eprice
+              anchors.bottomMargin: 0
           }
 
           Rectangle {
               id: buttons
-              height: 100
+              height: 60
               color: "#00000000"
               anchors.left: parent.left
               anchors.right: parent.right
@@ -74,18 +69,16 @@ PopupBase {
                       cursorShape: Qt.PointingHandCursor
 
                       onClicked: {
-                          if(edit.name != "" && edit.type>0 && edit.price > 1){
-                              //console.log("ok",idd,edit.name,edit.type,edit.price);
-                              backend.actualizarProducto(idd,edit.name,edit.type,edit.price);
+                          if(edit.fname != "" && edit.fphone != "" && edit.fnit != "" && edit.femail != "" && edit.faddress != ""){
+                              //console.log("ok",idd,edit.fname ,edit.fphone , edit.fnit ,edit.femail , edit.faddress);
+                              backend.agregarProveedor(edit.fname,edit.fnit,edit.femail,edit.fphone,edit.faddress);
                               popup.close()
                           }
                       }
                   }
               }
           }
-
       }
-
       Connections {
         target: backend
       }
