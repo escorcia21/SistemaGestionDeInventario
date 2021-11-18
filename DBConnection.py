@@ -121,6 +121,42 @@ class BDD(metaclass=Singleton):
         except Error as e:
             print(e)
 
+    def addSupplier_Product(self,product,supplier,Amount,Price,Date):
+        try:
+            with self.__connector.cursor() as cur:
+                add_Supplier_Product = ('''
+                INSERT INTO Proveedor_Producto (Producto,Proveedor,Cantidad,Precio,Fecha) VALUES (%s,%s,%s,%s,%s);
+                ''')  
+                info = (product,supplier,Amount,Price,Date)
+                cur.execute(add_Supplier_Product,info)
+                self.__connector.commit()
+
+                print(cur.rowcount, "record inserted.")
+                self.updateStock(Amount,product,1)
+        except Error as e:
+            print(e)
+
+    def updateStock(self,Amount,product,suma):
+        try:
+            with self.__connector.cursor() as cur:
+
+                info = (Amount,product)
+                if suma == 1:
+                    update_stock ='''
+                    UPDATE Producto SET Stock=Stock+%s WHERE ID=%s;
+                    '''
+                    cur.execute(update_stock,info)
+                else:
+                    update_stock ='''
+                    UPDATE Producto SET Stock=Stock-%s WHERE ID=%s;
+                    '''
+                    cur.execute(update_stock,info)
+
+                self.__connector.commit()
+                print(cur.rowcount, "record updated.")
+        except Error as e:
+            print(e)
+
     def add_Supplier(self,Nombre,Nit,Email,Telefono,Direccion):
         try:
             with self.__connector.cursor() as cur:

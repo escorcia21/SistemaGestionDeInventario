@@ -4,6 +4,12 @@ import QtQuick.Controls 1.4
 import "../controls"
 
 Item {
+    property alias producID: fproduct.comboValue
+    property alias supplierID: fsupplier.comboValue
+    property alias amounnt: famount.value
+    property alias price: fprice.value
+    property alias fdate: myDate.value
+
     Rectangle {
         id: rectangle
         anchors.fill: parent
@@ -81,7 +87,7 @@ Item {
                 }
                 FormField{
                     id:famount
-                    validator: RegExpValidator {regExp: /^([1-9][0-9]{0,2}|1000)$/}
+                    validator: RegExpValidator {regExp: /^\d{1,5}$/}
                 }
             }
 
@@ -97,7 +103,7 @@ Item {
                 }
                 FormField {
                     id:fprice
-                    validator: RegExpValidator {regExp: /^([1-9][0-9]{0,2}|10000000)$/}
+                    validator: RegExpValidator {regExp: /^\d{1,10}$/}
                 }
             }
 

@@ -70,11 +70,11 @@ PopupBase {
                     cursorShape: Qt.PointingHandCursor
 
                     onClicked: {
-                        //if(edit.fname != "" && edit.fphone != "" && edit.fnit != "" && edit.femail != "" && edit.faddress != ""){
-                            //console.log("ok",idd,edit.fname ,edit.fphone , edit.fnit ,edit.femail , edit.faddress);
-                            //backend.agregarProveedor(edit.fname,edit.fnit,edit.femail,edit.fphone,edit.faddress);
-                         popup.close()
-                        //}
+                        if(edit.producID > -1 && edit.supplierID > -1 && edit.amounnt != "" && edit.price != "" && edit.fdate != ""){
+                            //console.log("ok",edit.producID, edit.supplierID , edit.amounnt , edit.price , edit.fdate);
+                            backend.addSupplierProduct(edit.producID, edit.supplierID , edit.amounnt , edit.price , edit.fdate);
+                            popup.close()
+                        }
                     }
                 }
             }

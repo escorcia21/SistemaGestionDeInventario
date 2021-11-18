@@ -1,5 +1,6 @@
 #!/usr/bin/python
 # This Python file uses the following encoding: utf-8
+from datetime import date
 import sys
 from os import environ, name,path
 import cv2
@@ -69,6 +70,14 @@ class MainWindow(QObject):
         self.dbc.edit_Supplier(Nombre,Nit,Email,int(Telefono),Direccion,Id)
         self.setPageSupp()
 
+    @Slot(int,int,str,str,str)
+    def addSupplierProduct(self,product,supplier,Amount,Price,Date):
+        Date = Date.split("/")
+        Date = Date[::-1]
+        Date = "-".join(Date)
+        self.dbc.addSupplier_Product(product,supplier,int(Amount),int(Price),Date)
+        self.setPageSuppPord()
+        self.setBD()
     
     setSProdCombo = Signal(str)
     @Slot()
