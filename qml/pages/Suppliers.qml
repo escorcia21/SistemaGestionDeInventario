@@ -10,20 +10,34 @@ Item {
     TabBar {
         id:tab
         width: parent.width
-        currentIndex: 0
+        height: 40
+
         TabButton {
+            id: control
             text: qsTr("SUPPLIERS")
+            anchors.verticalCenter: parent.verticalCenter
             font.bold: true
             font.pointSize: 10
+            height: 40
+            background: Rectangle {
+                color: tab.currentIndex == 0 ? "#e8e8e8" : "#353637"
+                anchors.fill: parent
+                height: 40
+            }
         }
         TabButton {
+            id:control1
             text: qsTr("MOVEMENTS")
+            anchors.verticalCenter: parent.verticalCenter
             font.bold: true
             font.pointSize: 10
-
+            height: 40
+            background: Rectangle {
+                height: 40
+                color: tab.currentIndex == 1 ? "#e8e8e8" : "#353637"
+            }
         }
     }
-
     StackLayout {
         anchors.left: parent.left
         anchors.right: parent.right
@@ -131,6 +145,6 @@ Item {
 
 /*##^##
 Designer {
-    D{i:0;autoSize:true;formeditorZoom:0.75;height:480;width:640}
+    D{i:0;autoSize:true;formeditorZoom:1.1;height:480;width:640}
 }
 ##^##*/
