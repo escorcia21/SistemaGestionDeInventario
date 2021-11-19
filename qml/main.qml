@@ -14,7 +14,10 @@ Window {
     visible: true
     color: "#00000000"
     title: ""
-
+    Component.onCompleted: {
+        window.x = window.screen.virtualX + window.screen.width / 2 - window.width / 2;
+        window.y = window.screen.virtualY + window.screen.height / 2 - window.height / 2;
+    }
 
     //REMOVE TITLE BAR
     flags: Qt.Window | Qt.FramelessWindowHint
