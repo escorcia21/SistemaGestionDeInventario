@@ -17,6 +17,80 @@ Item {
     property double headersW: tabla.width/headers.length
     property var selectedRow: tabla.currentRow > -1 ? tabla.currentRow :-1
 
+
+    QtObject {
+            id:functions
+            function restart (){
+                for (let d = 0; d < add.count; d++) {
+                    del.append(add.get(d));
+                }
+                add.clear();
+                for (let x = 0; x < del.count; x++) {
+                    add.append(del.get(x));
+                }
+                sortWithName();
+                del.clear();
+            }
+
+            function sortWithName() {
+                let listTypes = _getOriginalList();
+                listTypes.sort(_compareName);
+
+                let count = add.count;
+
+                for (let index = 0; index < count; index++) {
+                    add.set(index, listTypes[index]);
+                }
+            }
+
+            // priv functions
+            function _compareName(a, b) {
+                if (a.ID < b.ID) {
+                    return -1;
+                }
+
+                if (a.ID > b.ID) {
+                    return 1;
+                }
+
+                return 0;
+            }
+
+            function _getOriginalList() {
+                let types = [];
+                let count = add.count;
+
+                for (let index = 0; index < count; index++) {
+                    let x = {};
+                    for (let j = 0; j < headers.length; j++){
+                        x[headers[j]]= add.get(index)[headers[j]]
+                    }
+                    types.push(x);
+                    //console.log(types[index].ID);
+                }
+                return types;
+            }
+
+            function find(PName) {
+                functions.restart();
+                if (PName !== ""){
+                    for (let f = 0; f < add.count; f++){
+                        let i= add.get(f);
+                        let item;
+                        //console.log(i[headers[1]]);
+                        item = i[headers[1]].toLowerCase().indexOf(PName.toLowerCase()) >= 0;
+
+                        if (item === false){
+                            del.append(i);
+                            add.remove(f);
+                            f = -1;
+                        }
+                    }
+                }
+            }
+
+        }
+
     Rectangle {
         id:suppBack
         color: "#00000000"
@@ -28,11 +102,26 @@ Item {
             TableViewColumn{width: headersW}
         }
 
+        FormField{
+            id:search
+            anchors.right: parent.right
+            anchors.top: parent.top
+            anchors.rightMargin: 10
+            anchors.topMargin: 10
+            onTextChanged: {
+                functions.find(search.text);
+            }
+        }
+
         TableView {
             id:tabla
-            anchors.fill: parent
+            anchors.left: parent.left
+            anchors.right: parent.right
+            anchors.top: search.bottom
+            anchors.bottom: parent.bottom
             //width: styleData.horizontal
             anchors.margins: 10
+            anchors.topMargin: 10
             //onClicked: {console.log(selectedRow)}
             resources:
                 {
@@ -47,6 +136,10 @@ Item {
                 }
 
             model: ListModel {
+            }
+
+            ListModel{
+                id: del
             }
 
             style: TableViewStyle {

@@ -73,8 +73,3 @@ RoundButton {
 }
 
 
-/*##^##
-Designer {
-    D{i:0;formeditorZoom:10}D{i:4}D{i:5}
-}
-##^##*/

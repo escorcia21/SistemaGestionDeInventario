@@ -16,11 +16,11 @@ TextField {
     horizontalAlignment: Text.AlignHCenter
     leftPadding: 1
     background: Rectangle {
+        color: "#00000000"
         anchors.fill: parent
         anchors.rightMargin: -3
         anchors.leftMargin: -2
         anchors.topMargin: -2
-        color: "#fff"
         border.width: 2
         border.color: borderColor
     }
