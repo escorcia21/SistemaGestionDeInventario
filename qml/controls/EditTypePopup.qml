@@ -9,6 +9,7 @@ import "../pages"
 PopupBase {
     property alias name: tipo.value
     property var identification
+    property alias index: tipo2.currentIndex
     id: popup
     width: 300
     height: 320
@@ -65,7 +66,7 @@ PopupBase {
                         id:tipo2
                         font.pointSize: 10
                         font.bold: true
-                        model: ["Mts","Unidad"]
+                        model: ["MTS","UNIDAD"]
 
                     }
                 }
@@ -109,7 +110,7 @@ PopupBase {
                         anchors.fill: parent
                         cursorShape: Qt.PointingHandCursor
                         onClicked: {
-                            if (tipo.value != "" && (tipo2.currentText == "Mts" || tipo2.currentText == "Unidad")){
+                            if (tipo.value != "" && (tipo2.currentText == "MTS" || tipo2.currentText == "UNIDAD")){
                                 //console.log(tipo.value,tipo2.currentText,identification);
                                 backend.editType(tipo.value,tipo2.currentText,identification);
                                 backend.setAddPopUPTypes()

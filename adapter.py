@@ -52,7 +52,7 @@ class Adapter(Target):
             result = self.__adaptee.get_types()
             mydict = {}
             for i,row in enumerate(result):
-                unidad = "Mts" if row[2] == 1 else "Unidad"
+                unidad = "MTS" if row[2] == 1 else "UNIDAD"
                 mydict[f'Type{i}']=({"ID":row[0],"Nombre":row[1],"Unidad":unidad})
 
             return json.dumps(mydict)
@@ -82,7 +82,7 @@ class Adapter(Target):
 
             mydict = {}
             for i,row in enumerate(data):
-                mydict[f'Supp_Prod{i}']=({'ID':row[0], 'Producto':row[1], 'Proveedor':row[2],'Cantidad':row[3], 'Precio':row[4], 'Fecha':row[5].strftime("%d/%b/%Y ")})
+                mydict[f'Supp_Prod{i}']=({'ID':row[0], 'Producto':row[1], 'Proveedor':row[2],'Cantidad':row[3], 'Precio':row[4], 'Fecha':row[5].strftime("%d/%m/%Y ")})
 
             return json.dumps(mydict),fields
         except Exception as e:
@@ -93,7 +93,7 @@ class Adapter(Target):
         
         mydict = {}
         for i,row in enumerate(result):
-            Tipo = "Empresa" if row[1] == 0 else "Persona"
+            Tipo = "EMPRESA" if row[1] == 0 else "PERSONA"
             mydict[f'Client{i}']=({"ID":row[0],"Tipo":Tipo,"Nombre":row[2],"Direccion":row[3],"Telefono":row[4]})
 
         return json.dumps(mydict)
@@ -103,7 +103,7 @@ class Adapter(Target):
         mydict = {}
         for i,row in enumerate(result):
 
-            Activo = "Activo" if row[11] == 0 else "Retirado"
+            Activo = "ACTIVO" if row[11] == 0 else "RETIRADO"
 
             if None == row[7]:
                 Final_Termino = "-"

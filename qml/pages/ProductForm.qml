@@ -104,7 +104,7 @@ Item {
                 anchors.rightMargin: 0
                 anchors.bottomMargin: 0
                 anchors.leftMargin: 0
-                validator: IntValidator {bottom: 1; top: 1000000000}
+                validator: RegExpValidator {regExp: /^\d{1,15}$/}
             }
 
         }

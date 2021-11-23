@@ -215,7 +215,7 @@ Item {
                     width: 42
                     visible: true
                     color: "#ffffff"
-                    text: "stock"
+                    text: "STOCK"
                     anchors.top: parent.top
                     font.pixelSize: 12
                     horizontalAlignment: Text.AlignLeft

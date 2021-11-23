@@ -63,7 +63,7 @@ PopupBase {
                         id:tipo2
                         font.pointSize: 10
                         font.bold: true
-                        model: ["Mts","Unidad"]
+                        model: ["MTS","UNIDAD"]
 
                     }
                 }
@@ -107,7 +107,7 @@ PopupBase {
                         anchors.fill: parent
                         cursorShape: Qt.PointingHandCursor
                         onClicked: {
-                            if (tipo.value != "" && (tipo2.currentText == "Mts" || tipo2.currentText == "Unidad")){
+                            if (tipo.value != "" && (tipo2.currentText == "MTS" || tipo2.currentText == "UNIDAD")){
                                 //console.log(tipo2.currentText);
                                 backend.addType(tipo.value,tipo2.value);
                                 backend.setAddPopUPTypes()

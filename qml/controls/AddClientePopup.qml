@@ -35,7 +35,7 @@ PopupBase {
               CardBtns {
                   width: 100
                   height: 37
-                  text: "Close"
+                  text: "Cerrar"
                   btnColorClicked: "#cd3737"
                   btnColorMouseOver: "#ec3c3c"
                   btnColorDefault: "#f05454"
@@ -58,7 +58,7 @@ PopupBase {
               CardBtns {
                   width: 100
                   height: 37
-                  text: "Save"
+                  text: "Añadir"
                   anchors.verticalCenter: parent.verticalCenter
                   anchors.verticalCenterOffset: 1
                   anchors.horizontalCenterOffset: 64
@@ -72,10 +72,10 @@ PopupBase {
                       onClicked: {
                           //console.log(edit.fname != "",edit.fphone != "",edit.fdireccion != "",edit.ftipo,edit.fcedula != "",edit.fnit != "",edit.fnitnumero != "");
                           if(edit.fname != "" && edit.fphone != "" && edit.fdireccion != "" && edit.ftipo == 0 && edit.fnit != "" && edit.fnitnumero != ""){
-                              backend.agregarCliente(edit.fname.toUpperCase(),edit.fphone,edit.fdireccion.toUpperCase(),edit.ftipo.toUpperCase(),edit.fnit+"-"+edit.fnitnumero);
+                              backend.agregarCliente(edit.fname,edit.fphone,edit.fdireccion,edit.ftipo,edit.fnit+"-"+edit.fnitnumero);
                           }
                           else if(edit.fname != "" && edit.fphone != "" && edit.fdireccion != "" && edit.ftipo == 1 && edit.fcedula != ""){
-                              backend.agregarCliente(edit.fname.toUpperCase(),edit.fphone,edit.fdireccion.toUpperCase(),edit.ftipo.toUpperCase(),edit.fcedula);
+                              backend.agregarCliente(edit.fname,edit.fphone,edit.fdireccion,edit.ftipo,edit.fcedula);
                           }
                           popup.close()
                       }

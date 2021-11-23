@@ -14,6 +14,7 @@ Item {
     property alias add: tabla.model
     property var headers: ['ID','Nombre', 'NIT', 'Correo', 'Direccion', 'Telefono']
     //property int columss: 6
+    property var criterio: headers[1]
     property double headersW: tabla.width/headers.length
     property var selectedRow: tabla.currentRow > -1 ? tabla.currentRow :-1
 
@@ -78,7 +79,7 @@ Item {
                         let i= add.get(f);
                         let item;
                         //console.log(i[headers[1]]);
-                        item = i[headers[1]].toLowerCase().indexOf(PName.toLowerCase()) >= 0;
+                        item = i[criterio].toLowerCase().indexOf(PName.toLowerCase()) >= 0;
 
                         if (item === false){
                             del.append(i);

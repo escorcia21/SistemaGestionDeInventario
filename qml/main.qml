@@ -320,7 +320,7 @@ Window {
 
                     Label {
                         id: description
-                        color: "#a4aaac"
+                        color: "#353637"
                         text: qsTr("Software de gestion de enventario")
                         anchors.fill: parent
                         font.letterSpacing: 0.4
@@ -330,20 +330,48 @@ Window {
                         anchors.leftMargin: 10
                     }
 
-                    Label {
+                    Rectangle {
                         id: description_right
-                        color: "#a4aaac"
-                        text: qsTr("| HOME")
+                        color: "transparent"
                         anchors.left: description.right
                         anchors.right: parent.right
                         anchors.top: parent.top
                         anchors.bottom: parent.bottom
-                        font.letterSpacing: 0.4
-                        horizontalAlignment: Text.AlignRight
-                        verticalAlignment: Text.AlignVCenter
-                        font.bold: true
                         anchors.rightMargin: 10
                         anchors.leftMargin: 0
+
+
+                        Image {
+                            id: image2
+                            width: 20
+                            height: 20
+                            anchors.right: parent.right
+                            anchors.top: parent.top
+
+                            source: "../img/images/github.png"
+                            anchors.rightMargin: 10
+                            anchors.bottom: parent.bottom
+                            sourceSize.height: 24
+                            sourceSize.width: 24
+                            anchors.bottomMargin: 0
+                            anchors.topMargin: 0
+                            fillMode: Image.PreserveAspectFit
+                            MouseArea {
+                                anchors.fill: parent
+                                cursorShape: Qt.PointingHandCursor
+                                onClicked: {
+                                    Qt.openUrlExternally("https://github.com/escorcia21/SistemaGestionDeInventario");
+                                }
+                            }
+
+                        }
+                        ColorOverlay {
+                            color: "#353637"
+                            anchors.fill: image2
+                            source: image2
+                            anchors.verticalCenter: parent.verticalCenter
+                        }
+
                     }
                 }
 
@@ -374,7 +402,7 @@ Window {
                         anchors.left: parent.left
                         anchors.top: parent.top
                         anchors.bottom: parent.bottom
-                        source: "../img/svg_img/cross.svg"
+                        source: "../img/images/inventario.png"
                         sourceSize.height: 24
                         sourceSize.width: 24
                         anchors.bottomMargin: 0
@@ -671,18 +699,6 @@ Window {
                     anchors.leftMargin: 0
                     anchors.bottomMargin: 0
 
-                    Label {
-                        id: bottom_description
-                        color: "#a4aaac"
-                        text: qsTr("aplication description1")
-                        anchors.fill: parent
-                        font.letterSpacing: 0.4
-                        verticalAlignment: Text.AlignVCenter
-                        font.weight: Font.Bold
-                        anchors.rightMargin: 30
-                        anchors.leftMargin: 10
-                    }
-
                     MouseArea {
                         id: mouseAreaR
                         x: 1243
@@ -815,6 +831,6 @@ Window {
 
 /*##^##
 Designer {
-    D{i:0;formeditorZoom:0.5}
+    D{i:0;formeditorZoom:0.66}
 }
 ##^##*/

@@ -68,7 +68,7 @@ Item {
 
                     onClicked: {
                         if (currentIndexSupp > -1){
-                            var tipoVar = homeTab.add.get(currentIndexSupp).Tipo == "Empresa" ? 0:1
+                            var tipoVar = homeTab.add.get(currentIndexSupp).Tipo == "EMPRESA" ? 0:1
                             var CedulaVar = ""
                             var idNitVar = ""
                             var idNitNumeroVar = ""
@@ -214,11 +214,11 @@ Item {
                 //txt[`'Product{index}`]
                  var a = txt[`Emple${index}`];
 
-                 var fecha = a.Termino.toUpperCase
-                 console.log(fecha)
+                 var fecha = a.Termino
+                 //console.log(fecha)
                  if(fecha == "01/Jan/1999"){
                      a.Termino = "-"
-                     console.log("lohizo")
+                     //console.log("lohizo")
                  }
                  secondTab.add.append({"Cedula":a.Cedula,"Nombre":a.Nombre,"Edad":a.Edad,"Celular":a.Celular,"Direccion":a.Direccion,"Email":a.Email,"Ingreso":a.Ingreso,"Termino":a.Termino,"Salario":a.Salario,"Rol":a.Rol,"Contrasena":a.Contrasena,"Activo":a.Activo});
              }

@@ -73,6 +73,7 @@ Item {
                         f = -1;
                     }else {
                         comboBox.currentIndex = f;
+                        comboValue = comboBox.model.get(comboBox.currentIndex).ID;
                     }
                 }
             }

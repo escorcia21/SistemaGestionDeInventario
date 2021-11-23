@@ -62,7 +62,16 @@ Item {
                     onClicked: {
                         if (currentIndexSupp > -1){
                             var popup = Qt.createComponent("../controls/EditSupplierPopup.qml");
-                            var popup2 = popup.createObject(suppItem,{name: homeTab.add.get(currentIndexSupp).Nombre,address: homeTab.add.get(currentIndexSupp).Direccion,phone: homeTab.add.get(currentIndexSupp).Telefono,nit: homeTab.add.get(currentIndexSupp).NIT,email: homeTab.add.get(currentIndexSupp).Correo,identification:homeTab.add.get(currentIndexSupp).ID});
+                            var Temp = homeTab.add.get(currentIndexSupp).NIT.split("-")
+                            let idNitVar = Temp[0]
+                            let idNitNumeroVar = Temp[1]
+                            var popup2 = popup.createObject(suppItem,{name: homeTab.add.get(currentIndexSupp).Nombre,
+                                                                address: homeTab.add.get(currentIndexSupp).Direccion,
+                                                                phone: homeTab.add.get(currentIndexSupp).Telefono,
+                                                                nit: idNitVar,
+                                                                nitNumero: idNitNumeroVar,
+                                                                email: homeTab.add.get(currentIndexSupp).Correo,
+                                                                identification:homeTab.add.get(currentIndexSupp).ID});
                             popup2.open();
                         }
                     }
@@ -91,6 +100,7 @@ Item {
         TableSupp {
             id: secondTab
             headers: ["ID","Producto","Proveedor","Cantidad","Precio","Fecha"]
+            criterio: "Producto"
             RoundBtn {
                 id:secondTabRound1
                 anchors.right: parent.right

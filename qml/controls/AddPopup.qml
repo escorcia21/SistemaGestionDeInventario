@@ -88,9 +88,9 @@ PopupBase {
                             cursorShape: Qt.PointingHandCursor
                             onClicked: {
                                 if(edit.name != "" && edit.type>0 && edit.price > 1){
-                                    //console.log(edit.name,edit.type,edit.price);
-                                    backend.agregarProducto(edit.name,edit.type,edit.price);
-                                    popup.close();
+                                    console.log(edit.name,edit.type,edit.price);
+                                    //backend.agregarProducto(edit.name,edit.type,edit.price);
+                                    //popup.close();
                                 }
                             }
                         }
@@ -117,7 +117,7 @@ PopupBase {
                         onClicked: {
                             if (listTypes.selectedRow > -1){
                                 var popup = Qt.createComponent("EditTypePopup.qml");
-                                var popup2 = popup.createObject(rectangleProducts,{name:listTypes.add.get(listTypes.selectedRow).Nombre, identification:listTypes.add.get(listTypes.selectedRow).ID});
+                                var popup2 = popup.createObject(rectangleProducts,{name:listTypes.add.get(listTypes.selectedRow).Nombre, identification:listTypes.add.get(listTypes.selectedRow).ID,index:listTypes.add.get(listTypes.selectedRow).Unidad == "MTS" ? 0:1 });
                                 popup2.open();
                             }
                         }

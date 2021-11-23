@@ -20,6 +20,8 @@ Item {
     property alias fedad: edad.value
     property alias fsalida: salida.value
 
+    property bool disableForms:false
+
 
 
     Rectangle {
@@ -75,6 +77,7 @@ Item {
                     }
                     FormField {
                         id:cedula
+                        enabled: !disableForms
                         horizontalAlignment: Text.AlignLeft
                         placeholderText: "Cedula"
                         validator: RegExpValidator {regExp: /^\d{1,10}$/}

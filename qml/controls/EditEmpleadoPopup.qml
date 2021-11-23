@@ -53,6 +53,8 @@ PopupBase {
               fpassword: password
               fedad: edad
               fsalida: salida
+
+              disableForms:true
           }
 
           Rectangle {

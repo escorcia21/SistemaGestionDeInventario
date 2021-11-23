@@ -105,7 +105,7 @@ class BDD(metaclass=Singleton):
                 update_product = ('''
                 UPDATE Producto SET Nombre=%s,Precio=%s,Tipo=%s WHERE ID=%s;
                 ''')  
-                product_info = (Nombre,Precio,Tipo,id)
+                product_info = (Nombre.upper(),Precio,Tipo,id)
                 cur.execute(update_product,product_info)
                 self.__connector.commit()
                 print(cur.rowcount, "record updated.")
@@ -120,7 +120,7 @@ class BDD(metaclass=Singleton):
                 add_product = ('''
                 INSERT INTO Producto (Nombre,Stock,Precio,Tipo) VALUES (%s,%s,%s,%s);
                 ''')  
-                product_info = (Nombre,0,Precio,Tipo)
+                product_info = (Nombre.upper(),0,Precio,Tipo)
                 cur.execute(add_product,product_info)
                 self.__connector.commit()
                 print(cur.rowcount, "record inserted.")
@@ -128,13 +128,13 @@ class BDD(metaclass=Singleton):
             print(e)
 
     def add_Type(self,Nombre,unit):
-        unidad = 1 if unit =="Mts" else  0
+        unidad = 1 if unit =="MTS" else  0
         try:
             with self.__connector.cursor() as cur:
                 add_product = ('''
                 INSERT INTO Tipo (Nombre,Unidad) VALUES (%s,%s);
                 ''')  
-                product_info = (Nombre,unidad)
+                product_info = (Nombre.upper(),unidad)
                 cur.execute(add_product,product_info)
                 self.__connector.commit()
                 print(cur.rowcount, "record inserted.")
@@ -183,7 +183,7 @@ class BDD(metaclass=Singleton):
                 add_product = ('''
                 INSERT INTO Proveedor (Nombre,Nit,Correo,Telefono,Direccion) VALUES (%s,%s,%s,%s,%s);
                 ''')  
-                product_info = (Nombre,Nit,Email,Telefono,Direccion)
+                product_info = (Nombre.upper(),Nit,Email.upper(),Telefono,Direccion.upper())
                 cur.execute(add_product,product_info)
                 self.__connector.commit()
                 print(cur.rowcount, "record inserted.")
@@ -196,7 +196,7 @@ class BDD(metaclass=Singleton):
                 add_product = ('''
                 UPDATE Proveedor SET Nombre=%s,Nit=%s,Correo=%s,Telefono=%s,Direccion=%s
                 WHERE ID=%s;''')  
-                product_info = (Nombre,Nit,Email,Telefono,Direccion,Id)
+                product_info = (Nombre.upper(),Nit,Email.upper(),Telefono,Direccion.upper(),Id)
                 cur.execute(add_product,product_info)
                 self.__connector.commit()
                 print(cur.rowcount, "record updated.")
@@ -204,13 +204,13 @@ class BDD(metaclass=Singleton):
             print(e)
 
     def edit_type(self,Nombre,unit,id):
-        unidad = 1 if unit =="Mts" else  0
+        unidad = 1 if unit =="MTS" else  0
         try:
             with self.__connector.cursor() as cur:
                 edittype = ('''
                 UPDATE Tipo SET Nombre=%s,Unidad=%s WHERE ID=%s;
                 ''')  
-                info = (Nombre,unidad,id)
+                info = (Nombre.upper(),unidad,id)
                 cur.execute(edittype,info)
                 self.__connector.commit()
                 print(cur.rowcount, "record Updated.")
@@ -221,7 +221,9 @@ class BDD(metaclass=Singleton):
         try:
             with self.__connector.cursor() as cur:
                 query = '''
-                SELECT * FROM Proveedor_Producto;
+                SELECT n.ID,Producto.Nombre,Proveedor.Nombre,n.Cantidad,n.Precio,n.Fecha FROM Proveedor_Producto as n
+                JOIN Producto ON n.Producto = Producto.ID
+                JOIN Proveedor ON n.Proveedor = Proveedor.ID;
                 '''
                 cur.execute(query)
                 result = cur.fetchall()
@@ -236,7 +238,7 @@ class BDD(metaclass=Singleton):
                 add_product = ('''
                 INSERT INTO Cliente (ID,Tipo,Nombre,Direccion,Telefono) VALUES (%s,%s,%s,%s,%s);
                 ''')  
-                info_Consulta = (ID,Tipo,Nombre,Direccion,Telefono)
+                info_Consulta = (ID,Tipo,Nombre.upper(),Direccion.upper(),Telefono)
                 cur.execute(add_product,info_Consulta)
                 self.__connector.commit()
                 print(cur.rowcount, "record inserted.")
@@ -249,10 +251,10 @@ class BDD(metaclass=Singleton):
                 add_product = ('''
                 UPDATE Cliente SET Tipo=%s,Nombre=%s,Direccion=%s,Telefono=%s WHERE ID=%s
                 ''')  
-                info_Consulta = (Tipo,Nombre,Direccion,Telefono,ID)
+                info_Consulta = (Tipo,Nombre.upper(),Direccion.upper(),Telefono,ID)
                 cur.execute(add_product,info_Consulta)
                 self.__connector.commit()
-                print(cur.rowcount, "record inserted.")
+                print(cur.rowcount, "record updated.")
         except (Exception,Error) as e:
             print(e)
 
@@ -262,7 +264,7 @@ class BDD(metaclass=Singleton):
                 add_product = ('''
                 INSERT INTO Empleado (Cedula,Nombre,Edad,Celular,Direccion,Email,Fecha_Ingreso,Fecha_Termino,Salario,Rol,Contrasena,Activo) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s);
                 ''')  
-                info_Consulta = (Cedula,Nombre,Edad,Celular,Direccion,Email,Fecha_Ingreso,Fecha_Termino,Salario,Rol,Contrasena,Activo)
+                info_Consulta = (Cedula,Nombre.upper(),Edad,Celular,Direccion.upper(),Email.upper(),Fecha_Ingreso,Fecha_Termino,Salario,Rol,Contrasena,Activo)
                 cur.execute(add_product,info_Consulta)
                 self.__connector.commit()
                 print(cur.rowcount, "record inserted.")
@@ -276,10 +278,10 @@ class BDD(metaclass=Singleton):
                 add_product = ('''
                 UPDATE Empleado SET Nombre=%s,Edad=%s,Celular=%s,Direccion=%s,Email=%s,Fecha_Ingreso=%s,Fecha_Termino=%s,Salario=%s,Rol=%s,Contrasena=%s,Activo=%s WHERE Cedula=%s
                 ''')  
-                info_Consulta = (Nombre,Edad,Celular,Direccion,Email,Fecha_Ingreso,Fecha_Termino,Salario,Rol,Contrasena,Activo,Cedula)
+                info_Consulta = (Nombre.upper(),Edad,Celular,Direccion.upper(),Email.upper(),Fecha_Ingreso,Fecha_Termino,Salario,Rol,Contrasena,Activo,Cedula)
                 cur.execute(add_product,info_Consulta)
                 self.__connector.commit()
-                print(cur.rowcount, "record inserted.")
+                print(cur.rowcount, "record updated.")
         except (Exception,Error) as e:
             print(e)
 
@@ -307,7 +309,7 @@ if __name__ == '__main__':
     #print(bdd.get_products())
     #print(bdd.get_supp__proc())
     #print(bdd.get_types())
-    print(bdd.get_types())
+    print(bdd.get_supp__proc())
     bdd.close()
 
     

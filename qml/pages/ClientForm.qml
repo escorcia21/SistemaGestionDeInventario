@@ -11,6 +11,7 @@ Item {
     property alias fcedula: idCedula.value
     property alias fnit: idNit.value
     property alias fnitnumero: idNitNumero.value
+    property bool disableForms: false
 
 
 
@@ -59,10 +60,11 @@ Item {
                     id:tipo
                     width: 200
                     currentIndex: -1
+                    enabled: !disableForms
                     displayText: currentIndex === -1 ? "Porfavor escoja..." : currentText
                     model: [
-                        "Empresa",
-                        "Persona"
+                        "EMPRESA",
+                        "PERSONA"
                     ]
                 }
 
@@ -130,6 +132,7 @@ Item {
                 FormField {
                     id:idCedula
                     visible: ftipo == 1 ? true:false
+                    enabled: !disableForms
                     placeholderText: "Cedula"
                     text: ftipo == 1 ? "":""
                     horizontalAlignment: Text.AlignLeft
@@ -156,9 +159,10 @@ Item {
                         width: 140
                         visible: ftipo == 0 ? true:false
                         placeholderText: "Nit"
+                        enabled: !disableForms
                         text: ftipo == 0 ? "":""
                         horizontalAlignment: Text.AlignLeft
-                        validator: IntValidator {bottom: 0; top: 999999999}
+                        validator: RegExpValidator {regExp: /^\d{1,9}$/}
                     }
 
                     Text {
@@ -175,11 +179,12 @@ Item {
                         id:idNitNumero
                         x: 0
                         width: 30
+                        enabled: !disableForms
                         visible: ftipo == 0 ? true:false
                         placeholderText: "0-9"
                         text: ftipo == 0 ? "":""
                         horizontalAlignment: Text.AlignHCenter
-                        validator: IntValidator {bottom: 0; top: 9}
+                        validator: RegExpValidator {regExp: /^\d{1,1}$/}
                     }
 
                 }
@@ -209,8 +214,6 @@ Item {
 
 /*##^##
 Designer {
-    D{i:0;autoSize:true;height:480;width:640}D{i:2}D{i:5}D{i:6}D{i:4}D{i:8}D{i:9}D{i:7}
-D{i:11}D{i:12}D{i:10}D{i:3}D{i:15}D{i:16}D{i:18}D{i:19}D{i:14}D{i:26}D{i:27}D{i:25}
-D{i:13}D{i:1}
+    D{i:0;autoSize:true;height:480;width:640}
 }
 ##^##*/

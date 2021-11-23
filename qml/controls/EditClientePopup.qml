@@ -38,6 +38,7 @@ PopupBase {
               fcedula: idCedula
               fnit: idNit
               fnitnumero: idNitNumero
+              disableForms:true
           }
 
           Rectangle {
@@ -54,7 +55,7 @@ PopupBase {
               CardBtns {
                   width: 100
                   height: 37
-                  text: "Close"
+                  text: "Cerrar"
                   btnColorClicked: "#cd3737"
                   btnColorMouseOver: "#ec3c3c"
                   btnColorDefault: "#f05454"
@@ -77,7 +78,7 @@ PopupBase {
               CardBtns {
                   width: 100
                   height: 37
-                  text: "Save"
+                  text: "Editar"
                   anchors.verticalCenter: parent.verticalCenter
                   anchors.verticalCenterOffset: 1
                   anchors.horizontalCenterOffset: 64
@@ -89,12 +90,12 @@ PopupBase {
                       cursorShape: Qt.PointingHandCursor
 
                       onClicked: {
-                          console.log(edit.fname != "",edit.fphone != "",edit.fdireccion != "",edit.ftipo,edit.fcedula != "",edit.fnit != "",edit.fnitnumero != "");
                           if(edit.fname != "" && edit.fphone != "" && edit.fdireccion != "" && edit.ftipo == 0 && edit.fnit != "" && edit.fnitnumero != ""){
-                              backend.actualizarCliente(edit.fname.toUpperCase(),edit.fphone,edit.fdireccion.toUpperCase(),edit.ftipo,edit.fnit+"-"+edit.fnitnumero);
+                              console.log(edit.fnit+"-"+edit.fnitnumero);
+                              //backend.actualizarCliente(edit.fname,edit.fphone,edit.fdireccion,edit.ftipo,edit.fnit+"-"+edit.fnitnumero);
                           }
                           else if(edit.fname != "" && edit.fphone != "" && edit.fdireccion != "" && edit.ftipo == 1 && edit.fcedula != ""){
-                              backend.actualizarCliente(edit.fname.toUpperCase(),edit.fphone,edit.fdireccion.toUpperCase(),edit.ftipo,edit.fcedula);
+                              backend.actualizarCliente(edit.fname,edit.fphone,edit.fdireccion,edit.ftipo,edit.fcedula);
                           }
                           popup.close()
                       }

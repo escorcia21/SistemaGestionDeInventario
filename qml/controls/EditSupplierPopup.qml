@@ -11,6 +11,7 @@ PopupBase {
       property var address: ""
       property var phone: ""
       property var nit: ""
+      property var nitNumero: ""
       property var email: ""
 
       contentItem: Rectangle {
@@ -30,6 +31,7 @@ PopupBase {
               fphone: phone
               fnit: nit
               femail: email
+              fnitnumero: nitNumero
           }
 
           Rectangle {
@@ -81,9 +83,9 @@ PopupBase {
                       cursorShape: Qt.PointingHandCursor
 
                       onClicked: {
-                          if(edit.fname != "" && edit.fphone != "" && edit.fnit != "" && edit.femail != "" && edit.faddress != ""){
+                          if(edit.fname != "" && edit.fphone != "" && (edit.fnit != "" && edit.fnitnumero != "") && edit.femail != "" && edit.faddress != ""){
                               //console.log("ok",identification,edit.fname ,edit.fphone , edit.fnit ,edit.femail , edit.faddress);
-                              backend.actualizarProveedor(edit.fname,edit.fnit,edit.femail,edit.fphone,edit.faddress,identification);
+                              backend.actualizarProveedor(edit.fname,edit.fnit+"-"+edit.fnitnumero,edit.femail,edit.fphone,edit.faddress,identification);
                               popup.close()
                           }
                       }

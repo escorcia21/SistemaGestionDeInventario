@@ -4,7 +4,8 @@ import "../controls"
 Item {
     property string title: "AÑADIR PROVEEDOR"
     property alias fname: name.value
-    property alias fnit: nit.value
+    property alias fnit: idNit.value
+    property alias fnitnumero: idNitNumero.value
     property alias femail: email.value
     property alias faddress: address.value
     property alias fphone: phone.value
@@ -67,8 +68,32 @@ Item {
                     anchors.horizontalCenter: parent.horizontalCenter
                 }
 
-                FormField {
-                    id:nit
+                Row {
+                    FormField {
+                        id:idNit
+                        width: 140
+                        placeholderText: "Nit"
+                        horizontalAlignment: Text.AlignLeft
+                        validator: RegExpValidator {regExp: /^\d{1,9}$/}
+                    }
+
+                    Text {
+                        id: text7
+                        width: 30
+                        height: 30
+                        text: qsTr("-")
+                        font.pixelSize: 20
+                        horizontalAlignment: Text.AlignHCenter
+                    }
+
+                    FormField {
+                        id:idNitNumero
+                        x: 0
+                        width: 30
+                        placeholderText: "0-9"
+                        horizontalAlignment: Text.AlignHCenter
+                        validator: RegExpValidator {regExp: /^\d{1,1}$/}
+                    }
                 }
             }
 
@@ -131,7 +156,7 @@ Item {
 
                 FormField {
                     id:phone
-                    validator: IntValidator {bottom: 1; top: 100000000}
+                    validator: RegExpValidator {regExp: /^\d{1,10}$/}
                 }
                 anchors.horizontalCenter: parent.horizontalCenter
             }
