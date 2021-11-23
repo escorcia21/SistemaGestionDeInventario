@@ -2,12 +2,12 @@
 # This Python file uses the following encoding: utf-8
 from datetime import date
 import sys
-from os import environ, name,path
+from os import environ,path
 import cv2
 from adapter import Adapter
 from DBConnection import BDD
 from PySide2.QtGui import QGuiApplication
-from PySide2.QtQml import QQmlApplicationEngine,qmlRegisterType
+from PySide2.QtQml import QQmlApplicationEngine
 from PySide2.QtCore import QObject, Slot, Signal,Qt
 
 
@@ -37,7 +37,17 @@ class MainWindow(QObject):
             self.pageSupplierProd.emit(a,b)
         except Exception as e:
             print(e)
-        
+
+    pageClient = Signal(str)
+    def setPageClient(self):
+        a = self.adapter.obtenerClienteJSON()
+        self.pageClient.emit(a)
+
+    pageEmpleado = Signal(str)
+    def setPageEmpleado(self):
+        a = self.adapter.obtenerEmpleadoJSON()
+        self.pageEmpleado.emit(a)
+
     @Slot(str,str)
     def addType(self,Name,unit):
         self.dbc.add_Type(Name,unit)
@@ -71,6 +81,48 @@ class MainWindow(QObject):
     def agregarProveedor(self,Nombre,Nit,Email,Telefono,Direccion):
         self.dbc.add_Supplier(Nombre,Nit,Email,int(Telefono),Direccion)
         self.setPageSupp()
+
+    @Slot(str,str,str,str,str)
+    def agregarCliente(self,Nombre,Telefono,Direccion,Tipo,ID):
+        self.dbc.add_Client(Nombre,Telefono,Direccion,Tipo,ID)
+        self.setPageClient()
+
+    @Slot(str,str,str,str,str)
+    def actualizarCliente(self,Nombre,Telefono,Direccion,Tipo,ID):
+        self.dbc.actualizar_Client(Nombre,Telefono,Direccion,Tipo,ID)
+        self.setPageClient()
+    
+    @Slot(str,str,str,str,str,str,str,str,str,str,str,str)
+    def agregarEmpleado(self,Cedula,Nombre,Edad,Celular,Direccion,Email,Fecha_Ingreso,Fecha_Termino,Salario,Rol,Contrasena,Activo):
+        if Fecha_Termino == "//":
+            Fecha_Termino = Fecha_Termino.replace("//","00/00/0000")
+        else:
+            Fecha_Termino = Fecha_Termino.split("/")
+            Fecha_Termino = Fecha_Termino[::-1]
+            Fecha_Termino = "-".join(Fecha_Termino)
+
+        Fecha_Ingreso = Fecha_Ingreso.split("/")
+        Fecha_Ingreso = Fecha_Ingreso[::-1]
+        Fecha_Ingreso = "-".join(Fecha_Ingreso)
+
+        self.dbc.add_Empleado(Cedula,Nombre,Edad,Celular,Direccion,Email,Fecha_Ingreso,Fecha_Termino,Salario,Rol,Contrasena,Activo)
+        self.setPageEmpleado()
+
+    @Slot(str,str,str,str,str,str,str,str,str,str,str,str)
+    def actualizarEmpleado(self,Cedula,Nombre,Edad,Celular,Direccion,Email,Fecha_Ingreso,Fecha_Termino,Salario,Rol,Contrasena,Activo):
+        if Fecha_Termino == "//":
+            Fecha_Termino = Fecha_Termino.replace("//","00/00/0000")
+        else:
+            Fecha_Termino = Fecha_Termino.split("/")
+            Fecha_Termino = Fecha_Termino[::-1]
+            Fecha_Termino = "-".join(Fecha_Termino)
+
+        Fecha_Ingreso = Fecha_Ingreso.split("/")
+        Fecha_Ingreso = Fecha_Ingreso[::-1]
+        Fecha_Ingreso = "-".join(Fecha_Ingreso)
+
+        self.dbc.actualizar_Empleado(Cedula,Nombre,Edad,Celular,Direccion,Email,Fecha_Ingreso,Fecha_Termino,Salario,Rol,Contrasena,Activo)
+        self.setPageEmpleado()
 
     @Slot(str,str,str,str,str,int)
     def actualizarProveedor(self,Nombre,Nit,Email,Telefono,Direccion,Id):
@@ -196,6 +248,8 @@ if __name__ == "__main__":
     main.setPageSupp()
     main.setTypes()
     main.setPageSuppPord()
+    main.setPageEmpleado()
+    main.setPageClient()
     #main.setAddPopUPTypes()
     if not engine.rootObjects():
         sys.exit(-1)

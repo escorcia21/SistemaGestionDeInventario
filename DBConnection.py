@@ -1,6 +1,5 @@
 from mysql.connector import connect,Error
 from threading import Lock
-from datetime import datetime
 
 class Singleton(type):
     _instances = {}
@@ -46,15 +45,35 @@ class BDD(metaclass=Singleton):
                 SELECT Producto.ID AS idd, Producto.Nombre AS Producto, Tipo.Nombre AS categoria, Producto.Precio, Producto.Stock FROM Producto 
                 INNER JOIN Tipo ON Producto.Tipo=Tipo.ID 
                 '''
-                # INNER JOIN Proveedor_Producto ON Producto.ID=Proveedor_Producto.Producto 
-                # INNER JOIN Proveedor ON Proveedor_Producto.Proveedor=Proveedor.ID;
                 cur.execute(query)
                 result = cur.fetchall()
                 return result
         except  (Exception,Error) as e:
             print(e)
         
-            
+    def get_client(self):
+        try:
+            with self.__connector.cursor() as cur:
+                query = '''
+                SELECT * From Cliente;
+                '''
+                cur.execute(query)
+                result = cur.fetchall()
+                return result
+        except Error as e:
+            print(e)
+    
+    def get_empleado(self):
+        try:
+            with self.__connector.cursor() as cur:
+                query = '''
+                SELECT * From Empleado;
+                '''
+                cur.execute(query)
+                result = cur.fetchall()
+                return result
+        except Error as e:
+            print(e)        
 
     def get_types(self):
         try:
@@ -208,6 +227,59 @@ class BDD(metaclass=Singleton):
                 result = cur.fetchall()
                 field_names = [i[0] for i in cur.description]
                 return result,field_names
+        except (Exception,Error) as e:
+            print(e)
+
+    def add_Client(self,Nombre,Telefono,Direccion,Tipo,ID):
+        try:
+            with self.__connector.cursor() as cur:
+                add_product = ('''
+                INSERT INTO Cliente (ID,Tipo,Nombre,Direccion,Telefono) VALUES (%s,%s,%s,%s,%s);
+                ''')  
+                info_Consulta = (ID,Tipo,Nombre,Direccion,Telefono)
+                cur.execute(add_product,info_Consulta)
+                self.__connector.commit()
+                print(cur.rowcount, "record inserted.")
+        except (Exception,Error) as e:
+            print(e)
+
+    def actualizar_Client(self,Nombre,Telefono,Direccion,Tipo,ID):
+        try:
+            with self.__connector.cursor() as cur:
+                add_product = ('''
+                UPDATE Cliente SET Tipo=%s,Nombre=%s,Direccion=%s,Telefono=%s WHERE ID=%s
+                ''')  
+                info_Consulta = (Tipo,Nombre,Direccion,Telefono,ID)
+                cur.execute(add_product,info_Consulta)
+                self.__connector.commit()
+                print(cur.rowcount, "record inserted.")
+        except (Exception,Error) as e:
+            print(e)
+
+    def add_Empleado(self,Cedula,Nombre,Edad,Celular,Direccion,Email,Fecha_Ingreso,Fecha_Termino,Salario,Rol,Contrasena,Activo):
+        try:
+            with self.__connector.cursor() as cur:
+                add_product = ('''
+                INSERT INTO Empleado (Cedula,Nombre,Edad,Celular,Direccion,Email,Fecha_Ingreso,Fecha_Termino,Salario,Rol,Contrasena,Activo) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s);
+                ''')  
+                info_Consulta = (Cedula,Nombre,Edad,Celular,Direccion,Email,Fecha_Ingreso,Fecha_Termino,Salario,Rol,Contrasena,Activo)
+                cur.execute(add_product,info_Consulta)
+                self.__connector.commit()
+                print(cur.rowcount, "record inserted.")
+        except (Exception,Error) as e:
+            print("error")
+            print(e)
+
+    def actualizar_Empleado(self,Cedula,Nombre,Edad,Celular,Direccion,Email,Fecha_Ingreso,Fecha_Termino,Salario,Rol,Contrasena,Activo):
+        try:
+            with self.__connector.cursor() as cur:
+                add_product = ('''
+                UPDATE Empleado SET Nombre=%s,Edad=%s,Celular=%s,Direccion=%s,Email=%s,Fecha_Ingreso=%s,Fecha_Termino=%s,Salario=%s,Rol=%s,Contrasena=%s,Activo=%s WHERE Cedula=%s
+                ''')  
+                info_Consulta = (Nombre,Edad,Celular,Direccion,Email,Fecha_Ingreso,Fecha_Termino,Salario,Rol,Contrasena,Activo,Cedula)
+                cur.execute(add_product,info_Consulta)
+                self.__connector.commit()
+                print(cur.rowcount, "record inserted.")
         except (Exception,Error) as e:
             print(e)
 

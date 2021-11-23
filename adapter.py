@@ -21,7 +21,9 @@ class Target(ABC):
     @abstractmethod
     def obtenerInformesJSON(self) -> str:pass
     @abstractmethod
-    def obtenerEmpleadosJSON(self) -> str:pass
+    def obtenerClienteJSON(self) -> str:pass
+    @abstractmethod
+    def obtenerEmpleadoJSON(self) -> str:pass
     @abstractmethod
     def obtenerProveedoresProductosJSON(self) -> str:pass
 
@@ -74,8 +76,6 @@ class Adapter(Target):
 
     def obtenerInformesJSON(self) -> str:pass
 
-    def obtenerEmpleadosJSON(self) -> str:pass
-
     def obtenerProveedoresProductosJSON(self) -> str:
         try:
             data,fields = self.__adaptee.get_supp__proc()
@@ -88,6 +88,30 @@ class Adapter(Target):
         except Exception as e:
             print(e)
         
+    def obtenerClienteJSON(self) -> str:
+        result = self.__adaptee.get_client()
+        
+        mydict = {}
+        for i,row in enumerate(result):
+            Tipo = "Empresa" if row[1] == 0 else "Persona"
+            mydict[f'Client{i}']=({"ID":row[0],"Tipo":Tipo,"Nombre":row[2],"Direccion":row[3],"Telefono":row[4]})
+
+        return json.dumps(mydict)
+
+    def obtenerEmpleadoJSON(self) -> str:
+        result = self.__adaptee.get_empleado()
+        mydict = {}
+        for i,row in enumerate(result):
+
+            Activo = "Activo" if row[11] == 0 else "Retirado"
+
+            if None == row[7]:
+                Final_Termino = "-"
+            else:
+                Final_Termino = row[7].strftime("%d/%m/%Y ")
+            mydict[f'Emple{i}']=({"Cedula":row[0],"Nombre":row[1],"Edad":row[2],"Celular":row[3],"Direccion":row[4],"Email":row[5],"Ingreso":row[6].strftime("%d/%m/%Y "),"Termino":Final_Termino,"Salario":row[8],"Rol":row[9],"Contrasena":row[10],"Activo":Activo})
+
+        return json.dumps(mydict)
 
     def close(self):
         self.__adaptee.close()
@@ -95,5 +119,6 @@ class Adapter(Target):
 
 if __name__ == "__main__":
     a = Adapter()
-    print(a.obtenerProveedoresProductosJSON())
+    print(a.obtenerClienteJSON())
+    print(a.obtenerEmpleadoJSON())
     a.close()
