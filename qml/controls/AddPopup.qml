@@ -16,13 +16,13 @@ PopupBase {
 
             TabButton {
                 id: control
-                text: qsTr("PRODUCT")
+                text: qsTr("PRODUCTO")
                 font.bold: true
                 font.pointSize: 10
             }
             TabButton {
                 id:control1
-                text: qsTr("TYPES")
+                text: qsTr("TIPOS")
                 font.bold: true
                 font.pointSize: 10
             }
@@ -37,6 +37,7 @@ PopupBase {
             currentIndex: tab.currentIndex
             ProductForm {
                 id:edit
+                formTitle: "AÑADIR PRODUCTO"
                 //Layout.fillWidth: true
                 //Layout.fillHeight: true
 
@@ -52,7 +53,7 @@ PopupBase {
                     CardBtns {
                         width: 100
                         height: 37
-                        text: "Close"
+                        text: "Cerrar"
                         btnColorClicked: "#cd3737"
                         btnColorMouseOver: "#ec3c3c"
                         btnColorDefault: "#f05454"
@@ -75,7 +76,7 @@ PopupBase {
                     CardBtns {
                         width: 100
                         height: 37
-                        text: "Save"
+                        text: "Agregar"
                         anchors.verticalCenter: parent.verticalCenter
                         anchors.verticalCenterOffset: 1
                         anchors.horizontalCenterOffset: 64
@@ -159,6 +160,6 @@ PopupBase {
 }
 /*##^##
 Designer {
-    D{i:0;formeditorZoom:0.9}D{i:2}
+    D{i:0;formeditorZoom:0.9}
 }
 ##^##*/

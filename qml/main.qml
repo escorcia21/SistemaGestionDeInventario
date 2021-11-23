@@ -321,7 +321,7 @@ Window {
                     Label {
                         id: description
                         color: "#a4aaac"
-                        text: qsTr("aplication description")
+                        text: qsTr("Software de gestion de enventario")
                         anchors.fill: parent
                         font.letterSpacing: 0.4
                         verticalAlignment: Text.AlignVCenter
@@ -394,7 +394,7 @@ Window {
                     Label {
                         id: title
                         color: "#ffffff"
-                        text: qsTr("MediCare")
+                        text: qsTr("Tilin")
                         anchors.left: image.right
                         anchors.right: parent.right
                         anchors.top: parent.top
@@ -510,7 +510,7 @@ Window {
                         LeftMenuBtn {
                             id: btnProducts
                             width: left_menu.width
-                            text: qsTr("Products")
+                            text: qsTr("Productos")
                             iconHeight: 30
                             iconWidth: 30
                             font.pointSize: 12
@@ -523,7 +523,7 @@ Window {
                         LeftMenuBtn {
                             id: btnProv
                             width: left_menu.width
-                            text: qsTr("Suppliers")
+                            text: qsTr("Proveedores")
                             iconHeight: 30
                             iconWidth: 30
                             isActive: false
@@ -536,7 +536,7 @@ Window {
                         LeftMenuSHCart {
                             id: btnCart
                             width: left_menu.width
-                            text: qsTr("Cart")
+                            text: qsTr("Comprar")
                             btnIconSource: "../img/svg_img/034-shopping-cart-12.svg"
                             iconHeight: 30
                             iconWidth: 30
@@ -551,7 +551,7 @@ Window {
                         LeftMenuSHCart {
                             id: botonFact
                             width: left_menu.width
-                            text: qsTr("Cart")
+                            text: qsTr("Facturas")
                             iconHeight: 30
                             displayStock: false
                             font.pointSize: 12
@@ -566,7 +566,7 @@ Window {
                         LeftMenuSHCart {
                             id: botonCliente
                             width: left_menu.width
-                            text: qsTr("Cart")
+                            text: qsTr("Usuarios")
                             iconHeight: 30
                             font.pointSize: 12
                             displayStock: false
@@ -582,7 +582,7 @@ Window {
                     LeftMenuBtn {
                         id: btnSettings
                         width: left_menu.width
-                        text: "Settings"
+                        text: "Configuración"
                         anchors.bottom: parent.bottom
                         isActive: false
                         font.pointSize: 12

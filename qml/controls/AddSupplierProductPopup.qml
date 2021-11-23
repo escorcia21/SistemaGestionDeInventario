@@ -35,7 +35,7 @@ PopupBase {
             CardBtns {
                 width: 100
                 height: 37
-                text: "Close"
+                text: "Cerrar"
                 btnColorClicked: "#cd3737"
                 btnColorMouseOver: "#ec3c3c"
                 btnColorDefault: "#f05454"
@@ -58,7 +58,7 @@ PopupBase {
             CardBtns {
                 width: 100
                 height: 37
-                text: "Save"
+                text: "Añadir"
                 anchors.verticalCenter: parent.verticalCenter
                 anchors.verticalCenterOffset: 1
                 anchors.horizontalCenterOffset: 64

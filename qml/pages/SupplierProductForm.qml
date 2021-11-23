@@ -14,7 +14,7 @@ Item {
         id: rectangle
         anchors.fill: parent
         Text {
-            text: qsTr("ADD PURCHASE")
+            text: qsTr("AÑADIR COMPRA")
             anchors.top: parent.top
             font.pixelSize: 20
             anchors.topMargin: 20
@@ -35,7 +35,7 @@ Item {
                 anchors.horizontalCenter: parent.horizontalCenter
 
                 Text {
-                    text: qsTr("Product")
+                    text: qsTr("Producto")
                     font.pixelSize: 16
                     font.bold: true
                     anchors.horizontalCenter: parent.horizontalCenter
@@ -52,7 +52,7 @@ Item {
                 anchors.horizontalCenter: parent.horizontalCenter
 
                 Text {
-                    text: qsTr("Supplier")
+                    text: qsTr("Proveedor")
                     font.pixelSize: 16
                     font.bold: true
                     anchors.horizontalCenter: parent.horizontalCenter
@@ -80,7 +80,7 @@ Item {
                 spacing: 20
 
                 Text {
-                    text: qsTr("Amount")
+                    text: qsTr("Cantidad")
                     font.pixelSize: 16
                     font.bold: true
                     anchors.horizontalCenter: parent.horizontalCenter
@@ -96,7 +96,7 @@ Item {
                 spacing: 20
 
                 Text {
-                    text: qsTr("Price")
+                    text: qsTr("Precio unitario")
                     font.pixelSize: 16
                     font.bold: true
                     anchors.horizontalCenter: parent.horizontalCenter
@@ -112,7 +112,7 @@ Item {
                 spacing: 20
 
                 Text {
-                    text: qsTr("Date (DD/MM/YYYY)")
+                    text: qsTr("Fecha (DD/MM/YYYY)")
                     font.pixelSize: 16
                     font.bold: true
                     anchors.horizontalCenter: parent.horizontalCenter

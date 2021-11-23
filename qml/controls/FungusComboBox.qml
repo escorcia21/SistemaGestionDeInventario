@@ -91,7 +91,7 @@ Item {
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.top: parent.top
-        placeholderText: "Search"
+        placeholderText: "Buscar"
         anchors.topMargin: 0
         anchors.leftMargin: 0
         anchors.rightMargin: 0

@@ -28,7 +28,7 @@ Item {
             anchors.leftMargin: 60
             Text {
                 id: text1
-                text: qsTr("Name")
+                text: qsTr("Nombre")
                 anchors.left: parent.left
                 anchors.top: parent.top
                 font.pixelSize: 16
@@ -72,7 +72,7 @@ Item {
                 id: text3
                 x: 0
                 y: 24
-                text: qsTr("Type")
+                text: qsTr("Tipo")
                 font.pixelSize: 16
                 font.bold: true
             }
@@ -89,7 +89,7 @@ Item {
                 id: text2
                 x: 0
                 y: 0
-                text: qsTr("Price")
+                text: qsTr("Precio")
                 font.pixelSize: 16
                 font.bold: true
             }
@@ -112,7 +112,7 @@ Item {
         Text {
             id: title
             x: 227
-            text: qsTr("EDIT PRODUCT")
+            text: qsTr("EDITAR PRODUCTO")
             anchors.top: parent.top
             font.pixelSize: 24
             anchors.topMargin: 20

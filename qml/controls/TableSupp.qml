@@ -108,6 +108,7 @@ Item {
             anchors.top: parent.top
             anchors.rightMargin: 10
             anchors.topMargin: 10
+            placeholderText: "Buscar"
             onTextChanged: {
                 functions.find(search.text);
             }

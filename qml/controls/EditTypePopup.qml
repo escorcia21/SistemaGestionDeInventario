@@ -26,7 +26,7 @@ PopupBase {
             anchors.horizontalCenter: parent.horizontalCenter
             Text {
                 id: name
-                text: qsTr("ADD TYPE")
+                text: qsTr("EDITAR TIPO")
                 anchors.horizontalCenter: parent.horizontalCenter
                 font.pointSize: 12
                 font.bold: true
@@ -37,7 +37,7 @@ PopupBase {
                 spacing: 10
                 Text {
                     id: name1
-                    text: qsTr("Name")
+                    text: qsTr("Nombre")
                     anchors.horizontalCenter: parent.horizontalCenter
                     font.pointSize: 12
                     font.bold: true
@@ -54,7 +54,7 @@ PopupBase {
                     spacing: 10
                     Text {
                         id: name2
-                        text: qsTr("Unit")
+                        text: qsTr("Unidad")
                         anchors.horizontalCenter: parent.horizontalCenter
                         font.pointSize: 12
                         font.bold: true

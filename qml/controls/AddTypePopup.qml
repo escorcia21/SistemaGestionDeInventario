@@ -24,7 +24,7 @@ PopupBase {
             anchors.horizontalCenter: parent.horizontalCenter
             Text {
                 id: name
-                text: qsTr("ADD TYPE")
+                text: qsTr("AÑADIR TIPO")
                 anchors.horizontalCenter: parent.horizontalCenter
                 font.pointSize: 12
                 font.bold: true
@@ -35,7 +35,7 @@ PopupBase {
                 spacing: 10
                 Text {
                     id: name1
-                    text: qsTr("Name")
+                    text: qsTr("Nombre")
                     anchors.horizontalCenter: parent.horizontalCenter
                     font.pointSize: 12
                     font.bold: true
@@ -52,7 +52,7 @@ PopupBase {
                     spacing: 10
                     Text {
                         id: name2
-                        text: qsTr("Unit")
+                        text: qsTr("Unidad")
                         anchors.horizontalCenter: parent.horizontalCenter
                         font.pointSize: 12
                         font.bold: true
@@ -80,7 +80,7 @@ PopupBase {
                     id: cardBtns
                     width: 100
                     height: 37
-                    text: "Close"
+                    text: "Cerrar"
                     btnColorClicked: "#cd3737"
                     btnColorMouseOver: "#ec3c3c"
                     btnColorDefault: "#f05454"
@@ -100,7 +100,7 @@ PopupBase {
 
                     width: 100
                     height: 37
-                    text: "Save"
+                    text: "Añadir"
                     font.pointSize: 10
                     font.bold: true
                     MouseArea {

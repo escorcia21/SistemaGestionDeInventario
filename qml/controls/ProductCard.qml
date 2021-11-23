@@ -188,7 +188,7 @@ Item {
                     y: 62
                     width: 80
                     height: 29
-                    text: "Edit"
+                    text: "Editar"
                     anchors.bottom: parent.bottom
                     anchors.bottomMargin: 10
                     anchors.horizontalCenter: parent.horizontalCenter
@@ -247,7 +247,7 @@ Item {
                     x: 24
                     y: 93
                     color: "#ffffff"
-                    text: qsTr("Out Of Stock")
+                    text: qsTr("Sin Stock")
                     anchors.verticalCenter: parent.verticalCenter
                     font.pixelSize: 28
                     font.bold: true
@@ -277,6 +277,6 @@ Item {
 
 /*##^##
 Designer {
-    D{i:0;autoSize:true}
+    D{i:0;autoSize:true;formeditorZoom:1.66}
 }
 ##^##*/

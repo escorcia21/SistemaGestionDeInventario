@@ -6,11 +6,23 @@ import "../pages"
 
 PopupBase {
       id: popup
+      property int identification: -1
+
+      property string tipo: ""
+      property string name: ""
+      property string direccion: ""
+      property string phone: ""
+      property string idCedula: ""
+      property string idNit: ""
+      property string idNitNumero: ""
+
+      height: 600
+      width: 960
 
       contentItem: Rectangle {
           id: rectangle
           anchors.fill: parent
-          SupplierForm {
+          ClientForm {
               id: edit
               anchors.left: parent.left
               anchors.right: parent.right
@@ -18,6 +30,14 @@ PopupBase {
               anchors.bottom: buttons.top
               anchors.rightMargin: 0
               anchors.bottomMargin: 0
+              title: "EDITAR CLIENTE"
+              ftipo: tipo
+              fname: name
+              fdireccion: direccion
+              fphone: phone
+              fcedula: idCedula
+              fnit: idNit
+              fnitnumero: idNitNumero
           }
 
           Rectangle {
@@ -34,7 +54,7 @@ PopupBase {
               CardBtns {
                   width: 100
                   height: 37
-                  text: "Cerrar"
+                  text: "Close"
                   btnColorClicked: "#cd3737"
                   btnColorMouseOver: "#ec3c3c"
                   btnColorDefault: "#f05454"
@@ -57,7 +77,7 @@ PopupBase {
               CardBtns {
                   width: 100
                   height: 37
-                  text: "Añadir"
+                  text: "Save"
                   anchors.verticalCenter: parent.verticalCenter
                   anchors.verticalCenterOffset: 1
                   anchors.horizontalCenterOffset: 64
@@ -69,11 +89,14 @@ PopupBase {
                       cursorShape: Qt.PointingHandCursor
 
                       onClicked: {
-                          if(edit.fname != "" && edit.fphone != "" && edit.fnit != "" && edit.femail != "" && edit.faddress != ""){
-                              //console.log("ok",idd,edit.fname ,edit.fphone , edit.fnit ,edit.femail , edit.faddress);
-                              backend.agregarProveedor(edit.fname,edit.fnit,edit.femail,edit.fphone,edit.faddress);
-                              popup.close()
+                          console.log(edit.fname != "",edit.fphone != "",edit.fdireccion != "",edit.ftipo,edit.fcedula != "",edit.fnit != "",edit.fnitnumero != "");
+                          if(edit.fname != "" && edit.fphone != "" && edit.fdireccion != "" && edit.ftipo == 0 && edit.fnit != "" && edit.fnitnumero != ""){
+                              backend.actualizarCliente(edit.fname.toUpperCase(),edit.fphone,edit.fdireccion.toUpperCase(),edit.ftipo,edit.fnit+"-"+edit.fnitnumero);
                           }
+                          else if(edit.fname != "" && edit.fphone != "" && edit.fdireccion != "" && edit.ftipo == 1 && edit.fcedula != ""){
+                              backend.actualizarCliente(edit.fname.toUpperCase(),edit.fphone,edit.fdireccion.toUpperCase(),edit.ftipo,edit.fcedula);
+                          }
+                          popup.close()
                       }
                   }
               }

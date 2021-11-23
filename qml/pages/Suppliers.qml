@@ -14,7 +14,7 @@ Item {
 
         TabButton {
             id: control
-            text: qsTr("SUPPLIERS")
+            text: qsTr("PROVEEDORES")
             anchors.verticalCenter: parent.verticalCenter
             font.bold: true
             font.pointSize: 10
@@ -27,7 +27,7 @@ Item {
         }
         TabButton {
             id:control1
-            text: qsTr("MOVEMENTS")
+            text: qsTr("MOVIMIENTOS")
             anchors.verticalCenter: parent.verticalCenter
             font.bold: true
             font.pointSize: 10

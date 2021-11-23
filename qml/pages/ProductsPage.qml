@@ -18,7 +18,7 @@ Item {
             anchors.top: parent.top
             anchors.topMargin: 0
             anchors.rightMargin: 2
-            placeholder: " Search Product"
+            placeholder: " Buscar Producto"
             onTextChanged: {
                 productList.applyFilter(text,1)
             }

@@ -6,11 +6,12 @@ import "../pages"
 
 PopupBase {
       id: popup
-
+      height: 600
+      width: 960
       contentItem: Rectangle {
           id: rectangle
           anchors.fill: parent
-          SupplierForm {
+          EmpleadoForm {
               id: edit
               anchors.left: parent.left
               anchors.right: parent.right
@@ -34,7 +35,7 @@ PopupBase {
               CardBtns {
                   width: 100
                   height: 37
-                  text: "Cerrar"
+                  text: "Close"
                   btnColorClicked: "#cd3737"
                   btnColorMouseOver: "#ec3c3c"
                   btnColorDefault: "#f05454"
@@ -57,23 +58,50 @@ PopupBase {
               CardBtns {
                   width: 100
                   height: 37
-                  text: "Añadir"
+                  text: "Save"
                   anchors.verticalCenter: parent.verticalCenter
                   anchors.verticalCenterOffset: 1
                   anchors.horizontalCenterOffset: 64
                   font.pointSize: 10
                   anchors.horizontalCenter: parent.horizontalCenter
                   font.bold: true
+                  enabled: edit.factivo == -1 ? false:true
                   MouseArea {
                       anchors.fill: parent
                       cursorShape: Qt.PointingHandCursor
 
                       onClicked: {
-                          if(edit.fname != "" && edit.fphone != "" && edit.fnit != "" && edit.femail != "" && edit.faddress != ""){
-                              //console.log("ok",idd,edit.fname ,edit.fphone , edit.fnit ,edit.femail , edit.faddress);
-                              backend.agregarProveedor(edit.fname,edit.fnit,edit.femail,edit.fphone,edit.faddress);
-                              popup.close()
+                          if(edit.fcedula != ""
+                                  && edit.ftelefono != ""
+                                  && edit.fcargo != ""
+
+                                  && edit.fnombre != ""
+                                  && edit.fdireccion != ""
+                                  && edit.fsueldo != ""
+                                  && edit.fingreso != ""
+
+                                  && edit.fcorreo != ""
+                                  && edit.fpassword != ""
+                                  && edit.fedad != ""
+                                  && edit.fsalida != ""){
+                              //console.log("fUNCIONA")
+                              backend.agregarEmpleado(edit.fcedula,
+                                                      edit.fnombre,
+                                                      edit.fedad,
+                                                      edit.ftelefono,
+
+                                                      edit.fdireccion,
+                                                      edit.fcorreo,
+                                                      edit.fingreso,
+                                                      edit.fsalida,
+
+                                                      edit.fsueldo,
+                                                      edit.fcargo,
+                                                      edit.fpassword,
+                                                      edit.factivo);
                           }
+
+                          popup.close();
                       }
                   }
               }

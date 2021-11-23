@@ -7,10 +7,11 @@ import "../pages"
 PopupBase {
       id: popup
 
+
       contentItem: Rectangle {
           id: rectangle
           anchors.fill: parent
-          SupplierForm {
+          ClientForm {
               id: edit
               anchors.left: parent.left
               anchors.right: parent.right
@@ -34,7 +35,7 @@ PopupBase {
               CardBtns {
                   width: 100
                   height: 37
-                  text: "Cerrar"
+                  text: "Close"
                   btnColorClicked: "#cd3737"
                   btnColorMouseOver: "#ec3c3c"
                   btnColorDefault: "#f05454"
@@ -57,7 +58,7 @@ PopupBase {
               CardBtns {
                   width: 100
                   height: 37
-                  text: "Añadir"
+                  text: "Save"
                   anchors.verticalCenter: parent.verticalCenter
                   anchors.verticalCenterOffset: 1
                   anchors.horizontalCenterOffset: 64
@@ -69,11 +70,14 @@ PopupBase {
                       cursorShape: Qt.PointingHandCursor
 
                       onClicked: {
-                          if(edit.fname != "" && edit.fphone != "" && edit.fnit != "" && edit.femail != "" && edit.faddress != ""){
-                              //console.log("ok",idd,edit.fname ,edit.fphone , edit.fnit ,edit.femail , edit.faddress);
-                              backend.agregarProveedor(edit.fname,edit.fnit,edit.femail,edit.fphone,edit.faddress);
-                              popup.close()
+                          //console.log(edit.fname != "",edit.fphone != "",edit.fdireccion != "",edit.ftipo,edit.fcedula != "",edit.fnit != "",edit.fnitnumero != "");
+                          if(edit.fname != "" && edit.fphone != "" && edit.fdireccion != "" && edit.ftipo == 0 && edit.fnit != "" && edit.fnitnumero != ""){
+                              backend.agregarCliente(edit.fname.toUpperCase(),edit.fphone,edit.fdireccion.toUpperCase(),edit.ftipo.toUpperCase(),edit.fnit+"-"+edit.fnitnumero);
                           }
+                          else if(edit.fname != "" && edit.fphone != "" && edit.fdireccion != "" && edit.ftipo == 1 && edit.fcedula != ""){
+                              backend.agregarCliente(edit.fname.toUpperCase(),edit.fphone,edit.fdireccion.toUpperCase(),edit.ftipo.toUpperCase(),edit.fcedula);
+                          }
+                          popup.close()
                       }
                   }
               }
