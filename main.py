@@ -6,7 +6,7 @@ from os import environ,path
 import cv2
 from adapter import Adapter
 from DBConnection import BDD
-from PySide2.QtGui import QGuiApplication
+from PySide2.QtGui import QGuiApplication, QIcon
 from PySide2.QtQml import QQmlApplicationEngine
 from PySide2.QtCore import QObject, Slot, Signal,Qt
 
@@ -235,6 +235,7 @@ if __name__ == "__main__":
     QGuiApplication.setAttribute(Qt.AA_EnableHighDpiScaling)
     app = QGuiApplication(sys.argv)
     engine = QQmlApplicationEngine()
+    app.setWindowIcon(QIcon("img/images/favicon.png"))
 
     #context
     bdd = BDD()
