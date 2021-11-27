@@ -25,7 +25,15 @@ class Target(ABC):
     @abstractmethod
     def obtenerEmpleadoJSON(self) -> str:pass
     @abstractmethod
+    def obtenerFacturaJSON(self) -> str:pass
+    @abstractmethod
+    def obtenerFacturaID(self) -> str:pass
+    @abstractmethod
     def obtenerProveedoresProductosJSON(self) -> str:pass
+    @abstractmethod
+    def obtenerFacturaListaJSON(self) -> str:pass
+    @abstractmethod
+    def obtenerFacturaTotalJSON(self) -> str:pass
 
 
 class Adapter(Target):
@@ -40,7 +48,7 @@ class Adapter(Target):
             result = self.__adaptee.get_products()
             mydict = {}
             for i,row in enumerate(result):
-                mydict[f'Product{i}']=({"idd":row[0],"article":row[1],"category":row[2],"price":f"${row[3]}","stock":row[4]})
+                mydict[f'Product{i}']=({"idd":row[0],"article":row[1],"category":row[2],"price":row[3],"stock":row[4]})
 
             return json.dumps(mydict)
         except Exception as e:
@@ -69,6 +77,17 @@ class Adapter(Target):
             return json.dumps(mydict)
         except Exception as e:
             print(e)
+    
+    def obtenerFacturaID(self) -> str:
+        try:
+            result = self.__adaptee.get_Factura_ID()
+            mydict = {}
+            for i,row in enumerate(result):
+                mydict[f'IDFac{i}']=({"ID":row[0]})
+            print(mydict)
+            return json.dumps(mydict)
+        except Exception as e:
+            print(e)
 
     def obtenerVentasJSON(self) -> str:pass
 
@@ -87,7 +106,36 @@ class Adapter(Target):
             return json.dumps(mydict),fields
         except Exception as e:
             print(e)
+
+    def obtenerFacturaJSON(self) -> str:
+        result = self.__adaptee.get_Factura()
         
+        mydict = {}
+        
+        for i,row in enumerate(result):
+            Estado = "LISTA" if row[5] == 0 else "ANULADA"
+            mydict[f'Factura{i}']=({"ID":row[0],"Vendedor":row[1],"Cliente":row[2],"Fecha":row[3].strftime("%d/%m/%Y "),"Total":row[4],"Estado":Estado})
+        
+        return json.dumps(mydict)
+    
+    def obtenerFacturaListaJSON(self,ID) -> str:
+        result = self.__adaptee.get_FacturaLista(ID)
+        
+        mydict = {}
+        for i,row in enumerate(result):
+            mydict[f'FacturaLista{i}']=({"ID":row[0],"Producto":row[1],"Cantidad":row[2],"Precio":row[3],"Total":row[4]})
+        
+        return json.dumps(mydict)
+
+    def obtenerFacturaTotalJSON(self,ID) -> str:
+        result = self.__adaptee.get_FacturaTotal(ID)
+        
+        mydict = {}
+        for i,row in enumerate(result):
+            mydict[f'FacturaTotal{i}']=({"Total":row[0]})
+        
+        return json.dumps(mydict)
+
     def obtenerClienteJSON(self) -> str:
         result = self.__adaptee.get_client()
         
@@ -95,7 +143,6 @@ class Adapter(Target):
         for i,row in enumerate(result):
             Tipo = "EMPRESA" if row[1] == 0 else "PERSONA"
             mydict[f'Client{i}']=({"ID":row[0],"Tipo":Tipo,"Nombre":row[2],"Direccion":row[3],"Telefono":row[4]})
-
         return json.dumps(mydict)
 
     def obtenerEmpleadoJSON(self) -> str:
@@ -119,6 +166,4 @@ class Adapter(Target):
 
 if __name__ == "__main__":
     a = Adapter()
-    print(a.obtenerClienteJSON())
-    print(a.obtenerEmpleadoJSON())
     a.close()

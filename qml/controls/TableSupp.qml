@@ -13,10 +13,10 @@ Item {
     property color header_font_color: "#fff"
     property alias add: tabla.model
     property var headers: ['ID','Nombre', 'NIT', 'Correo', 'Direccion', 'Telefono']
-    //property int columss: 6
     property var criterio: headers[1]
     property double headersW: tabla.width/headers.length
     property var selectedRow: tabla.currentRow > -1 ? tabla.currentRow :-1
+    property bool tablevisible: true
 
 
     QtObject {
@@ -110,6 +110,7 @@ Item {
             anchors.rightMargin: 10
             anchors.topMargin: 10
             placeholderText: "Buscar"
+            visible: tablevisible
             onTextChanged: {
                 functions.find(search.text);
             }
@@ -124,7 +125,7 @@ Item {
             //width: styleData.horizontal
             anchors.margins: 10
             anchors.topMargin: 10
-            //onClicked: {console.log(selectedRow)}
+            //onClicked: {functions.listModelToString();}
             resources:
                 {
                     var roleList = headers
@@ -138,6 +139,7 @@ Item {
                 }
 
             model: ListModel {
+
             }
 
             ListModel{
@@ -269,7 +271,8 @@ Item {
 
 /*##^##
 Designer {
-    D{i:0;autoSize:true;formeditorZoom:0.5;height:480;width:640}
+    D{i:0;autoSize:true;formeditorZoom:0.5;height:480;width:640}D{i:1}D{i:3}D{i:5}D{i:8}
+D{i:6}D{i:2}
 }
 ##^##*/
 

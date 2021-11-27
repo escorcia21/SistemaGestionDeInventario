@@ -74,5 +74,5 @@ __pycache__
 
 # models
 models.py
-main.pyproject.user
+*.user
 

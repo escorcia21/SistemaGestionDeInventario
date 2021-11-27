@@ -85,6 +85,7 @@ Item {
     height: 75
     property int comboValue:0
     property alias listm: comboBox.model
+    property alias indice: comboBox.currentIndex
 
     FormField {
         id:funSearch
@@ -216,6 +217,6 @@ Item {
 
 /*##^##
 Designer {
-    D{i:0;formeditorZoom:0.9}
+    D{i:0;formeditorZoom:0.9}D{i:1}D{i:2}D{i:9}D{i:3}
 }
 ##^##*/

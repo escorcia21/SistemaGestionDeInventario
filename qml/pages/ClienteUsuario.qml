@@ -145,21 +145,6 @@ Item {
                     anchors.fill: parent
                     cursorShape: Qt.PointingHandCursor
 
-                    //fcedula: cedula
-                    //ftelefono: telefono
-                    //fcargo: cargo
-                    //factivo: activo
-
-                    //fnombre: nombre
-                    //fdireccion: direccion
-                    //fsueldo: sueldo
-                    //fingreso: ingreso
-
-                    //fcorreo: correo
-                    //fpassword: password
-                    //fedad: edad
-                    //fsalida: salida
-
                     onClicked: {
                         if (currentIndexSupp2 > -1){
                             var tipoVar = secondTab.add.get(currentIndexSupp2).Activo == "Activo" ? 0:1
@@ -232,6 +217,7 @@ Item {
 
 /*##^##
 Designer {
-    D{i:0;autoSize:true;height:480;width:640}
+    D{i:0;autoSize:true;height:480;width:640}D{i:2}D{i:4}D{i:1}D{i:9}D{i:8}D{i:11}D{i:10}
+D{i:7}D{i:14}D{i:13}D{i:16}D{i:15}D{i:12}D{i:6}D{i:17}
 }
 ##^##*/

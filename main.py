@@ -3,12 +3,15 @@
 from datetime import date
 import sys
 from os import environ,path
+from typing import Type
 import cv2
+from mysql.connector.utils import print_buffer
 from adapter import Adapter
 from DBConnection import BDD
 from PySide2.QtGui import QGuiApplication, QIcon
 from PySide2.QtQml import QQmlApplicationEngine
 from PySide2.QtCore import QObject, Slot, Signal,Qt
+import json
 
 
 class MainWindow(QObject):
@@ -21,7 +24,6 @@ class MainWindow(QObject):
     #init the bd
     initialize =Signal(str)
     def setBD(self):
-        #print("hola")
         a = self.adapter.obtenerProductosJSON()
         self.initialize.emit(a)
 
@@ -37,6 +39,23 @@ class MainWindow(QObject):
             self.pageSupplierProd.emit(a,b)
         except Exception as e:
             print(e)
+
+    pageFactura = Signal(str)
+    def setPageFactura(self):
+        a = self.adapter.obtenerFacturaJSON()
+        self.pageFactura.emit(a)
+    
+    pageFacturaLista = Signal(str)
+    @Slot(str)
+    def setPageFacturaLista(self,ID):
+        a = self.adapter.obtenerFacturaListaJSON(ID)
+        self.pageFacturaLista.emit(a)
+
+    pageFacturaTotal = Signal(str)
+    @Slot(str)
+    def setPageFacturaTotal(self,ID):
+        a = self.adapter.obtenerFacturaTotalJSON(ID)
+        self.pageFacturaTotal.emit(a)
 
     pageClient = Signal(str)
     def setPageClient(self):
@@ -82,6 +101,25 @@ class MainWindow(QObject):
         self.dbc.add_Supplier(Nombre,Nit,Email,int(Telefono),Direccion)
         self.setPageSupp()
 
+    @Slot(str,str,str,str)
+    def agregarFactura(self,Vendedor,Cliente,Fecha,Total):
+        Fecha = Fecha.split("/")
+        Fecha = Fecha[::-1]
+        Fecha = "-".join(Fecha)
+        self.dbc.add_Factura(Vendedor,Cliente,Fecha,Total)
+        self.setPageFactura()
+    
+    @Slot(str,str)
+    def agregarFacturaDetalle(self,ID,jaison):
+        temp = json.loads(jaison)
+        self.dbc.add_Factura_Detalle(ID,temp)
+        self.setPageFactura()
+
+    @Slot(str,str,str,str,str)
+    def actualizarCliente(self,Nombre,Telefono,Direccion,Tipo,ID):
+        self.dbc.actualizar_Client(Nombre,Telefono,Direccion,Tipo,ID)
+        self.setPageClient()
+
     @Slot(str,str,str,str,str)
     def agregarCliente(self,Nombre,Telefono,Direccion,Tipo,ID):
         self.dbc.add_Client(Nombre,Telefono,Direccion,Tipo,ID)
@@ -124,10 +162,10 @@ class MainWindow(QObject):
         self.dbc.actualizar_Empleado(Cedula,Nombre,Edad,Celular,Direccion,Email,Fecha_Ingreso,Fecha_Termino,Salario,Rol,Contrasena,Activo)
         self.setPageEmpleado()
 
-    @Slot(str,str,str,str,str,int)
-    def actualizarProveedor(self,Nombre,Nit,Email,Telefono,Direccion,Id):
-        self.dbc.edit_Supplier(Nombre,Nit,Email,int(Telefono),Direccion,Id)
-        self.setPageSupp()
+    @Slot(str)
+    def anularFactura(self,ID):
+        self.dbc.anular(ID)
+        self.setPageFactura()
 
     @Slot(int,int,str,str,str)
     def addSupplierProduct(self,product,supplier,Amount,Price,Date):
@@ -144,6 +182,21 @@ class MainWindow(QObject):
         a = self.adapter.obtenerProveedoresJSON()
         self.setSProdCombo.emit(a)
 
+
+    
+    setClienteCombo = Signal(str)
+    @Slot()
+    def setClienteCombox(self):
+        a = self.adapter.obtenerClienteJSON()
+        print(a)
+        self.setClienteCombo.emit(a)
+    
+    setEmpleadoCombo = Signal(str)
+    @Slot()
+    def setEmpleadoCombox(self):
+        a = self.adapter.obtenerEmpleadoJSON()
+        self.setEmpleadoCombo.emit(a)
+
     setProdCombo = Signal(str)
     @Slot()
     def setProdComboBox(self):
@@ -159,7 +212,6 @@ class MainWindow(QObject):
     setAddTypes = Signal(str)
     @Slot()
     def setAddPopUPTypes(self):
-        #print("12")
         a = self.adapter.obtenerTiposJSON()
         self.listTypes.emit(a)
         self.setAddTypes.emit(a)
@@ -171,6 +223,14 @@ class MainWindow(QObject):
     def setSupp(self):
         a = self.adapter.obtenerProveedoresJSON()
         self.listSupp.emit(a)
+        #self.setAddPopUPTypes()
+    
+    setfacturaID = Signal(str)
+    @Slot()
+    def setFactura_ID(self):
+        a = self.adapter.obtenerFacturaID()
+        print(a)
+        self.setfacturaID.emit(a)
         #self.setAddPopUPTypes()
 
     change = Signal(str,int)
@@ -200,7 +260,6 @@ class MainWindow(QObject):
     add = Signal(int,int)
     @Slot(int,int)
     def addToCart(self,item,quantity):
-        #print(item,quantity)
         self.add.emit(item,quantity)
 
     recived = Signal(QObject,int)
@@ -211,7 +270,6 @@ class MainWindow(QObject):
     setTotal = Signal(int,int)
     @Slot(int,int)
     def changeTotal(self,csvalue,pk):
-        #print(csvalue,pk)
         self.setTotal.emit(csvalue,pk)
 
     cartListDelete = Signal(int)
@@ -251,6 +309,7 @@ if __name__ == "__main__":
     main.setPageSuppPord()
     main.setPageEmpleado()
     main.setPageClient()
+    main.setPageFactura()
     #main.setAddPopUPTypes()
     if not engine.rootObjects():
         sys.exit(-1)

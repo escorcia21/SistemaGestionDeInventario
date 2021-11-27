@@ -50,7 +50,67 @@ class BDD(metaclass=Singleton):
                 return result
         except  (Exception,Error) as e:
             print(e)
-        
+
+    def get_Factura(self):
+        try:
+            with self.__connector.cursor() as cur:
+                query = '''
+                SELECT Factura.ID, Empleado.Nombre, Cliente.Nombre, Factura.Fecha, Factura.Total, Factura.Estado 
+                FROM Factura 
+                INNER JOIN Cliente ON Factura.Cliente = Cliente.ID 
+                INNER JOIN Empleado ON Factura.Vendedor = Empleado.Cedula
+                '''
+                cur.execute(query)
+                result = cur.fetchall()
+                return result
+        except Error as e:
+            print(e)
+
+    def get_FacturaLista(self,ID):
+        try:
+            with self.__connector.cursor() as cur:
+                query = '''
+                SELECT Detalle_Factura.Producto, Producto.Nombre, Detalle_Factura.Cantidad, Detalle_Factura.Precio, Detalle_Factura.subtotal 
+                FROM Detalle_Factura 
+                INNER JOIN Producto ON Detalle_Factura.Producto = Producto.ID 
+                WHERE Detalle_Factura.Factura = %s
+                '''
+
+                cur.execute(query,[ID])
+                result = cur.fetchall()
+                return result
+        except Error as e:
+            print(e)
+    
+    def get_FacturaTotal(self,ID):
+        try:
+            with self.__connector.cursor() as cur:
+                query = '''
+                SELECT sum(Detalle_Factura.Subtotal) 
+                AS total 
+                FROM Detalle_Factura 
+                WHERE Detalle_Factura.Factura = %s
+                '''
+
+                cur.execute(query,[ID])
+                result = cur.fetchall()
+                return result
+        except Error as e:
+            print(e)
+    
+    def get_Factura_ID(self):
+        try:
+            with self.__connector.cursor() as cur:
+                query = '''
+                SELECT max(ID) from Factura
+                '''
+                cur.execute(query)
+                result = cur.fetchall()
+                print(result)
+                return result
+        except Error as e:
+            print(e)
+
     def get_client(self):
         try:
             with self.__connector.cursor() as cur:
@@ -122,6 +182,38 @@ class BDD(metaclass=Singleton):
                 ''')  
                 product_info = (Nombre.upper(),0,Precio,Tipo)
                 cur.execute(add_product,product_info)
+                self.__connector.commit()
+                print(cur.rowcount, "record inserted.")
+        except (Exception,Error) as e:
+            print(e)
+    
+    def add_Factura(self,Vendedor,Cliente,Fecha,Total):
+        try:
+            with self.__connector.cursor() as cur:
+                add_product = ('''
+                INSERT INTO Factura (Vendedor,Cliente,Fecha,Total,Estado) VALUES (%s,%s,%s,%s,%s);
+                ''')  
+                product_info = (Vendedor,Cliente,Fecha,Total,0)
+                cur.execute(add_product,product_info)
+                self.__connector.commit()
+                print(cur.rowcount, "record inserted.")
+        except (Exception,Error) as e:
+            print(e)
+    
+    def add_Factura_Detalle(self,ID,temp):
+        product_info = []
+        try:
+            with self.__connector.cursor() as cur:
+                add_product = ('''
+                INSERT INTO Detalle_Factura (Factura,Producto,Cantidad,Precio,Subtotal) VALUES (%s,%s,%s,%s,%s);
+                ''')
+
+                for row in temp:
+                    print(row)
+                    fila = (ID,row["ID"],row["Cantidad"],row["Precio"],row["Total"])
+                    product_info.append(fila)
+
+                cur.executemany(add_product,product_info)
                 self.__connector.commit()
                 print(cur.rowcount, "record inserted.")
         except (Exception,Error) as e:
@@ -203,6 +295,17 @@ class BDD(metaclass=Singleton):
         except (Exception,Error) as e:
             print(e)
 
+    def anular(self,ID):
+        try:
+            with self.__connector.cursor() as cur:
+                add_product = ('''
+                UPDATE Factura SET Estado = 1 WHERE ID = %s;''')  
+                cur.execute(add_product,[(ID)])
+                self.__connector.commit()
+                print(cur.rowcount, "record updated.")
+        except (Exception,Error) as e:
+            print(e)
+
     def edit_type(self,Nombre,unit,id):
         unidad = 1 if unit =="MTS" else  0
         try:
@@ -269,7 +372,6 @@ class BDD(metaclass=Singleton):
                 self.__connector.commit()
                 print(cur.rowcount, "record inserted.")
         except (Exception,Error) as e:
-            print("error")
             print(e)
 
     def actualizar_Empleado(self,Cedula,Nombre,Edad,Celular,Direccion,Email,Fecha_Ingreso,Fecha_Termino,Salario,Rol,Contrasena,Activo):
@@ -301,15 +403,6 @@ class BDD(metaclass=Singleton):
             print(e)
 
 
-
-
 if __name__ == '__main__':
     bdd = BDD()
-    #print(bdd.show_tables())
-    #print(bdd.get_products())
-    #print(bdd.get_supp__proc())
-    #print(bdd.get_types())
-    print(bdd.get_supp__proc())
     bdd.close()
-
-    
