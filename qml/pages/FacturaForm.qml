@@ -26,6 +26,8 @@ Item {
     property alias ftotal: total.text
     property alias fiva: iva.text
 
+    property string pprice: fproducto.listm.get(fproducto.indice).Precio == -1 ? "-":fproducto.listm.get(fproducto.indice).Precio
+
     height: 1300
     width: 1300
     Rectangle {
@@ -215,7 +217,7 @@ Item {
 
 
                     Text {
-                        text: fproducto.listm.get(fproducto.indice).Precio == -1 ? "-":fproducto.listm.get(fproducto.indice).Precio
+                        text: pprice
                         font.pixelSize: 16
                         horizontalAlignment: Text.AlignRight
                         font.bold: true

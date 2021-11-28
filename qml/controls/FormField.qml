@@ -5,13 +5,14 @@ TextField {
     property string placehold: "Hola"
     property color borderColor: "#30475e"
     property alias value: textField.text
+    property color placeholdColor: "#7f353637"
 
     id: textField
     width: 200
     height: 30
     clip: true
     placeholderText: qsTr(textField.value)
-
+    color: placeholdColor
     font.pixelSize: 14
     horizontalAlignment: Text.AlignHCenter
     leftPadding: 1
@@ -30,6 +31,6 @@ TextField {
 
 /*##^##
 Designer {
-    D{i:0;formeditorZoom:3}
+    D{i:0;formeditorZoom:4}
 }
 ##^##*/

@@ -30,25 +30,11 @@ Window {
     //INTERNAL FUNTIONS
     QtObject{
         id: internal
-        function resetBorders (){
-            resizeLeft.visible = true
-            resizeRight.visible = true
-            resizeTop.visible = true
-            resizeBottom.visible = true
-        }
-
-        function hideBorders(){
-            resizeLeft.visible = false
-            resizeRight.visible = false
-            resizeTop.visible = false
-            resizeBottom.visible = false
-        }
         function maximizeRestore(){
             if (windowsStatus == 0){
                 window.showMaximized()
                 windowsStatus = 1
                 windowMargin = 0
-                internal.hideBorders()
                 maximize.btnIconSource = "../img/svg_img/restore_icon.svg"
 
             }else {
@@ -56,7 +42,6 @@ Window {
                 windowsStatus = 0
                 windowMargin = 10
                 //RESIZE VISIVILITY
-                internal.resetBorders()
                 maximize.btnIconSource = "../img/svg_img/maximize_icon.svg"
             }
         }
@@ -66,7 +51,6 @@ Window {
                 windowsStatus = 0
                 windowMargin = 10
                 //RESIZE VISIVILITY
-                internal.resetBorders()
                 maximize.btnIconSource = "../img/svg_img/maximize_icon.svg"
             }
         }
@@ -75,7 +59,6 @@ Window {
             windowsStatus = 0
             windowMargin = 10
             //RESIZE VISIVILITY
-            internal.resetBorders()
             maximize.btnIconSource = "../img/svg_img/maximize_icon.svg"
         }
 
@@ -752,74 +735,6 @@ Window {
         color: "#80000000"
         source: bg
         z:0
-    }
-
-    MouseArea {
-        id: resizeLeft
-        width: 10
-        anchors.left: parent.left
-        anchors.top: parent.top
-        anchors.bottom: parent.bottom
-        anchors.leftMargin: 0
-        anchors.bottomMargin: 10
-        anchors.topMargin: 10
-        cursorShape: Qt.SizeHorCursor
-
-        DragHandler {
-            target: null
-            onActiveChanged: if (active){window.startSystemResize(Qt.LeftEdge)}
-        }
-    }
-
-    MouseArea {
-        id: resizeRight
-        width: 10
-        anchors.right: parent.right
-        anchors.top: parent.top
-        anchors.bottom: parent.bottom
-        anchors.rightMargin: 0
-        anchors.bottomMargin: 10
-        anchors.topMargin: 10
-        cursorShape: Qt.SizeHorCursor
-
-        DragHandler {
-            target: null
-            onActiveChanged: if (active){window.startSystemResize(Qt.RightEdge)}
-        }
-    }
-
-    MouseArea {
-        id: resizeBottom
-        height: 10
-        anchors.left: parent.left
-        anchors.right: parent.right
-        anchors.bottom: parent.bottom
-        anchors.leftMargin: 10
-        anchors.rightMargin: 10
-        anchors.bottomMargin: 0
-        cursorShape: Qt.SizeVerCursor
-
-        DragHandler {
-            target: null
-            onActiveChanged: if (active){window.startSystemResize(Qt.BottomEdge)}
-        }
-    }
-
-    MouseArea {
-        id: resizeTop
-        height: 10
-        anchors.left: parent.left
-        anchors.right: parent.right
-        anchors.top: parent.top
-        anchors.topMargin: 0
-        anchors.leftMargin: 10
-        anchors.rightMargin: 10
-        cursorShape: Qt.SizeVerCursor
-
-        DragHandler {
-            target: null
-            onActiveChanged: if (active){window.startSystemResize(Qt.TopEdge)}
-        }
     }
     Connections {
         target: backend

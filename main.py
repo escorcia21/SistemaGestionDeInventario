@@ -12,11 +12,28 @@ import json
 
 
 class MainWindow(QObject):
-    def __init__(self,bdd:BDD,adapter:Adapter):
+    def __init__(self,bdd:BDD,adapter:Adapter,engine):
         self.cont = 0
         QObject.__init__(self)
         self.dbc = bdd
         self.adapter = adapter
+        self.engine = engine
+
+    #user
+    @Slot(str,str)
+    def login(self,nombre,contraseña):
+        if nombre=="carlos" and contraseña =="123":
+            
+            engine.rootObjects()[0].close()
+            engine.load(path.join(path.dirname(__file__), "qml/main.qml"))
+            main.setBD()
+            main.setPageSupp()
+            main.setTypes()
+            main.setPageSuppPord()
+            main.setPageEmpleado()
+            main.setPageClient()
+            main.setPageFactura()
+            main.setAddPopUPTypes()
 
     #init the bd
     initialize =Signal(str)
@@ -293,19 +310,11 @@ if __name__ == "__main__":
     #context
     bdd = BDD()
     adapter = Adapter()
-    main = MainWindow(bdd,adapter)
+    main = MainWindow(bdd,adapter,engine)
 
     #QML file
     engine.rootContext().setContextProperty("backend",main)
-    engine.load(path.join(path.dirname(__file__), "qml/main.qml"))
-    main.setBD()
-    main.setPageSupp()
-    main.setTypes()
-    main.setPageSuppPord()
-    main.setPageEmpleado()
-    main.setPageClient()
-    main.setPageFactura()
-    #main.setAddPopUPTypes()
+    engine.load(path.join(path.dirname(__file__), "qml/login.qml"))
     if not engine.rootObjects():
         sys.exit(-1)
     sys.exit(app.exec_())
