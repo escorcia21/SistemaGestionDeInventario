@@ -84,7 +84,7 @@ class Adapter(Target):
             mydict = {}
             for i,row in enumerate(result):
                 mydict[f'IDFac{i}']=({"ID":row[0]})
-            print(mydict)
+            #print(mydict)
             return json.dumps(mydict)
         except Exception as e:
             print(e)

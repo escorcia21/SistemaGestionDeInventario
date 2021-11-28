@@ -106,7 +106,7 @@ class BDD(metaclass=Singleton):
                 '''
                 cur.execute(query)
                 result = cur.fetchall()
-                print(result)
+                #print(result)
                 return result
         except Error as e:
             print(e)
@@ -209,7 +209,7 @@ class BDD(metaclass=Singleton):
                 ''')
 
                 for row in temp:
-                    print(row)
+                    #print(row)
                     fila = (ID,row["ID"],row["Cantidad"],row["Precio"],row["Total"])
                     product_info.append(fila)
 

@@ -1,11 +1,8 @@
 #!/usr/bin/python
 # This Python file uses the following encoding: utf-8
-from datetime import date
 import sys
 from os import environ,path
-from typing import Type
 import cv2
-from mysql.connector.utils import print_buffer
 from adapter import Adapter
 from DBConnection import BDD
 from PySide2.QtGui import QGuiApplication, QIcon
@@ -188,7 +185,6 @@ class MainWindow(QObject):
     @Slot()
     def setClienteCombox(self):
         a = self.adapter.obtenerClienteJSON()
-        print(a)
         self.setClienteCombo.emit(a)
     
     setEmpleadoCombo = Signal(str)
@@ -229,7 +225,6 @@ class MainWindow(QObject):
     @Slot()
     def setFactura_ID(self):
         a = self.adapter.obtenerFacturaID()
-        print(a)
         self.setfacturaID.emit(a)
         #self.setAddPopUPTypes()
 

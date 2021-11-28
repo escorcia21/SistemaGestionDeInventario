@@ -88,7 +88,7 @@ PopupBase {
                             cursorShape: Qt.PointingHandCursor
                             onClicked: {
                                 if(edit.name != "" && edit.type>0 && edit.price > 1){
-                                    console.log(edit.name,edit.type,edit.price);
+                                    //console.log(edit.name,edit.type,edit.price);
                                     //backend.agregarProducto(edit.name,edit.type,edit.price);
                                     //popup.close();
                                 }

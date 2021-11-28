@@ -210,7 +210,7 @@ Rectangle{
              for (var index = 0; index < Object.keys(txt).length; index++) {
                 //txt[`'Product{index}`]
                  var a = txt[`Product${index}`];
-                 console.log(a)
+                 //console.log(a)
                  products.append({'pname': a.article, 'price': a.price, 'pstock': a.stock,'ptype': a.category, 'idd': a.idd, 'pimg': "", 'totalp':0, 'hmany':0});
              }
         }

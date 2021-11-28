@@ -91,8 +91,8 @@ PopupBase {
 
                       onClicked: {
                           if(edit.fname != "" && edit.fphone != "" && edit.fdireccion != "" && edit.ftipo == 0 && edit.fnit != "" && edit.fnitnumero != ""){
-                              console.log(edit.fnit+"-"+edit.fnitnumero);
-                              //backend.actualizarCliente(edit.fname,edit.fphone,edit.fdireccion,edit.ftipo,edit.fnit+"-"+edit.fnitnumero);
+                              //console.log(edit.fnit+"-"+edit.fnitnumero);
+                              backend.actualizarCliente(edit.fname,edit.fphone,edit.fdireccion,edit.ftipo,edit.fnit+"-"+edit.fnitnumero);
                           }
                           else if(edit.fname != "" && edit.fphone != "" && edit.fdireccion != "" && edit.ftipo == 1 && edit.fcedula != ""){
                               backend.actualizarCliente(edit.fname,edit.fphone,edit.fdireccion,edit.ftipo,edit.fcedula);
