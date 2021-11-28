@@ -32,6 +32,8 @@ PopupBase {
               fnit: nit
               femail: email
               fnitnumero: nitNumero
+
+              disableForms:true
           }
 
           Rectangle {

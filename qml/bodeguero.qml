@@ -62,7 +62,7 @@ Window {
             maximize.btnIconSource = "../img/svg_img/maximize_icon.svg"
         }
 
-       
+
         function home() {
             if (btnHome.isActive != true){
 
@@ -75,17 +75,9 @@ Window {
                 btnProducts.isActive = false
                 productsView.visible = false
 
-                btnCart.isActive = false
-                cartView.visible = false
-
-                botonFact.isActive = false
-                facturaView.visible = false
-
-                clienteUsView.visible = false
-                botonCliente.isActive = false
-
             }
         }
+
 
         function suppliers() {
             if (btnProv.isActive != true){
@@ -98,15 +90,6 @@ Window {
 
                 btnProducts.isActive = false
                 productsView.visible = false
-
-                btnCart.isActive = false
-                cartView.visible = false
-
-                botonFact.isActive = false
-                facturaView.visible = false
-
-                clienteUsView.visible = false
-                botonCliente.isActive = false
 
             }
         }
@@ -122,84 +105,6 @@ Window {
 
                 btnProducts.isActive = true
                 productsView.visible = true
-
-                btnCart.isActive = false
-                cartView.visible = false
-
-                botonFact.isActive = false
-                facturaView.visible = false
-
-                clienteUsView.visible = false
-                botonCliente.isActive = false
-
-            }
-        }
-
-        function cart(){
-            if (btnCart.isActive != true){
-
-                btnHome.isActive = false
-                homeView.visible = false
-
-                btnProv.isActive= false
-                suppliersView.visible = false
-
-                btnProducts.isActive = false
-                productsView.visible = false
-
-                btnCart.isActive = true
-                cartView.visible = true
-
-                botonFact.isActive = false
-                facturaView.visible = false
-
-                clienteUsView.visible = false
-                botonCliente.isActive = false
-
-            }
-        }
-        function factura(){
-            if (botonFact.isActive != true){
-
-                btnHome.isActive = false
-                homeView.visible = false
-
-                btnProv.isActive= false
-                suppliersView.visible = false
-
-                btnProducts.isActive = false
-                productsView.visible = false
-
-                btnCart.isActive = false
-                cartView.visible = false
-
-                botonFact.isActive = true
-                facturaView.visible = true
-
-                clienteUsView.visible = false
-                botonCliente.isActive = false
-            }
-        }
-        function clienteUsuario(){
-            if (botonCliente.isActive != true){
-
-                btnProducts.isActive = false
-                btnHome.isActive = false
-
-                homeView.visible = false
-                productsView.visible = false
-
-                btnProv.isActive= false
-                suppliersView.visible = false
-
-                btnCart.isActive = false
-                cartView.visible = false
-
-                botonFact.isActive = false
-                facturaView.visible = false
-
-                clienteUsView.visible = true
-                botonCliente.isActive = true
 
             }
         }
@@ -500,50 +405,6 @@ Window {
                                 internal.suppliers()
                             }
                         }
-                        LeftMenuSHCart {
-                            id: btnCart
-                            width: left_menu.width
-                            text: qsTr("Comprar")
-                            btnIconSource: "../img/svg_img/034-shopping-cart-12.svg"
-                            iconHeight: 30
-                            iconWidth: 30
-                            displayStock: false
-                            font.bold: false
-                            font.pointSize: 12
-                            onClicked: {
-                                internal.cart()
-                            }
-                        }
-
-                        LeftMenuSHCart {
-                            id: botonFact
-                            width: left_menu.width
-                            text: qsTr("Facturas")
-                            iconHeight: 30
-                            displayStock: false
-                            font.pointSize: 12
-                            btnIconSource: "../img/svg_img/invoice-svgrepo-com.svg"
-                            font.bold: false
-                            iconWidth: 30
-                            onClicked: {
-                                internal.factura()
-                            }
-                        }
-
-                        LeftMenuSHCart {
-                            id: botonCliente
-                            width: left_menu.width
-                            text: qsTr("Usuarios")
-                            iconHeight: 30
-                            font.pointSize: 12
-                            displayStock: false
-                            btnIconSource: "../img/svg_img/users-svgrepo-com.svg"
-                            font.bold: false
-                            iconWidth: 30
-                            onClicked: {
-                                internal.clienteUsuario()
-                            }
-                        }
                     }
                 }
 
@@ -558,11 +419,6 @@ Window {
                     anchors.bottomMargin: 25
                     anchors.leftMargin: 0
 
-//                    StackView {
-//                        id: stackView
-//                        anchors.fill: parent
-//                        initialItem: Qt.resolvedUrl("pages/HomePage.qml")
-//                    }
                     Loader {
                         id: homeView
                         anchors.fill: parent
@@ -574,13 +430,6 @@ Window {
                         source: Qt.resolvedUrl("pages/ProductsPage.qml")
                         visible: false
                     }
-                    Loader {
-                        id: cartView
-                        anchors.fill: parent
-                        source: Qt.resolvedUrl("pages/CartPage.qml")
-                        visible: false
-
-                    }
 
                     Loader {
                         id: suppliersView
@@ -588,20 +437,6 @@ Window {
                         source: Qt.resolvedUrl("pages/Suppliers.qml")
                         visible: false
 
-                    }
-
-                    Loader {
-                        id: facturaView
-                        anchors.fill: parent
-                        source: Qt.resolvedUrl("pages/Factura.qml")
-                        visible: false
-                    }
-
-                    Loader {
-                        id: clienteUsView
-                        anchors.fill: parent
-                        source: Qt.resolvedUrl("pages/ClienteUsuario.qml")
-                        visible: false
                     }
                 }
 
@@ -679,8 +514,11 @@ Window {
 
 
 
+
+
+
 /*##^##
 Designer {
-    D{i:0;formeditorZoom:0.66}
+    D{i:0;formeditorZoom:0.5}
 }
 ##^##*/

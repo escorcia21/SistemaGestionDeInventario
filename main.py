@@ -25,6 +25,17 @@ class MainWindow(QObject):
         if nombre=="carlos" and contraseña =="123":
             
             engine.rootObjects()[0].close()
+            engine.load(path.join(path.dirname(__file__), "qml/bodeguero.qml"))
+            main.setBD()
+            main.setPageSupp()
+            main.setTypes()
+            main.setPageSuppPord()
+            #main.setPageEmpleado()
+            #main.setPageClient()
+            #main.setPageFactura()
+            #main.setAddPopUPTypes()
+        elif nombre=="carlos" and contraseña =="1234" :
+            engine.rootObjects()[0].close()
             engine.load(path.join(path.dirname(__file__), "qml/main.qml"))
             main.setBD()
             main.setPageSupp()
@@ -33,7 +44,13 @@ class MainWindow(QObject):
             main.setPageEmpleado()
             main.setPageClient()
             main.setPageFactura()
-            main.setAddPopUPTypes()
+            #main.setAddPopUPTypes()
+        else:
+            engine.rootObjects()[0].close()
+            engine.load(path.join(path.dirname(__file__), "qml/vendedor.qml"))
+            main.setBD()
+            main.setTypes()
+            main.setPageFactura()
 
     #init the bd
     initialize =Signal(str)

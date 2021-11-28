@@ -10,6 +10,9 @@ Item {
     property alias faddress: address.value
     property alias fphone: phone.value
 
+
+    property bool disableForms: false
+
     Rectangle {
         id: rectangle
         anchors.fill: parent
@@ -74,6 +77,7 @@ Item {
                         width: 140
                         placeholderText: "Nit"
                         horizontalAlignment: Text.AlignLeft
+                        enabled: !disableForms
                         validator: RegExpValidator {regExp: /^\d{1,9}$/}
                     }
 
@@ -92,6 +96,7 @@ Item {
                         width: 30
                         placeholderText: "0-9"
                         horizontalAlignment: Text.AlignHCenter
+                        enabled: !disableForms
                         validator: RegExpValidator {regExp: /^\d{1,1}$/}
                     }
                 }

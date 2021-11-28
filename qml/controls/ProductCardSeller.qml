@@ -121,7 +121,7 @@ Item {
                     anchors.left: parent.left
                     anchors.top: parent.top
                     font.pixelSize: 12
-                    anchors.topMargin: 8
+                    anchors.topMargin: 25
                     anchors.leftMargin: 10
                     width: 100
                     elide: Text.ElideRight
@@ -161,7 +161,7 @@ Item {
                     font.pixelSize: 12
                     horizontalAlignment: Text.AlignRight
                     font.hintingPreference: Font.PreferDefaultHinting
-                    anchors.topMargin: 8
+                    anchors.topMargin: 25
                     anchors.rightMargin: 8
                     width: 100
                     elide: Text.ElideRight
@@ -181,34 +181,6 @@ Item {
                     anchors.right: parent.right
                     anchors.top: parent.top
                     elide: Text.ElideRight
-                }
-
-                CardBtns {
-                    id: add
-                    y: 62
-                    width: 80
-                    height: 29
-                    text: "Editar"
-                    anchors.bottom: parent.bottom
-                    anchors.bottomMargin: 10
-                    anchors.horizontalCenter: parent.horizontalCenter
-                    btnColorClicked: "#cd3737"
-                    btnColorMouseOver: "#ec3c3c"
-                    btnColorDefault: "#f05454"
-                    font.pointSize: 9
-                    font.bold: true
-                    MouseArea {
-                        anchors.fill: parent
-                        cursorShape: Qt.PointingHandCursor
-                        onClicked: {
-                           var popup = Qt.createComponent("EditPopup.qml")
-                           var popup2 = popup.createObject(rectangleProducts,{ename:name,eprice:cost,idd:identification});
-                           popup2.open()
-
-                           backend.setListTypes();
-                            //backend.setSupp();
-                       }
-                    }
                 }
                 Text{
                     id: stockp1
@@ -275,8 +247,5 @@ Item {
     }
 }
 
-/*##^##
-Designer {
-    D{i:0;autoSize:true;formeditorZoom:1.75}
-}
-##^##*/
+
+

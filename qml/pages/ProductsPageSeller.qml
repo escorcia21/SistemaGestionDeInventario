@@ -33,7 +33,7 @@ Item {
             anchors.bottom: parent.bottom
             anchors.topMargin: 0
 
-            ProductsList {
+            ProductListSeller {
                 id: productList
                 anchors.left: parent.left
                 anchors.right: parent.right
@@ -180,8 +180,12 @@ Item {
 
 }
 
+
+
+
+
 /*##^##
 Designer {
-    D{i:0;autoSize:true;formeditorZoom:0.5;height:480;width:640}
+    D{i:0;autoSize:true;height:480;width:640}
 }
 ##^##*/

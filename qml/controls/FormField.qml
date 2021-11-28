@@ -5,7 +5,7 @@ TextField {
     property string placehold: "Hola"
     property color borderColor: "#30475e"
     property alias value: textField.text
-    property color placeholdColor: "#7f353637"
+    property color placeholdColor:  textField.enabled ?  "#2a2a2a" : "#7f353637"
 
     id: textField
     width: 200
@@ -15,6 +15,7 @@ TextField {
     color: placeholdColor
     font.pixelSize: 14
     horizontalAlignment: Text.AlignHCenter
+    placeholderTextColor: placeholdColor
     leftPadding: 1
     background: Rectangle {
         color: "#00000000"
