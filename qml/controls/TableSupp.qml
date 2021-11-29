@@ -67,7 +67,6 @@ Item {
                         x[headers[j]]= add.get(index)[headers[j]]
                     }
                     types.push(x);
-                    //console.log(types[index].ID);
                 }
                 return types;
             }
@@ -78,7 +77,6 @@ Item {
                     for (let f = 0; f < add.count; f++){
                         let i= add.get(f);
                         let item;
-                        //console.log(i[headers[1]]);
                         item = i[criterio].toLowerCase().indexOf(PName.toLowerCase()) >= 0;
 
                         if (item === false){
@@ -122,10 +120,8 @@ Item {
             anchors.right: parent.right
             anchors.top: search.bottom
             anchors.bottom: parent.bottom
-            //width: styleData.horizontal
             anchors.margins: 10
             anchors.topMargin: 10
-            //onClicked: {functions.listModelToString();}
             resources:
                 {
                     var roleList = headers

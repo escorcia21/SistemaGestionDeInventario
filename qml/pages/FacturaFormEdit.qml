@@ -6,11 +6,8 @@ import QtQuick.Controls.Styles 1.4
 
 Item {
     property string title: "CREAR FACTURA"
-
     property alias ftotal: total.text
     property alias fnumeroFact: numeroFact.value
-
-
 
     height: 720
     width: 1300

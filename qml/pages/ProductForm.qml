@@ -4,12 +4,10 @@ import "../controls"
 
 Item {
     id: formProduct
-    //anchors.fill: parent
     property alias formTitle: title.text
     property alias name: ff1.value
     property alias type: fungus1.comboValue
     property alias price: ff2.value
-    //property var list1: ListModel {id:list}
 
     Rectangle {
         id: container
@@ -128,13 +126,10 @@ Item {
             fungus1.listm.clear();
             fungus1.listm.append({"ID":0,'Nombre': ""});
             var txt = JSON.parse(object);
-            //console.log(JSON.stringify(txt,null,2))
              for (var index = 0; index < Object.keys(txt).length; index++) {
-                //txt[`'Product{index}`]
                  var a = txt[`Type${index}`];
                  fungus1.listm.append({'ID': a.ID, 'Nombre': a.Nombre});
              }
-             //fungus1.listm = list1;
         }
     }
 

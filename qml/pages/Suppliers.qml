@@ -129,12 +129,9 @@ Item {
         target: backend
 
         function onPageSupplier(object){
-            //add.clear()
             homeTab.add.clear();
             var txt = JSON.parse(object);
-            //console.log(JSON.stringify(txt,null,2))
              for (var index = 0; index < Object.keys(txt).length; index++) {
-                //txt[`'Product{index}`]
                  var a = txt[`Supp${index}`];
                  homeTab.add.append({"ID":a.ID,"Nombre":a.Nombre,"NIT":a.NIT,"Correo":a.Correo,"Direccion":a.Direccion,"Telefono":a.Telefono});
              }

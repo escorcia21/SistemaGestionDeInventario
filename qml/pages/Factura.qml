@@ -103,7 +103,6 @@ Item {
                     onClicked: {
                         if (currentIndexSupp > -1){
                             var popup = Qt.createComponent("../controls/EditFacturaPopup.qml");
-                            //console.log(homeTab.add.get(currentIndexSupp).ID)
                             var popup2 = popup.createObject(facturaItem,{
                                                                 numeroFactura: homeTab.add.get(currentIndexSupp).ID
                                                                 ,total: homeTab.add.get(currentIndexSupp).Total});

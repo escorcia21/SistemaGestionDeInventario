@@ -88,9 +88,8 @@ PopupBase {
                             cursorShape: Qt.PointingHandCursor
                             onClicked: {
                                 if(edit.name != "" && edit.type>0 && edit.price > 1){
-                                    //console.log(edit.name,edit.type,edit.price);
-                                    //backend.agregarProducto(edit.name,edit.type,edit.price);
-                                    //popup.close();
+                                    backend.agregarProducto(edit.name,edit.type,edit.price);
+                                    popup.close();
                                 }
                             }
                         }
@@ -101,9 +100,6 @@ PopupBase {
             TableSupp {
                 id:listTypes
                 headers: ["ID","Nombre","Unidad"]
-                //Layout.fillWidth: true
-                //Layout.fillHeight: true
-                //columss: 3
 
                 RoundBtnEdit {
                     anchors.left: parent.left
@@ -147,7 +143,6 @@ PopupBase {
     Connections {
         target: backend
         function onSetAddTypes(object){
-            //console.log("aa");
             listTypes.add.clear();
             var txt = JSON.parse(object);
              for (var index = 0; index < Object.keys(txt).length; index++) {

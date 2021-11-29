@@ -340,10 +340,9 @@ Item {
             var txt = JSON.parse(object);
             for (var index = 0; index < Object.keys(txt).length; index++) {
                 var a = txt[`IDFac${index}`];
-                var b = 1
-                b += a.ID
+                var b = 1;
+                b += a.ID;
                 numeroFact.value = b;
-                //fproducto.listm.append({'ID': a.idd, 'Nombre': a.article + " - " + a.idd,'Precio': a.price });
             }
         }
     }

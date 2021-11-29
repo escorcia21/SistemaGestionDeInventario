@@ -31,7 +31,7 @@ PopupBase {
                 datamodel.push(Temp.get(i))
 
               var keysList = JSON.stringify(datamodel)
-              return keysList  //output [{"aKey":"aKey0","aKey":"aKey0"},{"aKey":"aKey1","aKey":"aKey1"}]
+              return keysList
             }
       }
 

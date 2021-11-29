@@ -14,7 +14,6 @@ Rectangle{
     function restart (){
         for (var d = 0; d < products.count; d++) {
             del.append(products.get(d));
-            //console.log(products.get(d).ptype);
         }
         products.clear();
         for (var x = 0; x < del.count; x++) {
@@ -30,26 +29,13 @@ Rectangle{
         snapMode: GridView.SnapToRow
         anchors.rightMargin: 1
         boundsMovement: Flickable.StopAtBounds
-        //Layout.alignment: Qt.AlignLeft | Qt.AlignTop
-        //rowSpacing: 20
-        //columnSpacing: 20
-        //flow:  width > height ? GridView.LeftToRight : GridView.TopToBottom
-        //Keys.onUpPressed: scrollBar.decrease()
-        //Keys.onDownPressed: scrollBar.increase()
         //crollbar
         ScrollBar.vertical: ScrollBar {
             id: scrollBar
             width: 12
-            // anchors.top: root.top
-            // anchors.right: root.right
-            // anchors.bottom: root.bottom
-            // anchors.rightMargin: 0
             contentItem: Rectangle {
                 id:contentItem_rect2
                 color: "#30475e"
-                //anchors.horizontalCenter: parent.horizontalCenter
-                //width: 10 // This will be overridden by the width of the scrollbar
-                //height: 10 // This will be overridden based on the size of the scrollbar
             }
         }
 
@@ -63,25 +49,12 @@ Rectangle{
         // is calculated from the current width of the view and how many cells fit
         cellHeight: idealCellHeight
         cellWidth: width / Math.floor(width / idealCellWidth)
-        //cellWidth: idealCellWidth
 
 
 
         model: ListModel {
             id: products
-            // ListElement {pname: "acetaminifen"; price: "34000"; pstock: 12;ptype: "Tubo"; idd: 2; pimg: ""; totalp:0; hmany:0}
-            // ListElement {pname: "acetaminifen"; price: "34000"; pstock: 12;ptype: "Tubo"; idd: 2; pimg: ""; totalp:0; hmany:0}
-            // ListElement {pname: "acetaminifen"; price: "34000"; pstock: 12;ptype: "Tubo"; idd: 2; pimg: ""; totalp:0; hmany:0}
-            // ListElement {pname: "acetaminifen"; price: "34000"; pstock: 12;ptype: "Tubo"; idd: 2; pimg: ""; totalp:0; hmany:0}
-            // ListElement {pname: "acetaminifen"; price: "34000"; pstock: 12;ptype: "Tubo"; idd: 2; pimg: ""; totalp:0; hmany:0}
-            // ListElement {pname: "acetaminifen"; price: "34000"; pstock: 12;ptype: "Tubo"; idd: 2; pimg: ""; totalp:0; hmany:0}
-            // ListElement {pname: "acetaminifen"; price: "34000"; pstock: 12;ptype: "Tubo"; idd: 2; pimg: ""; totalp:0; hmany:0}
-            // ListElement {pname: "acetaminifen"; price: "34000"; pstock: 12;ptype: "Tubo"; idd: 2; pimg: ""; totalp:0; hmany:0}
-            // ListElement {pname: "acetaminifen"; price: "34000"; pstock: 12;ptype: "Tubo"; idd: 2; pimg: ""; totalp:0; hmany:0}
-
-
             function filter(PName,target) {
-                //console.log("aaa");
                 bg.restart();
                 if (PName !== "ALL"){
                     for (var f = 0; f < products.count; f++){
@@ -94,7 +67,6 @@ Rectangle{
                         }
                         if (item === false){
                             del.append(i);
-                            //bg.restart();
                             products.remove(f);
                             f = -1;
                         }
@@ -189,11 +161,9 @@ Rectangle{
                     products.set(index,p);
                 }
             }
-            //console.log(img,id);
         }
 
         function onAdd(id,q){
-            //console.log(id,q)
             for (var index = 0; index < products.count; index++) {
                 var p = products.get(index);
                 if (p["idd"] === id){
@@ -206,11 +176,8 @@ Rectangle{
         function onInitialize(object){
             products.clear()
             var txt = JSON.parse(object);
-            //console.log(JSON.stringify(txt,null,2))
              for (var index = 0; index < Object.keys(txt).length; index++) {
-                //txt[`'Product{index}`]
                  var a = txt[`Product${index}`];
-                 //console.log(a)
                  products.append({'pname': a.article, 'price': a.price, 'pstock': a.stock,'ptype': a.category, 'idd': a.idd, 'pimg': "", 'totalp':0, 'hmany':0});
              }
         }

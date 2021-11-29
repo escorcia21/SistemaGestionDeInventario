@@ -75,7 +75,6 @@ PopupBase {
 
                       onClicked: {
                           if(edit.name != "" && edit.type>0 && edit.price > 1){
-                              //console.log("ok",idd,edit.name,edit.type,edit.price);
                               backend.actualizarProducto(idd,edit.name,edit.type,edit.price);
                               popup.close()
                           }

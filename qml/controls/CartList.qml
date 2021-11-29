@@ -11,11 +11,9 @@ ListView {
         var t = 0
         for (var d = 0; d < cart.count; d++){
             var f = cart.get(d);
-            //console.log(f["totalp"]);
             t += f["totalp"];
         }
 
-        //console.log(t);
         totalPrice = t
     }
 
@@ -23,7 +21,6 @@ ListView {
 
     model: ListModel {
         id: cart
-        //ListElement {pname: "acetaminofen"; price: 12; pstock: 0; pseller: "bayern";ptype: "A"; idd: 1; pimg: ""}
     }
 
     delegate: Item {
@@ -51,7 +48,6 @@ ListView {
                     break;
                 }
             }
-            //console.log(quantity)
             if(exist !== true){
                 element["hmany"]=quantity
                 cart.append(element);
@@ -65,7 +61,6 @@ ListView {
                 var c = cart.get(i);
                 if (c.idd === pk){
                     c["totalp"] = totalp;
-                    //console.log(totalp)
                     cart.set(i,c);
                 }
             }
@@ -75,7 +70,6 @@ ListView {
         }
 
         function onCartListDelete(itempk){
-            //console.log(itempk)
             for (var i = 0; i < cart.count; i++){
                 var c = cart.get(i);
                 if (c["idd"] === itempk){

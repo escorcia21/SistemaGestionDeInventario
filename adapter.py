@@ -7,8 +7,6 @@ class Target(ABC):
     The Target defines the domain-specific interface used by the client code.
     """
     @abstractmethod
-    def datosJSON(self,datos) -> str:pass
-    @abstractmethod
     def obtenerProductosJSON(self) -> str:pass
     @abstractmethod
     def obtenerTiposJSON(self) -> str:pass
@@ -40,8 +38,6 @@ class Adapter(Target):
 
     def __init__(self):
         self.__adaptee = BDD()
-
-    def datosJSON(self,datos) -> str:pass
 
     def obtenerProductosJSON(self) -> str:
         try:

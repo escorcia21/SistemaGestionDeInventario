@@ -194,19 +194,14 @@ Item {
         function onPageEmpleado(object){
             secondTab.add.clear()
             var txt = JSON.parse(object);
-            //console.log(JSON.stringify(txt,null,2))
-             for (var index = 0; index < Object.keys(txt).length; index++) {
-                //txt[`'Product{index}`]
-                 var a = txt[`Emple${index}`];
-
-                 var fecha = a.Termino
-                 //console.log(fecha)
-                 if(fecha == "01/Jan/1999"){
-                     a.Termino = "-"
-                     //console.log("lohizo")
-                 }
-                 secondTab.add.append({"Cedula":a.Cedula,"Nombre":a.Nombre,"Edad":a.Edad,"Celular":a.Celular,"Direccion":a.Direccion,"Email":a.Email,"Ingreso":a.Ingreso,"Termino":a.Termino,"Salario":a.Salario,"Rol":a.Rol,"Contrasena":a.Contrasena,"Activo":a.Activo});
-             }
+            for (var index = 0; index < Object.keys(txt).length; index++) {
+                var a = txt[`Emple${index}`];
+                var fecha = a.Termino
+                if(fecha == "01/Jan/1999"){
+                a.Termino = "-";
+                }
+                secondTab.add.append({"Cedula":a.Cedula,"Nombre":a.Nombre,"Edad":a.Edad,"Celular":a.Celular,"Direccion":a.Direccion,"Email":a.Email,"Ingreso":a.Ingreso,"Termino":a.Termino,"Salario":a.Salario,"Rol":a.Rol,"Contrasena":a.Contrasena,"Activo":a.Activo});
+            }
         }
     }
 

@@ -71,7 +71,6 @@ PopupBase {
 
                     onClicked: {
                         if(edit.producID > -1 && edit.supplierID > -1 && edit.amounnt != "" && edit.price != "" && edit.fdate != ""){
-                            //console.log("ok",edit.producID, edit.supplierID , edit.amounnt , edit.price , edit.fdate);
                             backend.addSupplierProduct(edit.producID, edit.supplierID , edit.amounnt , edit.price , edit.fdate);
                             popup.close()
                         }

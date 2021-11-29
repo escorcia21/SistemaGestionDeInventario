@@ -108,7 +108,6 @@ PopupBase {
                         cursorShape: Qt.PointingHandCursor
                         onClicked: {
                             if (tipo.value != "" && (tipo2.currentText == "MTS" || tipo2.currentText == "UNIDAD")){
-                                //console.log(tipo2.currentText);
                                 backend.addType(tipo.value,tipo2.value);
                                 backend.setAddPopUPTypes()
                                 popup.close();

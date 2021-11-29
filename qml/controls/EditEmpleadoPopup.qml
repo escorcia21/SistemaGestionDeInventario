@@ -119,7 +119,6 @@ PopupBase {
                                   && edit.fpassword != ""
                                   && edit.fedad != ""
                                   && edit.fsalida != ""){
-                              //console.log("fUNCIONA");
                               backend.actualizarEmpleado(edit.fcedula,
                                                       edit.fnombre,
                                                       edit.fedad,

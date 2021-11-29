@@ -132,7 +132,6 @@ Item {
     Connections {
         target: backend
         function onSetSProdCombo(object){
-            //console.log("aa");
             var txt = JSON.parse(object);
              for (var index = 0; index < Object.keys(txt).length; index++) {
                  var a = txt[`Supp${index}`];
@@ -141,7 +140,6 @@ Item {
         }
 
         function onSetProdCombo(object){
-            //console.log("aa");
             var txt = JSON.parse(object);
              for (var index = 0; index < Object.keys(txt).length; index++) {
                  var a = txt[`Product${index}`];

@@ -70,7 +70,6 @@ PopupBase {
 
                       onClicked: {
                           if(edit.fname != "" && edit.fphone != "" && (edit.fnit != "" && edit.fnitnumero != "") && edit.femail != "" && edit.faddress != ""){
-                              //console.log("ok",idd,edit.fname ,edit.fphone , edit.fnit ,edit.femail , edit.faddress);
                               backend.agregarProveedor(edit.fname,edit.fnit+"-"+edit.fnitnumero,edit.femail,edit.fphone,edit.faddress);
                               popup.close()
                           }

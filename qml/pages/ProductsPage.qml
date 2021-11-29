@@ -56,7 +56,6 @@ Item {
                            popup2.open();
                            backend.setListTypes();
                            backend.setAddPopUPTypes();
-                           //backend.setSupp();
                         }
                     }
 
@@ -131,7 +130,6 @@ Item {
                          implicitHeight: 200
                          model: comboBox.popup.visible ? comboBox.delegateModel : null
 
-                         //ScrollIndicator.vertical: ScrollIndicator {}
                          ScrollBar.vertical: ScrollBar {
                              id: scrollBar
                              width: 10
@@ -152,7 +150,6 @@ Item {
                      background: Rectangle {
                          color: "#e8e8e8"
                          border.width: 0
-                        //border.color:"#95A4A8"
 
                      }
                 }
@@ -165,14 +162,11 @@ Item {
     Connections {
         target: backend
         function onTypes(object){
-            lista.clear()
-            lista.append({Nombre: "ALL"})
+            lista.clear();
+            lista.append({Nombre: "ALL"});
             let txt = JSON.parse(object);
-            //console.log(JSON.stringify(txt,null,2))
              for (let index = 0; index < Object.keys(txt).length; index++) {
-                //txt[`'Product{index}`]
                  let a = txt[`Type${index}`];
-                 //console.log(a);
                  lista.append({'ID': a.ID, 'Nombre': a.Nombre,'Unidad': a.Unidad});
              }
         }

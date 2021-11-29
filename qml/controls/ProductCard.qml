@@ -206,7 +206,6 @@ Item {
                            popup2.open()
 
                            backend.setListTypes();
-                            //backend.setSupp();
                        }
                     }
                 }
@@ -252,7 +251,6 @@ Item {
                     font.pixelSize: 28
                     font.bold: true
                     anchors.horizontalCenter: parent.horizontalCenter
-                    //rotation: -20
                 }
             }
         }
@@ -260,12 +258,9 @@ Item {
 
     FileDialog {
         id: folderDialog
-        //currentFile: fileDialog.file
         folder: StandardPaths.writableLocation(StandardPaths.PicturesLocation)
         nameFilters: ["Img files (*.jpeg *.jpg *.png)"]
         onFileChanged: {
-            //console.log(currentFile)
-
             backend.onChangeImage(currentFile,cart.identification)
         }
     }

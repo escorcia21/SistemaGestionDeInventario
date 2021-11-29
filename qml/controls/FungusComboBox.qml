@@ -170,7 +170,6 @@ Item {
                      implicitHeight: 85.3
                      model: comboBox.popup.visible ? comboBox.delegateModel : null
 
-                     //ScrollIndicator.vertical: ScrollIndicator {}
                      ScrollBar.vertical: ScrollBar {
                          id: scrollBar
                          width: 10
@@ -194,7 +193,6 @@ Item {
                      border.width: 0
                      layer.enabled: enabled
                      layer.effect: DropShadow {
-                         //anchors.fill: comboBackground
                          width: comboBackground.width
                          height: comboBackground.height
                          color: "#5c242826"
@@ -210,7 +208,6 @@ Item {
             }
         onActivated:{
             functions.get_id(list.get(index).ID);
-            //console.log(comboValue)
         }
     }
 }

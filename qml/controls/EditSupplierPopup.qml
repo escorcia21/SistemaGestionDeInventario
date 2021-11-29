@@ -86,7 +86,6 @@ PopupBase {
 
                       onClicked: {
                           if(edit.fname != "" && edit.fphone != "" && (edit.fnit != "" && edit.fnitnumero != "") && edit.femail != "" && edit.faddress != ""){
-                              //console.log("ok",identification,edit.fname ,edit.fphone , edit.fnit ,edit.femail , edit.faddress);
                               backend.actualizarProveedor(edit.fname,edit.fnit+"-"+edit.fnitnumero,edit.femail,edit.fphone,edit.faddress,identification);
                               popup.close()
                           }
