@@ -46,7 +46,7 @@ Item {
                 id:roundBtnEdit
                 anchors.left: parent.left
                 anchors.bottom: parent.bottom
-                btnIconSource: "../../img/svg_img/edit.svg"
+                btnIconSource: "../../img/images/cancelar.png"
                 anchors.bottomMargin: 20
                 anchors.leftMargin: 20
                 MouseArea {

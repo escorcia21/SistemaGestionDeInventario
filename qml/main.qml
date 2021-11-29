@@ -361,7 +361,7 @@ Window {
                     Label {
                         id: title
                         color: "#ffffff"
-                        text: qsTr("Tilin")
+                        text: qsTr("Especialidad Eléctrica")
                         anchors.left: image.right
                         anchors.right: parent.right
                         anchors.top: parent.top
@@ -681,6 +681,6 @@ Window {
 
 /*##^##
 Designer {
-    D{i:0;formeditorZoom:0.66}
+    D{i:0;formeditorZoom:1.25}
 }
 ##^##*/

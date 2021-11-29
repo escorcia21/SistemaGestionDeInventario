@@ -39,28 +39,6 @@ Item {
                 anchors.right: parent.right
                 anchors.bottom: parent.bottom
                 clip: true
-
-                RoundBtn {
-                    id: roundButton
-                    anchors.right: parent.right
-                    anchors.bottom: parent.bottom
-                    anchors.bottomMargin: 20
-                    anchors.rightMargin: 30
-
-                    MouseArea {
-                        anchors.fill: parent
-                        cursorShape: Qt.PointingHandCursor
-                        onClicked: {
-                           var popup = Qt.createComponent("../controls/AddPopup.qml");
-                           var popup2 = popup.createObject(rectangleProducts);
-                           popup2.open();
-                           backend.setListTypes();
-                           backend.setAddPopUPTypes();
-                           //backend.setSupp();
-                        }
-                    }
-
-                }
             }
         }
 
@@ -81,7 +59,7 @@ Item {
 
             model: ListModel {
                 id:lista
-
+                ListElement{Nombre: ""}
             }
 
             delegate: ItemDelegate {
@@ -128,7 +106,7 @@ Item {
                      contentItem: ListView {
                          id:listView
                          clip: true
-                         implicitHeight: 86
+                         implicitHeight: 200
                          model: comboBox.popup.visible ? comboBox.delegateModel : null
 
                          //ScrollIndicator.vertical: ScrollIndicator {}
@@ -186,6 +164,6 @@ Item {
 
 /*##^##
 Designer {
-    D{i:0;autoSize:true;height:480;width:640}
+    D{i:0;autoSize:true;formeditorZoom:0.75;height:480;width:640}
 }
 ##^##*/

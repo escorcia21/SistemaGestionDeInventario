@@ -166,4 +166,5 @@ class Adapter(Target):
 
 if __name__ == "__main__":
     a = Adapter()
+    print(a.obtenerEmpleadoJSON())
     a.close()

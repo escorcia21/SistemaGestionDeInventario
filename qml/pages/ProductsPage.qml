@@ -81,7 +81,7 @@ Item {
 
             model: ListModel {
                 id:lista
-
+                ListElement{Nombre: ""}
             }
 
             delegate: ItemDelegate {
@@ -128,7 +128,7 @@ Item {
                      contentItem: ListView {
                          id:listView
                          clip: true
-                         implicitHeight: 86
+                         implicitHeight: 200
                          model: comboBox.popup.visible ? comboBox.delegateModel : null
 
                          //ScrollIndicator.vertical: ScrollIndicator {}

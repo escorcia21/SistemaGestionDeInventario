@@ -262,7 +262,7 @@ Window {
                     Label {
                         id: title
                         color: "#ffffff"
-                        text: qsTr("Tilin")
+                        text: qsTr("Especialidad Eléctrica")
                         anchors.left: image.right
                         anchors.right: parent.right
                         anchors.top: parent.top

@@ -28,6 +28,17 @@ class BDD(metaclass=Singleton):
             print(e)
 
     #Methods of the Object DB
+    def get_employee(self,usuario, contraseña):
+        try:
+            with self.__connector.cursor() as cur:
+                query = "SELECT * FROM Empleado WHERE Cedula=%s AND Contrasena=%s AND Activo=%s"
+                cur.execute(query,[usuario,contraseña,0])
+                result = cur.fetchone()
+                return result
+        except (Exception,Error) as e:
+            print(e)
+
+    
     def show_tables(self):
         try:
             with self.__connector.cursor() as cur:
@@ -405,4 +416,5 @@ class BDD(metaclass=Singleton):
 
 if __name__ == '__main__':
     bdd = BDD()
+    print(bdd.get_employee("1001512392","45753745356779379"))
     bdd.close()

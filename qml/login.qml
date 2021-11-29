@@ -10,10 +10,10 @@ Window {
     height: 580
     visible: true
     color: "#00000000"
-    title: qsTr("Hello World")
+    //title: qsTr("Hello World")
 
     // Remove Title Bar
-    flags: Qt.SplashScreen | Qt.FramelessWindowHint
+    flags: Qt.Window | Qt.FramelessWindowHint
 
     // Internal Functions
     QtObject{
@@ -23,24 +23,6 @@ Window {
             backend.login(username, password)
         }
     }
-
-    //// Properties
-    // property int timeInterval: 3000
-    //
-    // Timer{
-    //     id: timer
-    //     interval: timeInterval
-    //     running: true
-    //     repeat: false
-    //     onTriggered: {
-    //         var component = Qt.createComponent("main.qml")
-    //         var win = component.createObject()
-    //         win.username = "No name"
-    //         win.password = "No password"
-    //         win.show()
-    //         visible = false
-    //     }
-    // }
 
     Rectangle {
         id: bg
