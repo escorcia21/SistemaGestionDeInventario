@@ -413,6 +413,91 @@ class BDD(metaclass=Singleton):
         except (Exception,Error) as e:
             print(e)
 
+    def get_Ventas(self,Mes,Ano):
+        try:
+            with self.__connector.cursor() as cur:
+                query = '''
+                SELECT SUM(Total) 
+                FROM Factura 
+                WHERE year(Fecha) = %s AND Estado = 0 AND month(Fecha) = %s;
+                '''
+                cur.execute(query,[Ano,Mes])
+                result = cur.fetchall()
+                result = result[0][0]
+                return result
+        except (Exception,Error) as e:
+            print(e)
+    
+    def get_CountVentas(self,Mes,Ano):
+        try:
+            with self.__connector.cursor() as cur:
+                query = '''
+                SELECT Count(*) 
+                FROM Factura 
+                WHERE year(Fecha) = %s AND Estado = 0 AND month(Fecha) = %s;
+                '''
+                cur.execute(query,[Ano,Mes])
+                result = cur.fetchall()
+                result = result[0][0]
+                return result
+        except (Exception,Error) as e:
+            print(e)
+
+    def get_Gastos(self,Mes,Ano):
+        try:
+            with self.__connector.cursor() as cur:
+                query = '''
+                SELECT SUM(Cantidad * Precio) 
+                FROM Proveedor_Producto 
+                WHERE year(Fecha) = %s AND month(Fecha) = %s;
+                '''
+                cur.execute(query,[Ano,Mes])
+                result = cur.fetchall()
+                result = result[0][0]
+                return result
+        except (Exception,Error) as e:
+            print(e)
+
+    def get_ano(self):
+        try:
+            with self.__connector.cursor() as cur:
+                query = '''
+                SELECT year(Fecha) 
+                FROM Factura 
+                WHERE Estado = 0 
+                GROUP BY year(Fecha) 
+                UNION 
+                SELECT year(Fecha) 
+                FROM Proveedor_Producto 
+                GROUP BY year(Fecha);
+                '''
+                cur.execute(query)
+                result = cur.fetchall()
+                print(result)
+                return result
+        except (Exception,Error) as e:
+            print(e)
+    
+    def get_mes(self,ano):
+        try:
+            with self.__connector.cursor() as cur:
+                query = '''
+                SELECT month(Fecha) 
+                FROM Factura 
+                WHERE year(Fecha) = %s and Estado = 0 
+                GROUP BY month(Fecha) 
+                UNION 
+                SELECT month(Fecha) 
+                FROM Proveedor_Producto 
+                WHERE year(Fecha) = %s 
+                GROUP BY month(Fecha);
+                '''
+                cur.execute(query,[ano,ano])
+
+                result = cur.fetchall()
+                return result
+        except (Exception,Error) as e:
+            print(e)
 
 if __name__ == '__main__':
     bdd = BDD()

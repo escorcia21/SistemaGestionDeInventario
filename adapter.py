@@ -32,6 +32,10 @@ class Target(ABC):
     def obtenerFacturaListaJSON(self) -> str:pass
     @abstractmethod
     def obtenerFacturaTotalJSON(self) -> str:pass
+    @abstractmethod
+    def obtenerAnoJSON(self) -> str:pass
+    @abstractmethod
+    def obtenerMesJSON(self) -> str:pass
 
 
 class Adapter(Target):
@@ -156,6 +160,27 @@ class Adapter(Target):
 
         return json.dumps(mydict)
 
+    def obtenerAnoJSON(self) -> str:
+        try:
+            result = self.__adaptee.get_ano()
+            mydict = {}
+            for i,row in enumerate(result):
+                mydict[f'AnoList{i}']=({"ID":i,"ano":row[0]})
+
+            return json.dumps(mydict)
+        except Exception as e:
+            print(e)
+    
+    def obtenerMesJSON(self,ano) -> str:
+        try:
+            result = self.__adaptee.get_mes(ano)
+            mydict = {}
+            for i,row in enumerate(result):
+                mydict[f'MesList{i}']=({"ID":i,"Mes":row[0]})
+            return json.dumps(mydict)
+        except Exception as e:
+            print(e)
+            
     def close(self):
         self.__adaptee.close()
 

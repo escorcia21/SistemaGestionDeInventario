@@ -9,6 +9,7 @@ from PySide2.QtGui import QGuiApplication, QIcon
 from PySide2.QtQml import QQmlApplicationEngine
 from PySide2.QtCore import QObject, Slot, Signal,Qt
 import json
+from informe import informe
 
 
 class MainWindow(QObject):
@@ -43,6 +44,7 @@ class MainWindow(QObject):
                 main.setPageEmpleado()
                 main.setPageClient()
                 main.setPageFactura()
+                main.setAnoCombobox()
             elif rol=="VENDEDOR":
                 engine.rootObjects()[0].close()
                 engine.load(path.join(path.dirname(__file__), "qml/vendedor.qml"))
@@ -309,6 +311,39 @@ class MainWindow(QObject):
     @Slot()
     def deleteOrder(self):
         self.clearList.emit()
+
+    setGenerar = Signal()
+    @Slot(str,str)
+    def setGenerarInforme(self,Mes,Ano):
+        #a = self.adapter.obtenerProveedoresJSON()
+        #self.setGenerar.emit(a)
+        print("Generar Factura")
+        if len(Mes) == 1:
+            Mes = "0"+Mes
+        
+        Ventas = self.dbc.get_Ventas(Mes,Ano)
+        Gastos = self.dbc.get_Gastos(Mes,Ano)
+        Num = self.dbc.get_CountVentas(Mes,Ano)
+
+
+        if Gastos is None: Gastos = 0
+        if Ventas is None: Ventas = 0
+        if Num is None: Ventas = 0
+
+
+        informe(Ventas,Gastos,Num,Mes,Ano)
+
+    setMesCombo = Signal(str)
+    @Slot(str)
+    def setMesCombobox(self,ano):
+        a = self.adapter.obtenerMesJSON(ano)
+        self.setMesCombo.emit(a)
+
+    setAnoCombo = Signal(str)
+    @Slot()
+    def setAnoCombobox(self):
+        a = self.adapter.obtenerAnoJSON()
+        self.setAnoCombo.emit(a)
 
 if __name__ == "__main__":
     #Enviroment variables

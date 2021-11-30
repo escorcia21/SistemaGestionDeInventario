@@ -577,9 +577,8 @@ Window {
                     Loader {
                         id: cartView
                         anchors.fill: parent
-                        source: Qt.resolvedUrl("pages/CartPage.qml")
+                        source: Qt.resolvedUrl("pages/InformePage.qml")
                         visible: false
-
                     }
 
                     Loader {
