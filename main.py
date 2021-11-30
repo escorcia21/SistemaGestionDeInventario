@@ -2,7 +2,7 @@
 # This Python file uses the following encoding: utf-8
 import sys
 from os import environ,path
-import cv2
+#import cv2
 from adapter import Adapter
 from DBConnection import BDD
 from PySide2.QtGui import QGuiApplication, QIcon
@@ -263,26 +263,27 @@ class MainWindow(QObject):
     change = Signal(str,int)
     @Slot(str,int)
     def onChangeImage(self,imgUrl,id):
-        name = imgUrl.replace("file:///","")
-        src = cv2.imread(name, cv2.IMREAD_UNCHANGED)
-        scale_percent = 50
-        name = name.split('/')
-        name = name[len(name) - 1]
+        print(imgUrl,id)
+        # name = imgUrl.replace("file:///","")
+        # src = cv2.imread(name, cv2.IMREAD_UNCHANGED)
+        # scale_percent = 50
+        # name = name.split('/')
+        # name = name[len(name) - 1]
 
-        #calculate the 50 percent of original dimensions
-        width = int(src.shape[1] * (scale_percent + 20 )/ 100)
-        height = int(src.shape[0] * scale_percent / 100)
+        # #calculate the 50 percent of original dimensions
+        # width = int(src.shape[1] * (scale_percent + 20 )/ 100)
+        # height = int(src.shape[0] * scale_percent / 100)
 
-        # dsize
-        dsize = (width, height)
+        # # dsize
+        # dsize = (width, height)
 
-        # resize image
-        output = cv2.resize(src, dsize)
-        proc = 'file:///'
-        path = f'C:\\Users\\pedro\\Documents\\pharmacy_py\\backend\\sources\\{name}'
-        proc += path
-        cv2.imwrite(path,output)
-        self.change.emit(proc,id)
+        # # resize image
+        # output = cv2.resize(src, dsize)
+        # proc = 'file:///'
+        # path = f'C:\\Users\\pedro\\Documents\\pharmacy_py\\backend\\sources\\{name}'
+        # proc += path
+        # cv2.imwrite(path,output)
+        # self.change.emit(proc,id)
 
     add = Signal(int,int)
     @Slot(int,int)
