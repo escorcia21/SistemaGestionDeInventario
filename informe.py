@@ -4,11 +4,32 @@ from fpdf import FPDF
 locale.setlocale(locale.LC_ALL, 'en_US.utf8')
 
 def Pesoinador(Peso):
-    print(Peso,"545",type(Peso))
+    """
+    Descripcion:
+    Convierte un valor flotante a string.
+
+    Entradas:
+    peso (str) --- 0,000,000.000 
+    """
+    
     Peso = locale.currency(Peso, grouping=True)
     return str(Peso)
 
 def informe(Ventas,Gastos,NumeroVentas,Mes,Ano):
+    """
+    Descripcion:
+    Convierte un valor flotante a string.
+
+    Entradas:
+    Ventas (str) --- Ventas en el mes 
+    Gastos (str) --- gastos en el mes 
+    NumeroVentas (str) --- numero de ventas en el mes
+    Mes (str) --- mes 
+    Ano (str) --- año
+
+    Salida: 
+    Genera un informe en formato pdf que se guarda en la carpeta Documentos bajo el nombre de factura.pdf
+    """
     NumeroVentas = str(NumeroVentas)
     Ganancias =int(Ventas)-int(Gastos)
     Signo = ""

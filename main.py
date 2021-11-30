@@ -13,6 +13,16 @@ from informe import informe
 
 
 class MainWindow(QObject):
+    """
+    Descripcion:
+    Esta clase maneja todos los eventos de la vista y los delega a las clases conrrespondientes.
+
+    Entradas:
+    bdd (BDD) --- conexion de la BDD
+    adapter (Adapter) --- instancia de adapter
+    engine (Engine) --- engine
+    """
+
     def __init__(self,bdd:BDD,adapter:Adapter,engine):
         self.cont = 0
         QObject.__init__(self)
