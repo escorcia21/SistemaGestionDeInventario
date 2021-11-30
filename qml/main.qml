@@ -9,8 +9,8 @@ Window {
     id: window
     width: 1366
     height: 768
-    minimumWidth: 800
-    minimumHeight: 600
+    minimumWidth: 1366
+    minimumHeight: 768
     visible: true
     color: "#00000000"
     title: ""
