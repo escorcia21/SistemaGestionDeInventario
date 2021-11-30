@@ -504,7 +504,7 @@ Window {
                             id: btnCart
                             width: left_menu.width
                             text: qsTr("Comprar")
-                            btnIconSource: "../img/svg_img/034-shopping-cart-12.svg"
+                            btnIconSource: "../img/svg_img/informes.svg"
                             iconHeight: 30
                             iconWidth: 30
                             displayStock: false
@@ -680,6 +680,6 @@ Window {
 
 /*##^##
 Designer {
-    D{i:0;formeditorZoom:1.25}
+    D{i:0;formeditorZoom:0.75}
 }
 ##^##*/
