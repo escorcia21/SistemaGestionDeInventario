@@ -142,6 +142,11 @@ class MainWindow(QObject):
         self.dbc.add_Supplier(Nombre,Nit,Email,int(Telefono),Direccion)
         self.setPageSupp()
 
+    @Slot(str,str,str,str,str,int)
+    def actualizarProveedor(self,Nombre,Nit,Email,Telefono,Direccion,identification):
+        self.dbc.edit_Supplier(Nombre,Nit,Email,int(Telefono),Direccion,identification)
+        self.setPageSupp()
+
     @Slot(str,str,str,str)
     def agregarFactura(self,Vendedor,Cliente,Fecha,Total):
         Fecha = Fecha.split("/")

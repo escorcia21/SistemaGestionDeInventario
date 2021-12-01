@@ -77,3 +77,5 @@ models.py
 *.user
 setup.py
 build
+main.pyproject
+.qt_for_python

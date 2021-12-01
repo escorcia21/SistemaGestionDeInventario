@@ -20,7 +20,7 @@ PopupBase {
               anchors.top: parent.top
               anchors.rightMargin: 0
               anchors.bottomMargin: 100
-              formTitle: "EDIT PRODUCT"
+              formTitle: "EDITAR PRODUCTO"
               name: ename
               price: eprice
           }
@@ -39,7 +39,7 @@ PopupBase {
               CardBtns {
                   width: 100
                   height: 37
-                  text: "Close"
+                  text: "Cerrar"
                   btnColorClicked: "#cd3737"
                   btnColorMouseOver: "#ec3c3c"
                   btnColorDefault: "#f05454"
@@ -62,7 +62,7 @@ PopupBase {
               CardBtns {
                   width: 100
                   height: 37
-                  text: "Save"
+                  text: "Editar"
                   anchors.verticalCenter: parent.verticalCenter
                   anchors.verticalCenterOffset: 1
                   anchors.horizontalCenterOffset: 64
